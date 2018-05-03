@@ -8,15 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="EntryMenuTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="RegisterTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
     <!--EntryMenuActivity  Style-->
     <style name="btnActionStyle">
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/HelveticaNeue</item>
+        <item name="android:fontFamily">@font/helveticaneue_light</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="titleStyle" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/helveticaneue</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

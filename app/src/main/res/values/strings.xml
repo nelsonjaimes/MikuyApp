@@ -4,5 +4,11 @@
     <string name="signup">Registrarse</string>
     <string name="signin">Iniciar Sesión</string>
     <string name="titleApp">La Casa Del Tacu Tacu</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="passwoord">Contraseña</string>
+    <string name="helpPassword">¿Olvidó su contraseña?</string>
+    <string name="hereClick">Click Aqui</string>
+    <string name="connectToFacebook">Conectar con Facebook</string>
+    <string name="connectToTwitter">Conectar con Twiter</string>
 
 </resources>

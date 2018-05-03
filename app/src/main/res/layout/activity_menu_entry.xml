@@ -26,23 +26,24 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/Pinacolada"
+            android:fontFamily="@font/pinacolada"
             android:gravity="center"
             android:padding="4dp"
             android:text="@string/titleApp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorDark"
             android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/tvSignIn"
             style="@style/btnActionStyle"
             android:layout_marginTop="20dp"
-            android:background="@drawable/selector_btn_signin"
+            android:background="@drawable/selector_signin"
             android:text="@string/signin" />
 
         <TextView
             style="@style/btnActionStyle"
             android:layout_marginTop="15dp"
-            android:background="@drawable/selector_btn_singup"
+            android:background="@drawable/selector_singup"
             android:text="@string/signup" />
     </LinearLayout>
 

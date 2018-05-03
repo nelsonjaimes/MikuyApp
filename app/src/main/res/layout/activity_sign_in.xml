@@ -1,15 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
     tools:context=".SignInActivity">
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helveticaneue_bold"
+            android:gravity="center"
+            android:text="@string/signin"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp" />
+    </android.support.v7.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_edt_register"
+            android:fontFamily="@font/helveticaneue"
+            android:gravity="center"
+            android:hint="@string/email"
+            android:padding="8dp"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp" />
 
-</LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_edt_register"
+            android:fontFamily="@font/helveticaneue"
+            android:gravity="center"
+            android:hint="@string/passwoord"
+            android:padding="8dp"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvSignIn"
+            style="@style/btnActionStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_singup"
+            android:text="@string/signin"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/helveticaneue"
+                android:gravity="center"
+                android:text="@string/helpPassword"
+                android:textColor="@color/colorDark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/selector_signin"
+                android:fontFamily="@font/helveticaneue_light"
+                android:padding="4dp"
+                android:text="@string/hereClick"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvConnectToFacebook"
+            style="@style/btnActionStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_connect_facebook"
+            android:text="@string/connectToFacebook"
+            android:textAllCaps="true"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvConnectToTwitter"
+            style="@style/btnActionStyle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_connect_twiter"
+            android:text="@string/connectToTwitter"
+            android:textAllCaps="true"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/entry" />
+</RelativeLayout>
