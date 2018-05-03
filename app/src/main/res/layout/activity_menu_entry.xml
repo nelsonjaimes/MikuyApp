@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EntryMenuActivity">
+
+    <ImageView
+        android:id="@+id/ivPortrait"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/llOptions"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/entry" />
+
+    <LinearLayout
+        android:id="@+id/llOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/Pinacolada"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/titleApp"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp" />
+
+        <TextView
+            style="@style/btnActionStyle"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_btn_signin"
+            android:text="@string/signin" />
+
+        <TextView
+            style="@style/btnActionStyle"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_btn_singup"
+            android:text="@string/signup" />
+    </LinearLayout>
+
+</RelativeLayout>
