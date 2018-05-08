@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="15dp"
+    android:background="@color/colorBrackgroundFragment"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="12dp">
 
     <ImageView
+        android:id="@+id/ivImage"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:contentDescription="@null"
@@ -14,6 +16,7 @@
         android:src="@drawable/entry_64" />
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"

@@ -15,13 +15,14 @@ import android.widget.Button;
 
 import com.restaurant.project.restaurantapp.R;
 import com.restaurant.project.restaurantapp.letter.adapter.LettherAdapter;
-import com.restaurant.project.restaurantapp.menutoday.adapter.PlateAdapter;
 import com.restaurant.project.restaurantapp.menutoday.model.Plate;
 import com.restaurant.project.restaurantapp.menutoday.ui.PlateRecyclerListener;
 import com.restaurant.project.restaurantapp.reservation.make.MakeReservationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.restaurant.project.restaurantapp.utils.Constant.TYPE_LETTER_FOOD;
 
 /**
  * @author TacuTacuRestaurant
@@ -65,21 +66,19 @@ public class LetterOfDishesFragment extends Fragment implements PlateRecyclerLis
 
     void initRecyclerView() {
         List<Plate> letterList = new ArrayList<>();
-        letterList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+
         LettherAdapter lettherAdapter = new LettherAdapter(context);
         lettherAdapter.setRecyclerListener(this);
         lettherAdapter.setPlateList(letterList);
@@ -87,7 +86,7 @@ public class LetterOfDishesFragment extends Fragment implements PlateRecyclerLis
     }
 
     @Override
-    public void selectItem(Plate plate, int position) {
+    public void selectItem(int position) {
 
     }
 

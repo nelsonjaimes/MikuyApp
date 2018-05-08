@@ -14,13 +14,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.restaurant.project.restaurantapp.R;
-import com.restaurant.project.restaurantapp.menutoday.adapter.PlateAdapter;
+import com.restaurant.project.restaurantapp.menutoday.adapter.MenuTodayAdapter;
+import com.restaurant.project.restaurantapp.menutoday.model.Category;
 import com.restaurant.project.restaurantapp.menutoday.model.Plate;
 import com.restaurant.project.restaurantapp.reservation.make.MakeReservationActivity;
-import com.restaurant.project.restaurantapp.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.restaurant.project.restaurantapp.utils.Constant.TYPE_MENU_BACKGROUND;
+import static com.restaurant.project.restaurantapp.utils.Constant.TYPE_MENU_DESSERT;
+import static com.restaurant.project.restaurantapp.utils.Constant.TYPE_MENU_ENTRY;
 
 
 /**
@@ -64,40 +68,33 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
     }
 
     private void initRecyclerView() {
-        List<Plate> todayPlateList = new ArrayList<>();
-        todayPlateList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Arroz a la jardinera", 12.0, PlateAdapter.TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Chorizo de chancho", 15.0, PlateAdapter.TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Lomo Saltado", 12.5, PlateAdapter.TYPE_MENU_BACKGROUND));
+        List<Object> todayPlateList = new ArrayList<>();
+        todayPlateList.add(new Category(R.drawable.background_64, get(R.string.backgroundPlate)));
+        todayPlateList.add(new Plate("Lomo Saltado", 12.5, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Chorizo de chancho", 15.0, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Lomo Saltado", 12.5, TYPE_MENU_BACKGROUND));
 
-        todayPlateList.add(new Plate("Papa ala Huancaina", 0.0, PlateAdapter.TYPE_MENU_ENTRY));
-        todayPlateList.add(new Plate("Yuquitas", 0.0, PlateAdapter.TYPE_MENU_ENTRY));
-        todayPlateList.add(new Plate("Picarones", 0.0, PlateAdapter.TYPE_MENU_ENTRY));
+        todayPlateList.add(new Category(R.drawable.entry_64, get(R.string.entry)));
+        todayPlateList.add(new Plate("Papa ala Huancaina", 0.0, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Plate("Yuquitas", 0.0, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Plate("Picarones", 0.0, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Category(R.drawable.dessert_64, get(R.string.dessert)));
 
-        todayPlateList.add(new Plate("Gelatina", 0.0, PlateAdapter.TYPE_MENU_DESSERT));
-        todayPlateList.add(new Plate("Pai de Manzana", 0.0, PlateAdapter.TYPE_MENU_DESSERT));
-        todayPlateList.add(new Plate("Pastel de choclo", 0.0, PlateAdapter.TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Gelatina", 0.0, TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Pai de Manzana", 0.0, TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Pastel de choclo", 0.0, TYPE_MENU_DESSERT));
 
-        PlateAdapter backgroundPlateAdapter = new PlateAdapter(context);
-        backgroundPlateAdapter.setPlateList(todayPlateList);
-        backgroundPlateAdapter.setPlateRecyclerListener(this);
+        MenuTodayAdapter backgroundMenuTodayAdapter = new MenuTodayAdapter(context);
+        backgroundMenuTodayAdapter.setObjectList(todayPlateList);
+        backgroundMenuTodayAdapter.setPlateRecyclerListener(this);
 
-        rvTodayPlate.setAdapter(backgroundPlateAdapter);
+        rvTodayPlate.setAdapter(backgroundMenuTodayAdapter);
     }
 
     @Override
-    public void selectItem(Plate plate, int position) {
-        switch (plate.getCategory()) {
-            case PlateAdapter.TYPE_MENU_BACKGROUND:
-                LogUtil.d("PlatoFondo:" + plate.getName());
-                break;
-            case PlateAdapter.TYPE_MENU_ENTRY:
-                LogUtil.d("Entrada:" + plate.getName());
-                break;
-            case PlateAdapter.TYPE_MENU_DESSERT:
-                LogUtil.d("Postre:" + plate.getName());
-                break;
-        }
+    public void selectItem(int position) {
+
     }
 
     @Override
@@ -108,5 +105,9 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    private String get(int idRes) {
+        return context.getResources().getString(idRes);
     }
 }

@@ -46,7 +46,7 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
 
     @Override
     public void onBindViewHolder(@NonNull LetterViewHolder holder, int position) {
-        holder.setLetterPlate(plateList.get(position));
+        holder.setLetterPlate(plateList.get(position), position);
     }
 
     @Override
@@ -61,6 +61,7 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
 
     private void unItemSelect(int position) {
         plateList.get(position).setAggregate(false);
+        plateList.get(position).setFirstAggregate(false);
         notifyItemChanged(position);
     }
 
@@ -95,12 +96,17 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
             itemView.setOnClickListener(this);
         }
 
-        void setLetterPlate(Plate plate) {
+        void setLetterPlate(Plate plate, int position) {
             tvName.setText(plate.getName());
             tvPrice.setText(context.getString(R.string.formatPrice, plate.getPrice()));
             tvAccountant.setText(String.valueOf(plate.getAccountant()));
             if (plate.isAggregate()) {
-                AnimationUtil.slideRightAnimationView(llAccountant, context);
+                if (plate.isFirstAggregate()) {
+                    llAccountant.setVisibility(View.VISIBLE);
+                } else {
+                    AnimationUtil.slideRightAnimationView(llAccountant, context);
+                    plateList.get(position).setFirstAggregate(true);
+                }
                 AnimationUtil.showAnimationView(ivCheck, context);
             } else {
                 ivCheck.setVisibility(View.INVISIBLE);

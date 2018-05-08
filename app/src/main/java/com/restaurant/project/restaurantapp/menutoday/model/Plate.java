@@ -4,6 +4,7 @@ public class Plate {
     private String name;
     private double price;
     private boolean isAggregate;
+    private boolean isFirstAggregate;
     private int accountant;
     private String category;
 
@@ -11,6 +12,7 @@ public class Plate {
         this.name = name;
         this.price = price;
         this.isAggregate = false;
+        this.isFirstAggregate=false;
         this.category = category;
     }
 
@@ -44,6 +46,14 @@ public class Plate {
 
     public void setAggregate(boolean aggregate) {
         isAggregate = aggregate;
+    }
+
+    public boolean isFirstAggregate() {
+        return isFirstAggregate;
+    }
+
+    public void setFirstAggregate(boolean firstAggregate) {
+        isFirstAggregate = firstAggregate;
     }
 
     public String getCategory() {

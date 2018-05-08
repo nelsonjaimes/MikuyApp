@@ -10,4 +10,10 @@ public class Constant {
     public static final int ITEM_PROFILE_USER = 6;
     public static final int ITEM_SIGN_OFF = 7;
 
+    /*Category*/
+    public static final String TYPE_MENU_ENTRY = "ENTRADA";
+    public static final String TYPE_MENU_DESSERT = "POSTRE";
+    public static final String TYPE_MENU_BACKGROUND = "PLATO DE FONDO";
+    public static final String TYPE_LETTER_FOOD = "PLATO DE CARTA";
+
 }
