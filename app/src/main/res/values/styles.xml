@@ -8,32 +8,47 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="EntryMenuTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorWhite</item>
-        <item name="colorPrimaryDark">@color/colorWhite</item>
-        <item name="colorAccent">@color/colorWhite</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="RegisterTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorWhite</item>
-        <item name="colorPrimaryDark">@color/colorWhite</item>
-        <item name="colorAccent">@color/colorPrimary</item>
-    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="EntryMenuTheme" parent="AppTheme" />
+
     <!--EntryMenuActivity  Style-->
     <style name="btnActionStyle">
-        <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/helveticaneue_light</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_width">@dimen/widthBoxSignUp</item>
+        <item name="android:layout_height">@dimen/heigthBoxSignUp</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
-    <style name="titleStyle" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/helveticaneue</item>
-        <item name="android:textSize">20sp</item>
+    <style name="toolbarHomeStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <!--SignUp style -->
+    <style name="edtRegisterStyle">
+        <item name="android:background">@drawable/shape_edt_register</item>
+        <item name="android:layout_width">@dimen/widthBoxSignUp</item>
+        <item name="android:layout_height">@dimen/heigthBoxSignUp</item>
         <item name="android:gravity">center</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- RecyclerViewStyles-->
+    <style name="recyclerScrollStyle">
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:scrollbarThumbVertical">@drawable/recycler_scrollbar</item>
+        <item name="android:scrollbarTrackVertical">@android:color/transparent</item>
+        <item name="android:scrollbarSize">2dp</item>
+        <item name="android:scrollbarFadeDuration">2000</item>
+        <item name="android:scrollbarDefaultDelayBeforeFade">1000</item>
+    </style>
 </resources>

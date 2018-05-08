@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context=".signin.SignInActivity">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/ensalada" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/signup"
+            app:titleTextColor="@color/colorWhite" />
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            style="@style/edtRegisterStyle"
+            android:hint="@string/name" />
+
+        <EditText
+            style="@style/edtRegisterStyle"
+            android:layout_marginTop="10dp"
+            android:hint="@string/lastName" />
+
+        <EditText
+            style="@style/edtRegisterStyle"
+            android:layout_marginTop="10dp"
+            android:hint="@string/email" />
+
+        <EditText
+            style="@style/edtRegisterStyle"
+            android:layout_marginTop="10dp"
+            android:hint="@string/passwoord" />
+
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/btnActionStyle"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_signup"
+            android:text="@string/signup"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/or"
+            android:textColor="@color/colorDark" />
+
+        <Button
+            android:id="@+id/btnConnectToFacebook"
+            style="@style/btnActionStyle"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_connect_facebook"
+            android:drawableLeft="@drawable/ic_action_facebook"
+            android:drawableStart="@drawable/ic_action_facebook"
+            android:text="@string/connectToFacebook"
+            android:textAllCaps="true"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnConnectToTwitter"
+            style="@style/btnActionStyle"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_connect_twiter"
+            android:drawableLeft="@drawable/ic_action_twitter"
+            android:drawableStart="@drawable/ic_action_twitter"
+            android:text="@string/connectToTwitter"
+            android:textAllCaps="true"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

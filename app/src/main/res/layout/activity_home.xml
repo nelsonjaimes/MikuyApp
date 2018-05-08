@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/splHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/rlLeft"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvSideBar"
+            style="@style/recyclerScrollStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnSignOff"
+            android:layout_toLeftOf="@+id/vSeparator"
+            android:layout_toStartOf="@+id/vSeparator"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+        <Button
+            android:id="@+id/btnSignOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/vSeparator"
+            android:layout_toStartOf="@+id/vSeparator"
+            android:background="@drawable/selector_signoff"
+            android:drawableLeft="@drawable/locked_32"
+            android:drawableStart="@drawable/locked_32"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
+            android:text="@string/signof"
+            android:textColor="@color/colorDark"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/vSeparator"
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:drawable/divider_horizontal_textfield" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/content_home" />
+
+</android.support.v4.widget.SlidingPaneLayout>

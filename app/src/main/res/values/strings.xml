@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tacu Tacu</string>
+    <string name="app_name">La casa del Tacu Tacu</string>
     <!-- Menu Entry Options-->
     <string name="signup">Registrarse</string>
     <string name="signin">Iniciar Sesión</string>
@@ -10,5 +10,31 @@
     <string name="hereClick">Click Aqui</string>
     <string name="connectToFacebook">Conectar con Facebook</string>
     <string name="connectToTwitter">Conectar con Twiter</string>
-
+    <!-- SignUp-->
+    <string name="registerNow">Registrate Ahora</string>
+    <string name="name">Nombres</string>
+    <string name="lastName">Apellidos</string>
+    <string name="or">O</string>
+    <!--Menu options -->
+    <string name="menu">Menu del día</string>
+    <string name="foodLetter">Carta de platos</string>
+    <string name="myReservations">Mis reservas</string>
+    <string name="contacts">Contactanos</string>
+    <string name="address">Dirección</string>
+    <string name="userProfile">Perfil de usuario</string>
+    <string name="signof">Cerrar sesión</string>
+    <string name="addressOfThePlace">Av. Tomas Marzano 356</string>
+    <string name="city">Lima, Perú</string>
+    <!--Menu Today -->
+    <string name="entry">Entrada</string>
+    <string name="backgroundPlate">Plato de fondo</string>
+    <string name="dessert">Postres</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="formatPrice">s/ %.2f</string>
+    <string name="reserve">Realizar Reserva</string>
+    <string name="reservation">Reservación</string>
+    <string name="reservationNumber">Número de reserva:</string>
+    <string name="DateAndHour">Fecha y hora:</string>
+    <string name="OrderList">Lista de pedidos</string>
+    <string name="makePayment">Realizar pago</string>
 </resources>

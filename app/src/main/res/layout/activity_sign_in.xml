@@ -1,121 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:orientation="vertical"
-    tools:context=".SignInActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    tools:context=".signin.SignInActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        <TextView
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/helveticaneue_bold"
-            android:gravity="center"
-            android:text="@string/signin"
-            android:textColor="@color/colorDark"
-            android:textSize="18sp" />
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="@string/signin"
+            app:titleTextColor="@color/colorWhite" />
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/ensalada" />
 
     <LinearLayout
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/appbar"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="16dp">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_edt_register"
-            android:fontFamily="@font/helveticaneue"
-            android:gravity="center"
+            style="@style/edtRegisterStyle"
             android:hint="@string/email"
-            android:padding="8dp"
-            android:textColor="@color/colorDark"
-            android:textSize="18sp" />
+            android:inputType="textEmailAddress" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/edtRegisterStyle"
             android:layout_marginTop="15dp"
-            android:background="@drawable/shape_edt_register"
-            android:fontFamily="@font/helveticaneue"
-            android:gravity="center"
             android:hint="@string/passwoord"
-            android:padding="8dp"
-            android:textColor="@color/colorDark"
-            android:textSize="18sp" />
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btnSignIn"
+            style="@style/btnActionStyle"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_signup"
+            android:text="@string/signin"
+            android:textAllCaps="true" />
 
         <TextView
-            android:id="@+id/tvSignIn"
-            style="@style/btnActionStyle"
-            android:layout_width="match_parent"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/selector_singup"
-            android:text="@string/signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/helpPassword"
+            android:textColor="@color/colorDark"
             android:textSize="15sp" />
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="@string/or"
+            android:textColor="@color/colorDark" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/helveticaneue"
-                android:gravity="center"
-                android:text="@string/helpPassword"
-                android:textColor="@color/colorDark"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:background="@drawable/selector_signin"
-                android:fontFamily="@font/helveticaneue_light"
-                android:padding="4dp"
-                android:text="@string/hereClick"
-                android:textColor="@color/colorWhite"
-                android:textSize="13sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvConnectToFacebook"
+        <Button
+            android:id="@+id/btnConnectToFacebook"
             style="@style/btnActionStyle"
-            android:layout_width="match_parent"
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_connect_facebook"
+            android:drawableLeft="@drawable/ic_action_facebook"
+            android:drawableStart="@drawable/ic_action_facebook"
             android:text="@string/connectToFacebook"
-            android:textAllCaps="true"
-            android:textSize="15sp" />
+            android:textAllCaps="true" />
 
-        <TextView
-            android:id="@+id/tvConnectToTwitter"
+        <Button
+            android:id="@+id/btnConnectToTwitter"
             style="@style/btnActionStyle"
-            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_connect_twiter"
+            android:drawableLeft="@drawable/ic_action_twitter"
+            android:drawableStart="@drawable/ic_action_twitter"
             android:text="@string/connectToTwitter"
-            android:textAllCaps="true"
-            android:textSize="15sp" />
+            android:textAllCaps="true" />
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        android:src="@drawable/entry" />
 </RelativeLayout>

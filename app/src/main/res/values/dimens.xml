@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SignUp-->
+    <dimen name="heigthBoxSignUp">45dp</dimen>
+    <dimen name="widthBoxSignUp">250dp</dimen>
+    <!-- sideBar-->
+    <dimen name="marginTopBtnSignOff">50dp</dimen>
+</resources>
