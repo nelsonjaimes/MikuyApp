@@ -1,4 +1,4 @@
-package com.restaurant.project.restaurantapp.sidebar.adapter;
+package com.restaurant.project.restaurantapp.home.sidebar.adapter;
 
 public class Item {
     private int image;

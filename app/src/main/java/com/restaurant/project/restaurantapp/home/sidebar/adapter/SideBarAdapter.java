@@ -1,4 +1,4 @@
-package com.restaurant.project.restaurantapp.sidebar.adapter;
+package com.restaurant.project.restaurantapp.home.sidebar.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.restaurant.project.restaurantapp.R;
-import com.restaurant.project.restaurantapp.sidebar.ui.SideBarListener;
+import com.restaurant.project.restaurantapp.home.sidebar.ui.SideBarListener;
 
 import java.util.ArrayList;
 import java.util.List;

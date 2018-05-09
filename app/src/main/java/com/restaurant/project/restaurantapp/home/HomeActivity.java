@@ -18,8 +18,8 @@ import com.restaurant.project.restaurantapp.letter.LetterOfDishesFragment;
 import com.restaurant.project.restaurantapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.restaurantapp.profile.ProfileUserFragment;
 import com.restaurant.project.restaurantapp.reservation.MyReservationsFragment;
-import com.restaurant.project.restaurantapp.sidebar.adapter.SideBarAdapter;
-import com.restaurant.project.restaurantapp.sidebar.ui.SideBarListener;
+import com.restaurant.project.restaurantapp.home.sidebar.adapter.SideBarAdapter;
+import com.restaurant.project.restaurantapp.home.sidebar.ui.SideBarListener;
 import com.restaurant.project.restaurantapp.utils.Constant;
 
 public class HomeActivity extends AppCompatActivity implements SideBarListener {

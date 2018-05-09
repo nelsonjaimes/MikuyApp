@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/reservation"
             app:titleTextColor="@color/colorWhite" />
@@ -37,42 +37,17 @@
             android:padding="12dp">
 
             <TextView
-                android:id="@+id/tv1"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvReservationNumber"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/reservationNumber"
-                android:textColor="@color/colorDark"
-                android:textStyle="bold" />
+                android:textColor="@color/colorDark" />
 
             <TextView
+                android:id="@+id/tvReservationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/tv1"
-                android:layout_toRightOf="@+id/tv1"
-                android:text="@string/reservationNumber"
-                tools:text="001" />
-
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv1"
-                android:text="@string/DateAndHour"
-                android:textColor="@color/colorDark"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv1"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/tv2"
-                android:layout_toRightOf="@+id/tv2"
-                android:text="@string/reservationNumber"
-                tools:text="12/06/2018 3:45pm" />
+                android:layout_below="@+id/tvReservationNumber"
+                android:textColor="@color/colorDark" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -89,15 +64,59 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvOrderList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btnMakePayment"
         android:layout_below="@+id/tvOrderList"
         android:layout_margin="12dp">
 
-        <android.support.v7.widget.RecyclerView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOrderList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/vSeparator" />
+
+            <View
+                android:id="@+id/vSeparator"
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:layout_above="@+id/tv4"
+                android:background="@android:drawable/divider_horizontal_textfield" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/tvAmount"
+                android:layout_toStartOf="@+id/tvAmount"
+                android:padding="8dp"
+                android:text="@string/amount"
+                android:textColor="@color/colorDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/vSeparator"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="s/20.0"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
 
     <Button
