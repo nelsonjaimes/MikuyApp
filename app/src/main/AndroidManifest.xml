@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.restaurant.project.restaurantapp">
+    package="com.restaurant.project.mikuyapp">
 
     <application
         android:allowBackup="true"
@@ -25,7 +25,7 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".splash.SplashActivity" />
         <activity android:name=".detail.PlateDetailActivity" />
-        <activity android:name=".reservation.make.MakeReservationActivity"></activity>
+        <activity android:name=".reservation.make.MakeReservationActivity" />
     </application>
 
 </manifest>

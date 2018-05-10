@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">La casa del Tacu Tacu</string>
+    <string name="app_name">MikuyApp</string>
     <!-- Menu Entry Options-->
     <string name="signup">Registrarse</string>
     <string name="signin">Iniciar Sesión</string>
@@ -39,4 +39,6 @@
     <string name="OrderList">Lista de pedidos</string>
     <string name="makePayment">Realizar pago</string>
     <string name="AmountReservation">Total:</string>
+    <string name="titleDialogSend">Enviar email a MikuyApp</string>
+    <string name="subjectSendEmail">Contacto a MikuyApp</string>
 </resources>

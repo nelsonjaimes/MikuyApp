@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     tools:context=".contacts.ContactsFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/llHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -37,198 +38,19 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/vSeparator"
             android:layout_width="match_parent"
             android:layout_height=".5dp"
+            android:layout_below="@+id/llHeader"
             android:background="@android:drawable/divider_horizontal_textfield" />
 
-        <RelativeLayout
-            android:id="@+id/rlPhone"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvContacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp">
+            android:layout_below="@+id/vSeparator"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_contacts" />
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/ivPhone"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_phone"
-                android:tint="@color/colorDark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/ivPhone"
-                android:layout_toLeftOf="@+id/ivFacebookDirection"
-                android:layout_toRightOf="@+id/ivPhone"
-                android:layout_toStartOf="@+id/ivFacebookDirection"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="977190221"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/ivFacebookDirection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorDark" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height=".5dp"
-            android:background="@android:drawable/divider_horizontal_textfield" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/ivFacebook"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_action_facebook"
-                android:tint="@color/colorDark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/ivFacebook"
-                android:layout_toLeftOf="@+id/ivPhoneDirection"
-                android:layout_toRightOf="@+id/ivFacebook"
-                android:layout_toStartOf="@+id/ivPhoneDirection"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="LaCasaDelTacuTacuOficial"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/ivPhoneDirection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorDark" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height=".5dp"
-            android:background="@android:drawable/divider_horizontal_textfield" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/ivWeb"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_desktop_mac"
-                android:tint="@color/colorDark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/ivWeb"
-                android:layout_toLeftOf="@+id/ivWebDirection"
-                android:layout_toRightOf="@+id/ivWeb"
-                android:layout_toStartOf="@+id/ivWebDirection"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="LaCasaDelTacuTacuOficial"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/ivWebDirection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorDark" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height=".5dp"
-            android:background="@android:drawable/divider_horizontal_textfield" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:padding="8dp">
-
-            <ImageView
-                android:id="@+id/ivEmail"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_email_36"
-                android:tint="@color/colorDark" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/ivEmail"
-                android:layout_toLeftOf="@+id/ivEmaioDirection"
-                android:layout_toRightOf="@+id/ivEmail"
-                android:layout_toStartOf="@+id/ivEmaioDirection"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="lacasadeltacutacu@gmail.com"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/ivEmaioDirection"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_arrow_right"
-                android:tint="@color/colorDark" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height=".5dp"
-            android:background="@android:drawable/divider_horizontal_textfield" />
-
-    </LinearLayout>
 </android.support.v7.widget.CardView>
