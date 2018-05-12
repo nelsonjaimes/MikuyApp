@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
+import com.restaurant.project.mikuyapp.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,8 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<Item> itemList;
     private Context context;
     private SideBarListener sideBarListener;
+    private int colorDefault;
+    private int colorSelect;
 
     public SideBarAdapter(Context context) {
         this.context = context;
@@ -32,6 +34,8 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         itemList.add(new Item(R.drawable.contacts_dark, get(R.string.contacts)));
         itemList.add(new Item(R.drawable.address_dark, get(R.string.address)));
         itemList.add(new Item(R.drawable.profileuser_dark, get(R.string.userProfile)));
+        colorDefault = context.getResources().getColor(R.color.colorDark);
+        colorSelect = context.getResources().getColor(R.color.colorPrimaryDark);
     }
 
     private String get(int idString) {
@@ -85,15 +89,13 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     class NormalItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivItem;
         TextView tvItem;
-        RelativeLayout rlItem;
         private int position;
 
         NormalItemHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             ivItem = itemView.findViewById(R.id.ivItem);
             tvItem = itemView.findViewById(R.id.tvItem);
-            rlItem = itemView.findViewById(R.id.rlItem);
-            rlItem.setOnClickListener(this);
         }
 
         void setItem(Item item) {
@@ -107,20 +109,24 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
 
         private void changeColorItem() {
-            tvItem.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            ivItem.setColorFilter(context.getResources().getColor(R.color.colorPrimaryDark));
+            tvItem.setTextColor(colorSelect);
+            ivItem.setColorFilter(colorSelect);
         }
 
         private void defaultColorItem() {
-            tvItem.setTextColor(context.getResources().getColor(R.color.colorDark));
-            ivItem.setColorFilter(context.getResources().getColor(R.color.colorDark));
+            tvItem.setTextColor(colorDefault);
+            ivItem.setColorFilter(colorDefault);
         }
 
         @Override
         public void onClick(View v) {
             position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                sideBarListener.itemSelectSideBar(position);
+                if (position != Constant.ITEM_ADDRESS) {
+                    sideBarListener.itemSelectSideBar(position);
+                } else {
+                    sideBarListener.navigationAddressMap();
+                }
             }
         }
     }

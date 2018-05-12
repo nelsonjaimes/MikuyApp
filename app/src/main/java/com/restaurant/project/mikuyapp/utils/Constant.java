@@ -24,4 +24,6 @@ final public class Constant {
     public static final String PHONE_NUMBER = "923123456";
     public static final String FORMAT_PHONE_NUMBER = "tel:" + PHONE_NUMBER;
     public static final String EMAIL = "nelsonjaimesgonzales@gmail.com";
+    //Settings
+    public static final String SCHEME_PACKAGE = "package";
 }

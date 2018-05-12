@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -12,14 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.address.AddressLocationFragment;
+import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
 import com.restaurant.project.mikuyapp.contacts.ContactsFragment;
+import com.restaurant.project.mikuyapp.home.sidebar.adapter.SideBarAdapter;
+import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
 import com.restaurant.project.mikuyapp.letter.LetterOfDishesFragment;
 import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
-import com.restaurant.project.mikuyapp.home.sidebar.adapter.SideBarAdapter;
-import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
 import com.restaurant.project.mikuyapp.utils.Constant;
 
 public class HomeActivity extends AppCompatActivity implements SideBarListener {
@@ -28,6 +29,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
     private RecyclerView rvSideBar;
     private FragmentManager mFragmentManager;
     private SideBarAdapter sideBarAdapter;
+    private HandlerSlidingPanel handlerSlidingPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
         splHome = findViewById(R.id.splHome);
         rvSideBar = findViewById(R.id.rvSideBar);
         mFragmentManager = getSupportFragmentManager();
+        handlerSlidingPanel = new HandlerSlidingPanel(splHome);
         initSlidingPanel();
         initSideBar();
         initToolbar();
@@ -66,14 +69,16 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
 
     @Override
     public void itemSelectSideBar(int pos) {
-        if (splHome.isOpen()){
+        if (splHome.isOpen()) {
             replaceFragment(pos);
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    splHome.closePane();
-                }
-            }, 200);
+            handlerSlidingPanel.close();
+        }
+    }
+
+    @Override
+    public void navigationAddressMap() {
+        if (splHome.isOpen()) {
+            startActivity(new Intent(this, AddressMapsActivity.class));
         }
     }
 
@@ -97,10 +102,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
                 fragment = ContactsFragment.getInstance();
                 title = getString(R.string.contacts);
                 break;
-            case Constant.ITEM_ADDRESS:
-                fragment = AddressLocationFragment.getInstance();
-                title = getString(R.string.address);
-                break;
             case Constant.ITEM_PROFILE_USER:
                 fragment = ProfileUserFragment.getInstance();
                 title = getString(R.string.userProfile);
@@ -109,8 +110,8 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
                 break;
         }
         if (fragment != null && mFragmentManager != null) {
-            sideBarAdapter.selectItem(position);
             mFragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            sideBarAdapter.selectItem(position);
             setTitle(title);
         }
     }
@@ -137,6 +138,24 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
             splHome.closePane();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private static class HandlerSlidingPanel extends Handler implements Runnable {
+        private SlidingPaneLayout slidingPaneLayout;
+
+        HandlerSlidingPanel(SlidingPaneLayout slidingPaneLayout) {
+            super();
+            this.slidingPaneLayout = slidingPaneLayout;
+        }
+
+        void close() {
+            postDelayed(this, 200);
+        }
+
+        @Override
+        public void run() {
+            slidingPaneLayout.closePane();
         }
     }
 }

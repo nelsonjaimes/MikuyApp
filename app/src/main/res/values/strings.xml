@@ -41,4 +41,16 @@
     <string name="AmountReservation">Total:</string>
     <string name="titleDialogSend">Enviar email a MikuyApp</string>
     <string name="subjectSendEmail">Contacto a MikuyApp</string>
+    <string name="title_activity_address_maps">Map</string>
+    <string name="nameRestaurant">MikuyRestaurant</string>
+    <string name="startUbication">&lt;b>Mi ubicación&lt;/b> (%1$s)</string>
+    <string name="endUbication">&lt;b>Restaurant&lt;/b> (%1$s)</string>
+    <string name="titleStart">Mi ubicación</string>
+    <string name="titleEnd">Restaurant</string>
+    <string name="reload">Recargar</string>
+    <string name="errorApiDireccions">Error interno de servidor ApiGoogleDirections</string>
+    <string name="errorNetwoork">Error de conexión,intente conectarse a una red Wi-Fi o Datos</string>
+    <string name="errorSettingsLocation">Habilite algun proveedor de localización</string>
+    <string name="settings">AJUSTES</string>
+
 </resources>

@@ -21,7 +21,10 @@ allprojects {
 ext {
     appCompatVersion = '27.1.1'
     glideVersion = '4.7.1'
-    playServiceVersion = '15.0.0'
+    playServiceVersion = '15.0.1'
+    apiServiceVersion = '0.1.20'
+    retrofitVersion = '2.4.0'
+    okVersion = '3.10.0'
 }
 
 task clean(type: Delete) {

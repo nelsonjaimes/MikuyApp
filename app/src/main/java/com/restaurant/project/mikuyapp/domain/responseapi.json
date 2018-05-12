@@ -1,0 +1,48 @@
+{
+  "routes": [
+    {
+      "legs": [
+        {
+          "distance": {
+            "text": "10,9 km",
+            "value": 10934
+          },
+          "duration": {
+            "text": "30 min",
+            "value": 1773
+          },
+          "end_address": "Av Palermo 292, La Victoria 15034, Perú",
+          "end_location": {
+            "lat": -12.0767091,
+            "lng": -77.02298210000001
+          },
+          "start_address": "Jiron Jose Santos Chocano 359, Cercado de Lima 07006, Perú",
+          "start_location": {
+            "lat": -12.055707,
+            "lng": -77.0867944
+          },
+          "steps": [
+            {
+              "end_location": {
+                "lat": -12.0534831,
+                "lng": -77.0863774
+              },
+              "html_instructions": "Dirígete hacia el \u003cb\u003enorte\u003c/b\u003e\u003cdiv style=\"font-size:0.9em\"\u003eVía de uso parcialmente restringido\u003c/div\u003e",
+              "polyline": {
+                "points": "dsqhAl_ouMeAGg@Ci@CE?E?GCECIGIKIGOCIAO?cEW"
+              },
+              "start_location": {
+                "lat": -12.055707,
+                "lng": -77.0867944
+              },
+              "travel_mode": "DRIVING"
+            },
+          ],
+          "traffic_speed_entry": [],
+          "via_waypoint": []
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+}

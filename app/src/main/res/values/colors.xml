@@ -11,4 +11,6 @@
     <color name="colorGrayDark">#CECECE</color>
     <color name="colorFooter">#80000000</color>
     <color name="colorBrackgroundFragment">#F1F5F8</color>
+    <color name="colorGreen">#4C9427</color>
+    <color name="colorWhiteTrans">#80FFFFFF</color>
 </resources>
