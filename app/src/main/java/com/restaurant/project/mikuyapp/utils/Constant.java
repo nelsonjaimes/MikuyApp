@@ -6,10 +6,7 @@ final public class Constant {
     public static final int ITEM_LETTER_DISHES = 2;
     public static final int ITEM_RESERVATIONS = 3;
     public static final int ITEM_CONTACTS = 4;
-    public static final int ITEM_ADDRESS = 5;
-    public static final int ITEM_PROFILE_USER = 6;
-    public static final int ITEM_SIGN_OFF = 7;
-
+    public static final int ITEM_PROFILE_USER = 5;
     /*Category*/
     public static final String TYPE_MENU_ENTRY = "ENTRADA";
     public static final String TYPE_MENU_DESSERT = "POSTRE";

@@ -9,7 +9,7 @@ import com.restaurant.project.mikuyapp.domain.model.directions.DirectionsApiResp
 public interface AddressMapsPresenter {
     void attachView(AddressMapsView addressMapsView);
 
-    void initRequestDirectionApi(LatLng latLng);
+    void initRequestDirectionApi(@NonNull LatLng latLng);
 
     void onDestroyView();
 

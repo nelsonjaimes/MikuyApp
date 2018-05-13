@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
@@ -23,7 +25,7 @@ import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
 import com.restaurant.project.mikuyapp.utils.Constant;
 
-public class HomeActivity extends AppCompatActivity implements SideBarListener {
+public class HomeActivity extends AppCompatActivity implements SideBarListener, View.OnClickListener {
 
     private SlidingPaneLayout splHome;
     private RecyclerView rvSideBar;
@@ -39,6 +41,8 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
         rvSideBar = findViewById(R.id.rvSideBar);
         mFragmentManager = getSupportFragmentManager();
         handlerSlidingPanel = new HandlerSlidingPanel(splHome);
+        Button btnAddress = findViewById(R.id.btnAddress);
+        btnAddress.setOnClickListener(this);
         initSlidingPanel();
         initSideBar();
         initToolbar();
@@ -68,17 +72,17 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
     }
 
     @Override
-    public void itemSelectSideBar(int pos) {
+    public void onClick(View v) {
         if (splHome.isOpen()) {
-            replaceFragment(pos);
-            handlerSlidingPanel.close();
+            startActivity(new Intent(this, AddressMapsActivity.class));
         }
     }
 
     @Override
-    public void navigationAddressMap() {
+    public void itemSelectSideBar(int pos) {
         if (splHome.isOpen()) {
-            startActivity(new Intent(this, AddressMapsActivity.class));
+            replaceFragment(pos);
+            handlerSlidingPanel.close();
         }
     }
 
@@ -105,8 +109,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener {
             case Constant.ITEM_PROFILE_USER:
                 fragment = ProfileUserFragment.getInstance();
                 title = getString(R.string.userProfile);
-                break;
-            case Constant.ITEM_SIGN_OFF:
                 break;
         }
         if (fragment != null && mFragmentManager != null) {

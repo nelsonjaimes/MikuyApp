@@ -1,15 +1,20 @@
 package com.restaurant.project.mikuyapp.address.ui;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,12 +24,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,6 +45,9 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.maps.android.PolyUtil;
 import com.google.maps.android.ui.IconGenerator;
 import com.restaurant.project.mikuyapp.R;
@@ -50,24 +63,27 @@ import java.util.List;
 public class AddressMapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, AddressMapsView {
 
-    final long INTERVAL_REQUEST = 60 * 1000;
-    final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
-    private final String KEY_LOCATION = "location_update";
-    private SupportMapFragment mapFragment;
     private ProgressBar pbLoad;
     private TextView tvTime;
     private ImageView ivBus;
     private TextView tvStartUbication;
     private TextView tvEndUbication;
     private AddressMapsPresenter addressMapsPresenter;
-    private List<LatLng> latLngList;
     /*MyLocation*/
+    private SupportMapFragment mapFragment;
     private LocationRequest mLocationRequest;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private LocationCallback mLocationCallback;
-    private Snackbar snackNetworkError;
-    private Snackbar snackSettingsLocation;
+    private Snackbar snackNetworkError, snackSettingsLocation;
     private LatLng latLng;
+    private List<LatLng> latLngList;
+    final long INTERVAL_REQUEST = 2 * 60 * 1000;
+    final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
+    private final String KEY_LIST_LOCATION = "key_list_location";
+    private String pathLocation;
+    private boolean restoreState = true;
+    /*Permission*/
+    private final int PERMISSIONS_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -84,8 +100,13 @@ public class AddressMapsActivity extends AppCompatActivity
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         createLocationRequest();
         createCallbackRequest();
-        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_LOCATION)) {
-            latLng = savedInstanceState.getParcelable(KEY_LOCATION);
+        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_LIST_LOCATION)) {
+            pathLocation = savedInstanceState.getString(KEY_LIST_LOCATION);
+            if (pathLocation != null) {
+                restoreState = false;
+                latLngList = PolyUtil.decode(pathLocation);
+                mapFragment.getMapAsync(this);
+            }
         }
     }
 
@@ -93,7 +114,10 @@ public class AddressMapsActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         addressMapsPresenter.attachView(this);
-        startLocationUpdate();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkPermissions()) startSettingsLocation();
+            else startRequestPermissions();
+        } else startSettingsLocation();
     }
 
     @Override
@@ -111,7 +135,7 @@ public class AddressMapsActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelable(KEY_LOCATION, latLng);
+        outState.putString(KEY_LIST_LOCATION, pathLocation);
     }
 
     @Override
@@ -120,6 +144,22 @@ public class AddressMapsActivity extends AppCompatActivity
             onBackPressed();
         }
         return true;
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startKnownLocation() {
+        mFusedLocationProviderClient.getLastLocation().
+                addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            if (restoreState) addressMapsPresenter.initRequestDirectionApi(latLng);
+                        }
+                    }
+                });
+
+        startLocationUpdate();
     }
 
     private void initToolbar() {
@@ -133,6 +173,28 @@ public class AddressMapsActivity extends AppCompatActivity
         }
     }
 
+    private void startSettingsLocation() {
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+        task.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                startKnownLocation();
+            }
+        });
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                int status = ((ApiException) e).getStatusCode();
+                if (status == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
+                    hideProgressBar();
+                    showSnackSettingLocation();
+                }
+            }
+        });
+    }
     private void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(INTERVAL_REQUEST);
@@ -148,7 +210,7 @@ public class AddressMapsActivity extends AppCompatActivity
                 Location location = locationResult.getLastLocation();
                 if (location != null) {
                     latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    addressMapsPresenter.initRequestDirectionApi(latLng);
+                    if (restoreState) addressMapsPresenter.initRequestDirectionApi(latLng);
                 }
             }
 
@@ -157,8 +219,8 @@ public class AddressMapsActivity extends AppCompatActivity
                 super.onLocationAvailability(locationAvailability);
                 if (!locationAvailability.isLocationAvailable()) {
                     LogUtil.d("onLocationAvailability");
-                    showSnackSettingLocation();
                     hideProgressBar();
+                    showSnackSettingLocation();
                 } else {
                     showProgressBar();
                 }
@@ -206,6 +268,7 @@ public class AddressMapsActivity extends AppCompatActivity
         tvTime.setText(response.getTime());
         AnimationUtil.showAnimationView(tvTime, this);
         AnimationUtil.showAnimationView(ivBus, this);
+        pathLocation = response.getPoints();
         latLngList = PolyUtil.decode(response.getPoints());
         mapFragment.getMapAsync(this);
     }
@@ -223,8 +286,6 @@ public class AddressMapsActivity extends AppCompatActivity
     @Override
     public void showProgressBar() {
         AnimationUtil.showAnimationView(pbLoad, this);
-        if (snackNetworkError != null) snackNetworkError.dismiss();
-        if (snackSettingsLocation != null) snackSettingsLocation.dismiss();
     }
 
     @Override
@@ -241,6 +302,7 @@ public class AddressMapsActivity extends AppCompatActivity
         markerOptions.position(latLng);
         markerOptions.icon(icon);
         googleMap.addMarker(markerOptions);
+        restoreState = true;
     }
 
     private void showSnackNetworkError(@StringRes int idString) {
@@ -248,6 +310,7 @@ public class AddressMapsActivity extends AppCompatActivity
                 Snackbar.LENGTH_INDEFINITE).setAction(R.string.reload, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                snackNetworkError.dismiss();
                 addressMapsPresenter.initRequestDirectionApi(latLng);
             }
         });
@@ -260,11 +323,54 @@ public class AddressMapsActivity extends AppCompatActivity
                 Snackbar.LENGTH_INDEFINITE).setAction(R.string.settings, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                snackSettingsLocation.dismiss();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
         });
-        snackSettingsLocation.setActionTextColor(Color.MAGENTA);
+        snackSettingsLocation.setActionTextColor(Color.YELLOW);
         snackSettingsLocation.show();
+    }
+
+    /* Permission Android .6.0 */
+    private boolean checkPermissions() {
+        int permissionState = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        return permissionState == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void startRequestPermissions() {
+        boolean shouldProvideRationale =
+                ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION);
+        if (shouldProvideRationale) {
+            Snackbar.make(findViewById(R.id.rlAddress), R.string.permissionRationale,
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ActivityCompat.requestPermissions(AddressMapsActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                    PERMISSIONS_REQUEST_CODE);
+                        }
+                    }).setActionTextColor(Color.MAGENTA).show();
+        } else {
+            ActivityCompat.requestPermissions(AddressMapsActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSIONS_REQUEST_CODE && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startKnownLocation();
+            } else {
+                startRequestPermissions();
+            }
+        }
     }
 }

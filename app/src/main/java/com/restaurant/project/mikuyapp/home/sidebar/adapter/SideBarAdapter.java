@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
-import com.restaurant.project.mikuyapp.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         itemList.add(new Item(R.drawable.letter_dark, get(R.string.foodLetter)));
         itemList.add(new Item(R.drawable.reservation_dark, get(R.string.myReservations)));
         itemList.add(new Item(R.drawable.contacts_dark, get(R.string.contacts)));
-        itemList.add(new Item(R.drawable.address_dark, get(R.string.address)));
         itemList.add(new Item(R.drawable.profileuser_dark, get(R.string.userProfile)));
         colorDefault = context.getResources().getColor(R.color.colorDark);
         colorSelect = context.getResources().getColor(R.color.colorPrimaryDark);
@@ -122,13 +120,9 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public void onClick(View v) {
             position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                if (position != Constant.ITEM_ADDRESS) {
                     sideBarListener.itemSelectSideBar(position);
-                } else {
-                    sideBarListener.navigationAddressMap();
                 }
             }
-        }
     }
 
     class OtherItemViewHolder extends RecyclerView.ViewHolder {
