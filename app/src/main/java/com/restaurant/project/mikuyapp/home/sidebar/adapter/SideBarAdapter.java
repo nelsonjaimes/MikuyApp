@@ -119,7 +119,7 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Override
         public void onClick(View v) {
             position = getAdapterPosition();
-            if (position != RecyclerView.NO_POSITION) {
+            if (position != RecyclerView.NO_POSITION && sideBarListener != null) {
                     sideBarListener.itemSelectSideBar(position);
                 }
             }

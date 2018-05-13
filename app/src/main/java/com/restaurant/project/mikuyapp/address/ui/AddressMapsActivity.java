@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationAvailability;
@@ -60,6 +61,8 @@ import com.restaurant.project.mikuyapp.utils.Operations;
 
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
+
 public class AddressMapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, AddressMapsView {
 
@@ -88,6 +91,7 @@ public class AddressMapsActivity extends AppCompatActivity
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_address_maps);
         pbLoad = findViewById(R.id.pbLoad);
         tvStartUbication = findViewById(R.id.tvStartUbication);

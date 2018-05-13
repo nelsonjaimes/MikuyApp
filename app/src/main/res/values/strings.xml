@@ -3,7 +3,7 @@
     <!-- Menu Entry Options-->
     <string name="signup">Registrarse</string>
     <string name="signin">Iniciar Sesión</string>
-    <string name="titleApp">La Casa Del Tacu Tacu</string>
+    <string name="titleApp">Señor de Muruhuay</string>
     <string name="email">Correo Electrónico</string>
     <string name="passwoord">Contraseña</string>
     <string name="helpPassword">¿Olvidó su contraseña?</string>

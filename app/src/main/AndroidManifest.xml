@@ -39,6 +39,10 @@
             android:name=".address.ui.AddressMapsActivity"
             android:label="@string/title_activity_address_maps"
             android:theme="@style/AppTheme.AddressLocation" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="351eed98f30ae11694cf1ba0ceba3fa3d44c0f1c" />
     </application>
 
 </manifest>

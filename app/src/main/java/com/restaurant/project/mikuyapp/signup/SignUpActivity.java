@@ -9,14 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.home.HomeActivity;
+
+import io.fabric.sdk.android.Fabric;
 
 public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_sign_up);
         Button btnRegister = findViewById(R.id.btnRegister);
         initToolbar();

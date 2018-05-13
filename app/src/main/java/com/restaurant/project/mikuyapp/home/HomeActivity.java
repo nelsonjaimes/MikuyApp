@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
 import com.restaurant.project.mikuyapp.contacts.ContactsFragment;
@@ -24,6 +25,8 @@ import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
 import com.restaurant.project.mikuyapp.utils.Constant;
+
+import io.fabric.sdk.android.Fabric;
 
 public class HomeActivity extends AppCompatActivity implements SideBarListener, View.OnClickListener {
 
@@ -36,6 +39,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_home);
         splHome = findViewById(R.id.splHome);
         rvSideBar = findViewById(R.id.rvSideBar);
@@ -72,9 +76,16 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        sideBarAdapter.setSideBarListener(this);
+    }
+
+    @Override
     public void onClick(View v) {
         if (splHome.isOpen()) {
             startActivity(new Intent(this, AddressMapsActivity.class));
+            throw new RuntimeException("Prueba de exception...");
         }
     }
 

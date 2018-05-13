@@ -9,14 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.utils.Operations;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MakeReservationActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_make_reservation);
         TextView tvReservationNumber = findViewById(R.id.tvReservationNumber);
         TextView tvReservationDate = findViewById(R.id.tvReservationDate);

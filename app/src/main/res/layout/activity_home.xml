@@ -70,6 +70,7 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/content_home" />
+    <include
+        layout="@layout/content_home" />
 
 </android.support.v4.widget.SlidingPaneLayout>
