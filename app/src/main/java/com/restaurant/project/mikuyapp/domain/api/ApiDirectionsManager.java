@@ -1,5 +1,7 @@
 package com.restaurant.project.mikuyapp.domain.api;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -15,11 +17,14 @@ public class ApiDirectionsManager {
     private ApiDirectionsManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(logging).build();
+        OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
+        okBuilder.readTimeout(6, TimeUnit.SECONDS);
+        okBuilder.connectTimeout(6, TimeUnit.SECONDS);
+        okBuilder.addInterceptor(logging);
         retrofit = new Retrofit.Builder()
                 .baseUrl(URL_BASE)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
+                .client(okBuilder.build())
                 .build();
     }
 

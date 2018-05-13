@@ -20,7 +20,7 @@ public class AddressMapsInteractorImp implements AddressMapsInteractor {
                                         @NonNull final AddressMapsPresenter.Callback callback) {
         LogUtil.d("Iniciando el initRequestDirectionApi...");
         String startLocation = latLng.latitude + "," + latLng.longitude;
-        String endLocation = "-12.0697911,-77.0496689";
+        String endLocation = "-12.0565098,-77.0404515";
         ApiDirections instance = ApiDirectionsManager.getInstance();
         callRequest = instance.getPointsLocation(startLocation, endLocation, ApiDirectionsManager.KEY);
         callRequest.enqueue(new Callback<DirectionsApiResponse>() {

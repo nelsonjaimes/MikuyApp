@@ -46,7 +46,7 @@
     <string name="startUbication">&lt;b>Mi ubicación&lt;/b> (%1$s)</string>
     <string name="endUbication">&lt;b>Restaurant&lt;/b> (%1$s)</string>
     <string name="titleStart">Mi ubicación</string>
-    <string name="titleEnd">Restaurant</string>
+    <string name="titleEnd">Señor de Muruhuay</string>
     <string name="reload">RECARGAR</string>
     <string name="errorApiDireccions">Error interno de servidor ApiGoogleDirections</string>
     <string name="errorNetwoork">Error de conexión,intente conectarse a una red Wi-Fi o Datos</string>

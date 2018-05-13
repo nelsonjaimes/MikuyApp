@@ -85,7 +85,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
     public void onClick(View v) {
         if (splHome.isOpen()) {
             startActivity(new Intent(this, AddressMapsActivity.class));
-            throw new RuntimeException("Prueba de exception...");
         }
     }
 
