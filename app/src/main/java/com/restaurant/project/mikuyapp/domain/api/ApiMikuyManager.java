@@ -7,14 +7,12 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiDirectionsManager {
+public class ApiMikuyManager {
     private Retrofit retrofit;
-    private final String URL_BASE = "https://maps.googleapis.com/maps/api/";
-    public static final String KEY = "AIzaSyDCaUIFxpS9oqI12NrYDsv5BUKqefsvytw";
-    public static final String OK = "OK";
-    private static ApiDirectionsManager INSTANCE;
+    private static ApiMikuyManager INSTANCE;
+    final String URL_BASE = "http://192.168.43.92/api.mikuy.com/v1/";
 
-    private ApiDirectionsManager() {
+    private ApiMikuyManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder okBuilder = new OkHttpClient.Builder();
@@ -28,13 +26,13 @@ public class ApiDirectionsManager {
                 .build();
     }
 
-    private ApiDirectionsInterface get() {
-        return retrofit.create(ApiDirectionsInterface.class);
+    private ApiMikuyInterface get() {
+        return retrofit.create(ApiMikuyInterface.class);
     }
 
-    public static ApiDirectionsInterface getInstance() {
+    public static ApiMikuyInterface getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new ApiDirectionsManager();
+            INSTANCE = new ApiMikuyManager();
         }
         return INSTANCE.get();
     }

@@ -39,6 +39,7 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">8dp</item>
         <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textColorHint">@color/colorDisable</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -53,5 +54,9 @@
         <item name="android:scrollbarSize">2dp</item>
         <item name="android:scrollbarFadeDuration">2000</item>
         <item name="android:scrollbarDefaultDelayBeforeFade">1000</item>
+    </style>
+    <!--Radio button -->
+    <style name="styleRadio">
+        <item name="colorControlNormal">@color/colorDisable</item>
     </style>
 </resources>

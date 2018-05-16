@@ -53,4 +53,7 @@
     <string name="errorSettingsLocation">Habilite algún proveedor de localización(GPS)</string>
     <string name="settings">AJUSTES</string>
     <string name="permissionRationale">Para poder acceder a su ubicación, debe de conceder permisos</string>
+    <string name="male">Masculino</string>
+    <string name="female">Femenino</string>
+    <string name="gender">Genero</string>
 </resources>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:orientation="vertical"
-    tools:context=".signin.SignInActivity">
+    tools:context=".signup.ui.SignUpActivity">
 
     <ImageView
         android:layout_width="120dp"
@@ -33,73 +34,134 @@
             app:titleTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar">
 
-        <EditText
-            style="@style/edtRegisterStyle"
-            android:hint="@string/name" />
-
-        <EditText
-            style="@style/edtRegisterStyle"
-            android:layout_marginTop="10dp"
-            android:hint="@string/lastName" />
-
-        <EditText
-            style="@style/edtRegisterStyle"
-            android:layout_marginTop="10dp"
-            android:hint="@string/email" />
-
-        <EditText
-            style="@style/edtRegisterStyle"
-            android:layout_marginTop="10dp"
-            android:hint="@string/passwoord" />
-
-
-        <Button
-            android:id="@+id/btnRegister"
-            style="@style/btnActionStyle"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/selector_signup"
-            android:text="@string/signup"
-            android:textAllCaps="true" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/or"
-            android:textColor="@color/colorDark" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <Button
-            android:id="@+id/btnConnectToFacebook"
-            style="@style/btnActionStyle"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/selector_connect_facebook"
-            android:drawableLeft="@drawable/ic_action_facebook"
-            android:drawableStart="@drawable/ic_action_facebook"
-            android:text="@string/connectToFacebook"
-            android:textAllCaps="true"
-            android:textSize="15sp" />
+            <EditText
+                android:id="@+id/etName"
+                style="@style/edtRegisterStyle"
+                android:ellipsize="end"
+                android:hint="@string/name"
+                android:imeOptions="actionNext"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true" />
 
-        <Button
-            android:id="@+id/btnConnectToTwitter"
-            style="@style/btnActionStyle"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/selector_connect_twiter"
-            android:drawableLeft="@drawable/ic_action_twitter"
-            android:drawableStart="@drawable/ic_action_twitter"
-            android:text="@string/connectToTwitter"
-            android:textAllCaps="true"
-            android:textSize="15sp" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/etLastName"
+                style="@style/edtRegisterStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/lastName"
+                android:imeOptions="actionNext"
+                android:inputType="text" />
 
+            <RadioGroup
+                android:id="@+id/rgGender"
+                android:layout_width="@dimen/widthBoxSignUp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="onClickRadio"
+                    android:text="@string/male"
+                    android:textColor="@color/colorDisable"
+                    android:textSize="18sp"
+                    android:theme="@style/styleRadio" />
+
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:onClick="onClickRadio"
+                    android:text="@string/female"
+                    android:textColor="@color/colorDisable"
+                    android:textSize="18sp"
+                    android:theme="@style/styleRadio" />
+
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/etEmail"
+                style="@style/edtRegisterStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                style="@style/edtRegisterStyle"
+                android:layout_marginTop="10dp"
+                android:hint="@string/passwoord"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:layout_width="@dimen/widthBoxSignUp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:padding="2dp"
+                android:text="@string/gender"
+                android:textColor="@color/colorDark"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnRegister"
+                style="@style/btnActionStyle"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/selector_signup"
+                android:text="@string/signup"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/or"
+                android:textColor="@color/colorDark" />
+
+            <Button
+                android:id="@+id/btnConnectToFacebook"
+                style="@style/btnActionStyle"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/selector_connect_facebook"
+                android:drawableLeft="@drawable/ic_action_facebook"
+                android:drawableStart="@drawable/ic_action_facebook"
+                android:text="@string/connectToFacebook"
+                android:textAllCaps="true"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btnConnectToTwitter"
+                style="@style/btnActionStyle"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/selector_connect_twiter"
+                android:drawableLeft="@drawable/ic_action_twitter"
+                android:drawableStart="@drawable/ic_action_twitter"
+                android:text="@string/connectToTwitter"
+                android:textAllCaps="true"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

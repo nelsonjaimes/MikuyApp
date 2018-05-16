@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface ApiDirections {
+public interface ApiDirectionsInterface {
     @POST("directions/json")
     Call<DirectionsApiResponse> getPointsLocation(@Query("origin") String startLocation,
                                                   @Query("destination") String endLocation,

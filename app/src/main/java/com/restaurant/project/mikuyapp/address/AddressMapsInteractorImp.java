@@ -3,7 +3,7 @@ package com.restaurant.project.mikuyapp.address;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.restaurant.project.mikuyapp.domain.api.ApiDirections;
+import com.restaurant.project.mikuyapp.domain.api.ApiDirectionsInterface;
 import com.restaurant.project.mikuyapp.domain.api.ApiDirectionsManager;
 import com.restaurant.project.mikuyapp.domain.model.directions.DirectionsApiResponse;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
@@ -21,7 +21,7 @@ public class AddressMapsInteractorImp implements AddressMapsInteractor {
         LogUtil.d("Iniciando el initRequestDirectionApi...");
         String startLocation = latLng.latitude + "," + latLng.longitude;
         String endLocation = "-12.0565098,-77.0404515";
-        ApiDirections instance = ApiDirectionsManager.getInstance();
+        ApiDirectionsInterface instance = ApiDirectionsManager.getInstance();
         callRequest = instance.getPointsLocation(startLocation, endLocation, ApiDirectionsManager.KEY);
         callRequest.enqueue(new Callback<DirectionsApiResponse>() {
             @Override

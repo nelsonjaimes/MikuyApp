@@ -30,7 +30,7 @@
         <activity
             android:name=".signin.SignInActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".signup.SignUpActivity" />
+        <activity android:name=".signup.ui.SignUpActivity" />
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".splash.SplashActivity" />
         <activity android:name=".detail.PlateDetailActivity" />
@@ -39,7 +39,6 @@
             android:name=".address.ui.AddressMapsActivity"
             android:label="@string/title_activity_address_maps"
             android:theme="@style/AppTheme.AddressLocation" />
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="351eed98f30ae11694cf1ba0ceba3fa3d44c0f1c" />

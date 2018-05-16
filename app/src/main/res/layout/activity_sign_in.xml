@@ -43,11 +43,13 @@
         android:padding="16dp">
 
         <EditText
+            android:id="@+id/edEmail"
             style="@style/edtRegisterStyle"
             android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <EditText
+            android:id="@+id/etPassword"
             style="@style/edtRegisterStyle"
             android:layout_marginTop="15dp"
             android:hint="@string/passwoord"
