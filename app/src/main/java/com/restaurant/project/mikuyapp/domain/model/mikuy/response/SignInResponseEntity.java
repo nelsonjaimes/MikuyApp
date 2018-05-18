@@ -1,6 +1,6 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
-public class SignUpResponseEntity {
+public class SignInResponseEntity {
     private String status;
     private String name;
     private String lastname;

@@ -7,16 +7,8 @@
     android:layout_height="wrap_content"
     android:background="@color/colorWhite"
     android:orientation="vertical"
+    android:id="@+id/rlSignUp"
     tools:context=".signup.ui.SignUpActivity">
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@null"
-        android:scaleType="centerInside"
-        android:src="@drawable/ensalada" />
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -35,6 +27,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
+        style="@style/recyclerScrollStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appbar">
@@ -47,6 +40,7 @@
             android:padding="16dp">
 
             <EditText
+                android:inputType="textCapSentences"
                 android:id="@+id/etName"
                 style="@style/edtRegisterStyle"
                 android:ellipsize="end"
@@ -62,7 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="@string/lastName"
                 android:imeOptions="actionNext"
-                android:inputType="text" />
+                android:inputType="textCapSentences" />
 
             <RadioGroup
                 android:id="@+id/rgGender"
@@ -96,8 +90,6 @@
                     android:theme="@style/styleRadio" />
 
             </RadioGroup>
-
-
             <EditText
                 android:id="@+id/etEmail"
                 style="@style/edtRegisterStyle"

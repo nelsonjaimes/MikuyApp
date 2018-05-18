@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiMikuyManager {
     private Retrofit retrofit;
     private static ApiMikuyManager INSTANCE;
-    final String URL_BASE = "http://192.168.43.92/api.mikuy.com/v1/";
+    public static final String URL_BASE = "http://192.168.43.92/api.mikuy.com/v1/";
 
     private ApiMikuyManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -24,6 +24,10 @@ public class ApiMikuyManager {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okBuilder.build())
                 .build();
+    }
+
+    public Retrofit gerRetrofit() {
+        return retrofit;
     }
 
     private ApiMikuyInterface get() {

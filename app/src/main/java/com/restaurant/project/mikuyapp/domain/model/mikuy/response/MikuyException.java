@@ -1,17 +1,27 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+
 public class MikuyException {
-    private String status;
+    private int status;
     private int code;
     private String message;
     private String moreInfo;
     private String developerMessage;
 
-    public String getStatus() {
+    public MikuyException() {
+        message = "";
+    }
+
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -45,5 +55,17 @@ public class MikuyException {
 
     public void setDeveloperMessage(String developerMessage) {
         this.developerMessage = developerMessage;
+    }
+
+    public static MikuyException parseError(ResponseBody responseBody) {
+        Gson gson = new Gson();
+        MikuyException mikuyException;
+        try {
+            mikuyException = gson.fromJson(responseBody.string(), MikuyException.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            mikuyException = new MikuyException();
+        }
+        return mikuyException;
     }
 }

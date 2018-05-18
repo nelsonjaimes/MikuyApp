@@ -66,18 +66,18 @@ public class LetterOfDishesFragment extends Fragment implements PlateRecyclerLis
 
     void initRecyclerView() {
         List<Plate> letterList = new ArrayList<>();
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Chorizo de chancho", 15.0, TYPE_LETTER_FOOD));
-        letterList.add(new Plate("Lomo Saltado", 12.5, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Arroz a la jardinera", 12.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Chorizo de chancho", 15.0f, TYPE_LETTER_FOOD));
+        letterList.add(new Plate("Lomo Saltado", 12.5f, TYPE_LETTER_FOOD));
 
         LettherAdapter lettherAdapter = new LettherAdapter(context);
         lettherAdapter.setRecyclerListener(this);

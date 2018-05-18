@@ -6,4 +6,6 @@ public interface SignUpView {
     void hideProgress();
 
     void onSucessSignUp();
+
+    void showSnackBar(String message);
 }

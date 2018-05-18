@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.restaurant.project.mikuyapp.R;
+import com.restaurant.project.mikuyapp.menutoday.MenuTodayPresenter;
+import com.restaurant.project.mikuyapp.menutoday.MenuTodayPresenterImp;
+import com.restaurant.project.mikuyapp.menutoday.MenuTodayView;
 import com.restaurant.project.mikuyapp.menutoday.adapter.MenuTodayAdapter;
 import com.restaurant.project.mikuyapp.menutoday.model.Category;
 import com.restaurant.project.mikuyapp.menutoday.model.Plate;
@@ -31,11 +34,12 @@ import static com.restaurant.project.mikuyapp.utils.Constant.TYPE_MENU_ENTRY;
  * @author TacuTacuRestaurant
  */
 public class MenuTodayFragment extends Fragment implements PlateRecyclerListener,
-        View.OnClickListener {
+        View.OnClickListener, MenuTodayView {
 
     private RecyclerView rvTodayPlate;
     private Context context;
     private Button btnReserve;
+    private MenuTodayPresenter menuTodayPresenter;
 
     public static MenuTodayFragment getInstance() {
         return new MenuTodayFragment();
@@ -50,6 +54,7 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        menuTodayPresenter = new MenuTodayPresenterImp(context);
         return inflater.inflate(R.layout.fragment_menu_today, container, false);
     }
 
@@ -58,32 +63,45 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
         super.onViewCreated(view, savedInstanceState);
         rvTodayPlate = view.findViewById(R.id.rvTodayPlate);
         btnReserve = view.findViewById(R.id.btnReserve);
+        menuTodayPresenter.onAttach(this);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         btnReserve.setOnClickListener(this);
-        initRecyclerView();
+        menuTodayPresenter.startLoadingPlates();
+    }
+
+    @Override
+    public void onResume() {
+        menuTodayPresenter.onAttach(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        menuTodayPresenter.onDetach();
+        super.onStop();
     }
 
     private void initRecyclerView() {
         List<Object> todayPlateList = new ArrayList<>();
         todayPlateList.add(new Category(R.drawable.background_64, get(R.string.backgroundPlate)));
-        todayPlateList.add(new Plate("Lomo Saltado", 12.5, TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Arroz a la jardinera", 12.0, TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Chorizo de chancho", 15.0, TYPE_MENU_BACKGROUND));
-        todayPlateList.add(new Plate("Lomo Saltado", 12.5, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Lomo Saltado", 12.5f, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Arroz a la jardinera", 12.0f, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Chorizo de chancho", 15.0f, TYPE_MENU_BACKGROUND));
+        todayPlateList.add(new Plate("Lomo Saltado", 12.5f, TYPE_MENU_BACKGROUND));
 
         todayPlateList.add(new Category(R.drawable.entry_64, get(R.string.entry)));
-        todayPlateList.add(new Plate("Papa ala Huancaina", 0.0, TYPE_MENU_ENTRY));
-        todayPlateList.add(new Plate("Yuquitas", 0.0, TYPE_MENU_ENTRY));
-        todayPlateList.add(new Plate("Picarones", 0.0, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Plate("Papa ala Huancaina", 0.0f, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Plate("Yuquitas", 0.0f, TYPE_MENU_ENTRY));
+        todayPlateList.add(new Plate("Picarones", 0.0f, TYPE_MENU_ENTRY));
         todayPlateList.add(new Category(R.drawable.dessert_64, get(R.string.dessert)));
 
-        todayPlateList.add(new Plate("Gelatina", 0.0, TYPE_MENU_DESSERT));
-        todayPlateList.add(new Plate("Pai de Manzana", 0.0, TYPE_MENU_DESSERT));
-        todayPlateList.add(new Plate("Pastel de choclo", 0.0, TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Gelatina", 0.0f, TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Pai de Manzana", 0.0f, TYPE_MENU_DESSERT));
+        todayPlateList.add(new Plate("Pastel de choclo", 0.0f, TYPE_MENU_DESSERT));
 
         MenuTodayAdapter backgroundMenuTodayAdapter = new MenuTodayAdapter(context);
         backgroundMenuTodayAdapter.setObjectList(todayPlateList);
@@ -109,5 +127,23 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
 
     private String get(int idRes) {
         return context.getResources().getString(idRes);
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void populateRecyclerView(@NonNull List<Plate> backgroundList,
+                                     @NonNull List<Plate> dessertList,
+                                     @NonNull List<Plate> entryList) {
+
+
     }
 }

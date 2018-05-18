@@ -1,18 +1,25 @@
 package com.restaurant.project.mikuyapp.signup;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
+import com.restaurant.project.mikuyapp.R;
+import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignUpRequestEntity;
-import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignUpResponseEntity;
+import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 import com.restaurant.project.mikuyapp.signup.ui.SignUpView;
-import com.restaurant.project.mikuyapp.utils.LogUtil;
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Callback {
     private SignUpView signUpView;
     private SignUpInteractor signUpInteractor;
+    private Context context;
 
-    public SignUpPresenterImp() {
+    public SignUpPresenterImp(Context context) {
         signUpInteractor = new SignUpInteractorImp();
+        this.context = context;
     }
 
     @Override
@@ -22,16 +29,40 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
 
     @Override
     public void initRegister(@NonNull String name, @NonNull String lastName, @NonNull String email,
-                             char gender, @NonNull String password) {
-        SignUpRequestEntity signUpRequestEntity = new SignUpRequestEntity();
-        signUpRequestEntity.setName(name);
-        signUpRequestEntity.setEmail(email);
-        signUpRequestEntity.setLastname(lastName);
-        signUpRequestEntity.setGender(gender);
-        signUpRequestEntity.setPassword(password);
-        if (signUpInteractor != null) {
-            signUpInteractor.requestSignUpService(signUpRequestEntity, this);
+                             @NonNull char gender, @NonNull String password) {
+        if (signUpView == null || signUpInteractor == null) return;
+        String message = get(R.string.emptyName);
+        if (!name.isEmpty()) {
+            if (!lastName.isEmpty()) {
+                if (!String.valueOf(gender).isEmpty()) {
+                    if (!email.isEmpty()) {
+                        if (!password.isEmpty()) {
+                            if (!Operations.isNetworkAvailable(context)) {
+                                signUpView.showSnackBar(get(R.string.errorNetwoork));
+                                return;
+                            }
+                            SignUpRequestEntity signUpRequestEntity = new SignUpRequestEntity();
+                            signUpRequestEntity.setName(name);
+                            signUpRequestEntity.setEmail(email);
+                            signUpRequestEntity.setLastname(lastName);
+                            signUpRequestEntity.setGender(gender);
+                            signUpRequestEntity.setPassword(password);
+                            signUpView.showProgress();
+                            signUpInteractor.requestSignUpService(signUpRequestEntity, this);
+                            return;
+                        }
+                        signUpView.showSnackBar(get(R.string.emptyPassword));
+                        return;
+                    }
+                    signUpView.showSnackBar(get(R.string.emptyEmail));
+                    return;
+                }
+                signUpView.showSnackBar(get(R.string.emptyGender));
+                return;
+            }
+            message = get(R.string.emptyLastName);
         }
+        signUpView.showSnackBar(message);
     }
 
     @Override
@@ -41,19 +72,31 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
 
     @Override
     public void onErrorService(@NonNull String message) {
-
+        if (signUpView != null) {
+            signUpView.hideProgress();
+            signUpView.showSnackBar(message);
+        }
     }
 
     @Override
-    public void onSuccess(SignUpResponseEntity signUpResponseEntity) {
-        LogUtil.d(signUpResponseEntity.getStatus());
+    public void onSuccess(SignInResponseEntity signInResponseEntity) {
         if (signUpView != null) {
+            MikuyPreference.saveUserSession(signInResponseEntity);
+            signUpView.hideProgress();
             signUpView.onSucessSignUp();
         }
     }
 
     @Override
     public void onFailure() {
-        LogUtil.d("onFailure");
+        if (signUpView != null) {
+            signUpView.hideProgress();
+            signUpView.showSnackBar(context.getResources().
+                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+        }
+    }
+
+    private String get(@StringRes int idString) {
+        return context.getResources().getString(idString);
     }
 }

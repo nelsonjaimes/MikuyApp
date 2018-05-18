@@ -13,6 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MikuyApplication"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -20,6 +21,7 @@
 
         <activity
             android:name=".EntryMenuActivity"
+            android:noHistory="true"
             android:theme="@style/EntryMenuTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".signin.SignInActivity"
+            android:name=".signin.ui.SignInActivity"
+            android:noHistory="true"
             android:theme="@style/AppTheme" />
-        <activity android:name=".signup.ui.SignUpActivity" />
-        <activity android:name=".home.HomeActivity" />
+        <activity
+            android:name=".signup.ui.SignUpActivity"
+            android:noHistory="true" />
+        <activity android:name=".home.ui.HomeActivity" />
         <activity android:name=".splash.SplashActivity" />
         <activity android:name=".detail.PlateDetailActivity" />
         <activity android:name=".reservation.make.MakeReservationActivity" />

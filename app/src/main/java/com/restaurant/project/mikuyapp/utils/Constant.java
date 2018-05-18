@@ -23,4 +23,7 @@ final public class Constant {
     public static final String EMAIL = "nelsonjaimesgonzales@gmail.com";
     //Settings
     public static final String SCHEME_PACKAGE = "package";
+
+    //Dialog
+    public static final String DIALOG_PROGRESS = "dialog_progress";
 }

@@ -1,8 +1,10 @@
-package com.restaurant.project.mikuyapp.home;
+package com.restaurant.project.mikuyapp.home.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
@@ -18,23 +20,31 @@ import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
 import com.restaurant.project.mikuyapp.contacts.ContactsFragment;
+import com.restaurant.project.mikuyapp.dialog.DialogProgress;
+import com.restaurant.project.mikuyapp.home.HomePresenter;
+import com.restaurant.project.mikuyapp.home.HomePresenterImp;
 import com.restaurant.project.mikuyapp.home.sidebar.adapter.SideBarAdapter;
 import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
 import com.restaurant.project.mikuyapp.letter.LetterOfDishesFragment;
 import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.Constant;
+import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 import io.fabric.sdk.android.Fabric;
 
-public class HomeActivity extends AppCompatActivity implements SideBarListener, View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements SideBarListener,
+        View.OnClickListener, HomeView {
 
     private SlidingPaneLayout splHome;
     private RecyclerView rvSideBar;
     private FragmentManager mFragmentManager;
     private SideBarAdapter sideBarAdapter;
     private HandlerSlidingPanel handlerSlidingPanel;
+    private HomePresenter homePresenter;
+    private DialogProgress dialogProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +53,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
         setContentView(R.layout.activity_home);
         splHome = findViewById(R.id.splHome);
         rvSideBar = findViewById(R.id.rvSideBar);
+        homePresenter = new HomePresenterImp(this);
         mFragmentManager = getSupportFragmentManager();
         handlerSlidingPanel = new HandlerSlidingPanel(splHome);
         Button btnAddress = findViewById(R.id.btnAddress);
@@ -50,6 +61,60 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
         initSlidingPanel();
         initSideBar();
         initToolbar();
+        if (savedInstanceState == null) {
+          //  replaceFragment(Constant.ITEM_MENU_TODAY);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sideBarAdapter.setSideBarListener(this);
+        homePresenter.onAttach(this);
+        if (!MikuyPreference.getStateDownloadPlatesList()) {
+            homePresenter.downloadPlatesList();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        homePresenter.onDettach();
+        super.onStop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (splHome.isOpen()) {
+            splHome.closePane();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public void showProgress() {
+        dialogProgress = DialogProgress.getInstance();
+        dialogProgress.show(getSupportFragmentManager(), Constant.DIALOG_PROGRESS);
+    }
+
+    @Override
+    public void hideProgress() {
+        if (dialogProgress == null) {
+            dialogProgress = (DialogProgress) getSupportFragmentManager().
+                    findFragmentByTag(Constant.DIALOG_PROGRESS);
+        }
+        dialogProgress.dismiss();
+    }
+
+    @Override
+    public void onSuccessDownloadPlatesList() {
+        MikuyPreference.saveStateDownloadPlatesList(true);
+        LogUtil.d("Se descargo correctamente... !!! ");
+    }
+
+    @Override
+    public void showSnackBar(@NonNull String message) {
+        Snackbar.make(findViewById(R.id.llHome), message, Snackbar.LENGTH_LONG).show();
     }
 
     private void initToolbar() {
@@ -73,12 +138,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
         splHome.setParallaxDistance(100);
         splHome.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
         splHome.setCoveredFadeColor(getResources().getColor(android.R.color.black));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        sideBarAdapter.setSideBarListener(this);
     }
 
     @Override
@@ -141,15 +200,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener, 
             splHome.closePane();
         } else {
             splHome.openPane();
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (splHome.isOpen()) {
-            splHome.closePane();
-        } else {
-            super.onBackPressed();
         }
     }
 

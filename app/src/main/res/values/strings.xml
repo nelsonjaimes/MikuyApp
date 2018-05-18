@@ -49,11 +49,19 @@
     <string name="titleEnd">Señor de Muruhuay</string>
     <string name="reload">RECARGAR</string>
     <string name="errorApiDireccions">Error interno de servidor ApiGoogleDirections</string>
-    <string name="errorNetwoork">Error de conexión,intente conectarse a una red Wi-Fi o Datos</string>
+    <string name="errorNetwoork">Error de conexión,verifíque su conexión red Wi-Fi o Datos</string>
     <string name="errorSettingsLocation">Habilite algún proveedor de localización(GPS)</string>
     <string name="settings">AJUSTES</string>
     <string name="permissionRationale">Para poder acceder a su ubicación, debe de conceder permisos</string>
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="gender">Genero</string>
+    <!--Message of the serve -->
+    <string name="emptyName">El nombre no puede ser vacio</string>
+    <string name="emptyLastName">Los apellidos no pueden ser vacios</string>
+    <string name="emptyEmail">El email no puede ser vacio</string>
+    <string name="errorConnectionServer">Error de conexión con  %1$s</string>
+    <string name="emptyGender">Seleccione alguna opción de genero</string>
+    <string name="noFormatEmail">La dirección de correo no es válida</string>
+    <string name="emptyPassword">La contraseña no puede ser vacia</string>
 </resources>

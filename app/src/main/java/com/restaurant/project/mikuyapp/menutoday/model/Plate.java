@@ -1,19 +1,40 @@
 package com.restaurant.project.mikuyapp.menutoday.model;
 
 public class Plate {
+    private String code;
     private String name;
-    private double price;
+    private float price;
+    private String category;
+
     private boolean isAggregate;
     private boolean isFirstAggregate;
     private int accountant;
-    private String category;
 
-    public Plate(String name, double price, String category) {
+    //*Este es....
+    public Plate(String code,String name, float price, String category) {
         this.name = name;
         this.price = price;
+        this.code =  code;
+        this.category = category;
         this.isAggregate = false;
         this.isFirstAggregate=false;
+    }
+    public Plate(String name, float price, String category) {
+        this.name = name;
+        this.price = price;
+        this.code =  "";
         this.category = category;
+        this.isAggregate = false;
+        this.isFirstAggregate=false;
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getAccountant() {
@@ -32,11 +53,11 @@ public class Plate {
         this.name = name;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

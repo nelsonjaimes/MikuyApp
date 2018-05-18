@@ -2,7 +2,7 @@ package com.restaurant.project.mikuyapp.signup;
 
 import android.support.annotation.NonNull;
 
-import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignUpResponseEntity;
+import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 import com.restaurant.project.mikuyapp.signup.ui.SignUpView;
 
 public interface SignUpPresenter {
@@ -16,7 +16,7 @@ public interface SignUpPresenter {
     interface Callback {
         void onErrorService(@NonNull String message);
 
-        void onSuccess(SignUpResponseEntity signUpResponseEntity);
+        void onSuccess(SignInResponseEntity signInResponseEntity);
 
         void onFailure();
     }

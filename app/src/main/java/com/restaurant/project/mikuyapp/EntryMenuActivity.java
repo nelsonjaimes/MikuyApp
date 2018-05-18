@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.crashlytics.android.Crashlytics;
-import com.restaurant.project.mikuyapp.signin.SignInActivity;
+import com.restaurant.project.mikuyapp.signin.ui.SignInActivity;
 import com.restaurant.project.mikuyapp.signup.ui.SignUpActivity;
 
 import io.fabric.sdk.android.Fabric;
