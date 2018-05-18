@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.menutoday.model.Plate;
-import com.restaurant.project.mikuyapp.menutoday.ui.PlateRecyclerListener;
 import com.restaurant.project.mikuyapp.utils.AnimationUtil;
 
 import java.util.List;
@@ -21,15 +20,15 @@ import java.util.List;
 public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterViewHolder> {
 
     private Context context;
-    private PlateRecyclerListener recyclerListener;
+    private LetterAdapterListener letterAdapterListener;
     private List<Plate> plateList;
 
     public LettherAdapter(Context context) {
         this.context = context;
     }
 
-    public void setRecyclerListener(PlateRecyclerListener recyclerListener) {
-        this.recyclerListener = recyclerListener;
+    public void setLetterAdapterListener(LetterAdapterListener letterAdapterListener) {
+        this.letterAdapterListener = letterAdapterListener;
     }
 
     public void setPlateList(List<Plate> plateList) {
@@ -55,14 +54,21 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
     }
 
     private void setItemSelect(int position) {
+        letterAdapterListener.selectItem(position);
         plateList.get(position).setAggregate(true);
         notifyItemChanged(position);
     }
 
     private void unItemSelect(int position) {
+        letterAdapterListener.selectItem(position);
         plateList.get(position).setAggregate(false);
+        plateList.get(position).setAcount(0);
         plateList.get(position).setFirstAggregate(false);
         notifyItemChanged(position);
+    }
+
+    public List<Plate> getPlateList() {
+        return plateList;
     }
 
     private void onClickItem(int position) {
@@ -83,7 +89,6 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
         private TextView tvAccountant;
         private LinearLayout llAccountant;
         private int position;
-
         LetterViewHolder(View itemView) {
             super(itemView);
             ivCheck = itemView.findViewById(R.id.ivCheck);
@@ -94,12 +99,39 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
             tvAccountant = itemView.findViewById(R.id.tvAccountant);
             llAccountant = itemView.findViewById(R.id.llAccountant);
             itemView.setOnClickListener(this);
+            btnLess.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        int count = Integer.parseInt(tvAccountant.getText().toString());
+                        count++;
+                        tvAccountant.setText(String.valueOf(count));
+                        plateList.get(position).setAcount(count);
+                    }
+                }
+            });
+
+            btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        int count = Integer.parseInt(tvAccountant.getText().toString());
+                        if (count > 1) {
+                            count--;
+                            tvAccountant.setText(String.valueOf(count));
+                            plateList.get(position).setAcount(count);
+                        }
+                    }
+                }
+            });
         }
 
         void setLetterPlate(Plate plate, int position) {
             tvName.setText(plate.getName());
             tvPrice.setText(context.getString(R.string.formatPrice, plate.getPrice()));
-            tvAccountant.setText(String.valueOf(plate.getAccountant()));
+            tvAccountant.setText(String.valueOf(plate.getAcount()));
             if (plate.isAggregate()) {
                 if (plate.isFirstAggregate()) {
                     llAccountant.setVisibility(View.VISIBLE);

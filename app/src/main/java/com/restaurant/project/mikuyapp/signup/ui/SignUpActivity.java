@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.crashlytics.android.Crashlytics;
+import com.restaurant.project.mikuyapp.EntryMenuActivity;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.dialog.DialogProgress;
 import com.restaurant.project.mikuyapp.home.ui.HomeActivity;
@@ -93,7 +94,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            startActivity(new Intent(this, EntryMenuActivity.class));
+            finish();
         }
         return true;
     }
@@ -111,6 +113,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
     @Override
     public void onSucessSignUp() {
         startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+        finish();
     }
 
     @Override
@@ -133,5 +136,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
     @Override
     public void showSnackBar(String message) {
         Snackbar.make(findViewById(R.id.rlSignUp), message, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, EntryMenuActivity.class));
+        finish();
     }
 }

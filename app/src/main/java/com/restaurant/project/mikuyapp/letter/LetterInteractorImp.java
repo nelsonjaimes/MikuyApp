@@ -1,4 +1,4 @@
-package com.restaurant.project.mikuyapp.menutoday;
+package com.restaurant.project.mikuyapp.letter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,16 +15,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MenuTodayInteractorImp implements MenuTodayInteractor {
-
+public class LetterInteractorImp implements LetterInteractor {
     private PlatesRepository platesRepository;
 
-    MenuTodayInteractorImp(Context context) {
+    LetterInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);
     }
 
     @Override
-    public void requestListPlatesDb(MenuTodayPresenter.Callback callback) {
+    public void requestListPlatesDb(LetterPresenter.Callback callback) {
         if (callback != null) {
             callback.onSuccessListPlate(platesRepository.getListPlates());
         }
@@ -32,7 +31,7 @@ public class MenuTodayInteractorImp implements MenuTodayInteractor {
 
     @Override
     public void requestMakeReservation(ReservationRequestEntity entity,
-                                       final MenuTodayPresenter.Callback callback) {
+                                       final LetterPresenter.Callback callback) {
         ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
         Call<ReservationResponseEntity> call = apiMikuyInterface.makeReserve(entity);
         call.enqueue(new Callback<ReservationResponseEntity>() {

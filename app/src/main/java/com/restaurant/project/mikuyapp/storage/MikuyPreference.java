@@ -44,4 +44,10 @@ final public class MikuyPreference {
         return signInResponseEntity;
     }
 
+    public static void deleteAll() {
+        SharedPreferences preferences = MikuyApplication.contextApp.
+                getSharedPreferences(NAME_PREFERENCE, Context.MODE_PRIVATE);
+        preferences.edit().clear().apply();
+    }
+
 }

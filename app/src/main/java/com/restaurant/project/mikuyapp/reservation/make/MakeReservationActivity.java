@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.R;
+import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.utils.Operations;
 
 import io.fabric.sdk.android.Fabric;
@@ -24,11 +25,22 @@ public class MakeReservationActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_make_reservation);
         TextView tvReservationNumber = findViewById(R.id.tvReservationNumber);
         TextView tvReservationDate = findViewById(R.id.tvReservationDate);
+        TextView tvAmount = findViewById(R.id.tvAmount);
         Button btnMakePayment = findViewById(R.id.btnMakePayment);
         btnMakePayment.setOnClickListener(this);
         initToolbar();
-        tvReservationNumber.setText(Operations.getHtml(String.format(getString(R.string.reservationNumber), "001")));
-        tvReservationDate.setText(Operations.getHtml(String.format(getString(R.string.reservationDate), "9/05/2018 11:18am")));
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String codeReservation = bundle.getString(MenuTodayFragment.EXTRA_CODE_RESERVE);
+            String amount = bundle.getString(MenuTodayFragment.EXTRA_AMOUNT);
+            String date = bundle.getString(MenuTodayFragment.EXTRA_DATE_RESERVE);
+
+            tvReservationDate.setText(Operations.getHtml(String.format(getString(R.string.reservationDate), date)));
+            tvReservationNumber.setText(codeReservation);
+            tvAmount.setText("Total: s/." + amount);
+        }
+
     }
 
     private void initToolbar() {

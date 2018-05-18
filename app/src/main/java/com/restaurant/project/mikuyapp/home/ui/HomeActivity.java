@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.crashlytics.android.Crashlytics;
+import com.restaurant.project.mikuyapp.EntryMenuActivity;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
 import com.restaurant.project.mikuyapp.contacts.ContactsFragment;
@@ -57,13 +58,23 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         mFragmentManager = getSupportFragmentManager();
         handlerSlidingPanel = new HandlerSlidingPanel(splHome);
         Button btnAddress = findViewById(R.id.btnAddress);
+        Button btnSignOff = findViewById(R.id.btnSignOff);
         btnAddress.setOnClickListener(this);
         initSlidingPanel();
         initSideBar();
         initToolbar();
         if (savedInstanceState == null) {
-          //  replaceFragment(Constant.ITEM_MENU_TODAY);
+            replaceFragment(Constant.ITEM_MENU_TODAY);
         }
+
+        btnSignOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MikuyPreference.deleteAll();
+                startActivity(new Intent(HomeActivity.this, EntryMenuActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override

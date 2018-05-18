@@ -17,10 +17,10 @@ final public class Constant {
     public static final String URL_WEB = "https://developers.google.com/maps/documentation/android-api/map?hl=es-419";
     public static final String PAGE_ID_FACEBOOK = "fb://page/112951828852501";
     public static final String URL_FACEBOOK = "https://www.facebook.com/osolemiomioperu/";
-    public static final String ACCOUNT_FACEBOOK = "osolemioOficial";
+    public static final String ACCOUNT_FACEBOOK = "señorDeMuruhuay";
     public static final String PHONE_NUMBER = "923123456";
     public static final String FORMAT_PHONE_NUMBER = "tel:" + PHONE_NUMBER;
-    public static final String EMAIL = "nelsonjaimesgonzales@gmail.com";
+    public static final String EMAIL = "senordemurihuay@gmail.com";
     //Settings
     public static final String SCHEME_PACKAGE = "package";
 

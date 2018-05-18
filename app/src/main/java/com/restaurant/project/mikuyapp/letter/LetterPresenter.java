@@ -1,13 +1,12 @@
-package com.restaurant.project.mikuyapp.menutoday;
+package com.restaurant.project.mikuyapp.letter;
 
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 
 import java.util.List;
 
-public interface MenuTodayPresenter {
-
-    void onAttach(MenuTodayView menuTodayView);
+public interface LetterPresenter {
+    void onAttach(LetterView letterView);
 
     void onDetach();
 

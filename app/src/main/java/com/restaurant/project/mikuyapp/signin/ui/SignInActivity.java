@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.crashlytics.android.Crashlytics;
+import com.restaurant.project.mikuyapp.EntryMenuActivity;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.dialog.DialogProgress;
 import com.restaurant.project.mikuyapp.home.ui.HomeActivity;
@@ -67,7 +68,8 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            startActivity(new Intent(this, EntryMenuActivity.class));
+            finish();
         }
         return true;
     }
@@ -92,6 +94,7 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     @Override
     public void onSucessSignIn() {
         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+        finish();
     }
 
     @Override
@@ -99,4 +102,9 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
         Snackbar.make(findViewById(R.id.rlSignIn), message, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, EntryMenuActivity.class));
+        finish();
+    }
 }

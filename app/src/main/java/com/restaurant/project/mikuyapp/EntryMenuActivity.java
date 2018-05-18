@@ -26,6 +26,7 @@ public class EntryMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(EntryMenuActivity.this,
                         SignInActivity.class));
+                finish();
             }
         });
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +34,7 @@ public class EntryMenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(EntryMenuActivity.this,
                         SignUpActivity.class));
+                finish();
             }
         });
     }

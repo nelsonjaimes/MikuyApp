@@ -1,4 +1,4 @@
-package com.restaurant.project.mikuyapp.menutoday;
+package com.restaurant.project.mikuyapp.letter;
 
 import android.content.Context;
 import android.support.annotation.StringRes;
@@ -17,104 +17,90 @@ import com.restaurant.project.mikuyapp.utils.Operations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPresenter.Callback {
-
-    private MenuTodayView menuTodayView;
+public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Callback {
+    private LetterView letterView;
     private Context context;
-    private MenuTodayInteractor menuTodayInteractor;
+    private LetterInteractor letterInteractor;
 
-    public MenuTodayPresenterImp(Context context) {
+    public LetterPresenterImp(Context context) {
         this.context = context;
-        this.menuTodayInteractor = new MenuTodayInteractorImp(context);
+        this.letterInteractor = new LetterInteractorImp(context);
     }
 
     @Override
-    public void onAttach(MenuTodayView menuTodayView) {
-        this.menuTodayView = menuTodayView;
+    public void onAttach(LetterView letterView) {
+        this.letterView = letterView;
+    }
+
+    @Override
+    public void onDetach() {
+        letterView = null;
     }
 
     @Override
     public void startLoadingPlates() {
-        if (menuTodayInteractor != null) {
-            menuTodayInteractor.requestListPlatesDb(this);
+        if (letterInteractor != null) {
+            letterInteractor.requestListPlatesDb(this);
         }
     }
 
     @Override
     public void makeReservation(List<Plate> plateList) {
         float amount = 0.0f;
+        LogUtil.d("size:" + plateList.size());
         for (Plate plate : plateList) {
-            amount += plate.getPrice();
+            amount += plate.getPrice() * plate.getAcount();
         }
+
         LogUtil.d("amountReserve:" + amount);
         SignInResponseEntity session = MikuyPreference.getUserSession();
         String emailUser = session.getEmail();
         if (!Operations.isNetworkAvailable(context)) {
-            if (menuTodayView != null) menuTodayView.showSnackBar(get(R.string.errorNetwoork));
+            if (letterView != null) letterView.showSnackBar(get(R.string.errorNetwoork));
             return;
         }
-        if (menuTodayInteractor != null && menuTodayView != null) {
+        if (letterView != null && letterInteractor != null) {
             ReservationRequestEntity reservationRequestEntity = new ReservationRequestEntity();
             reservationRequestEntity.setAmount(amount);
             reservationRequestEntity.setEmailuser(emailUser);
             reservationRequestEntity.setPlatesList(plateList);
-            menuTodayView.showProgress();
-            menuTodayInteractor.requestMakeReservation(reservationRequestEntity, this);
+            letterView.showProgress();
+            letterInteractor.requestMakeReservation(reservationRequestEntity, this);
         }
-
-    }
-
-    @Override
-    public void onDetach() {
-        this.menuTodayView = null;
     }
 
     @Override
     public void onSuccessListPlate(List<Plate> list) {
-        List<Plate> menuList = new ArrayList<>();
-        List<Plate> dessertList = new ArrayList<>();
-        List<Plate> entryList = new ArrayList<>();
+        List<Plate> plateList = new ArrayList<>();
         for (Plate plate : list) {
-            switch (plate.getCategory()) {
-                case SqlGlobal.CATEGORY_MENU:
-                    menuList.add(plate);
-                    break;
-                case SqlGlobal.CATEGORY_ENTRY:
-                    entryList.add(plate);
-                    break;
-                case SqlGlobal.CATEGORY_DESSERT:
-                    dessertList.add(plate);
-                    break;
+            if (plate.getCategory().equals(SqlGlobal.CATEGORY_LETTER)) {
+                plateList.add(plate);
             }
         }
-        if (menuTodayView != null) {
-            menuTodayView.populateRecyclerView(menuList, dessertList, entryList);
-        }
+        if (letterView != null) letterView.populateRecyclerLetter(plateList);
     }
 
     @Override
     public void onSuccessMakeReservation(ReservationResponseEntity entity) {
-        LogUtil.d("ser realiso la reservacion crrectamente .. !!");
-        LogUtil.d("codeReservation:" + entity.getCodeReserve());
-        if (menuTodayView!=null){
-            menuTodayView.hideProgress();
-            menuTodayView.onSuccessReserve(entity);
+        if (letterView != null) {
+            letterView.hideProgress();
+            letterView.onSuccessReserve(entity);
         }
     }
 
     @Override
     public void onError(String message) {
-        if (menuTodayView != null) {
-            menuTodayView.hideProgress();
-            menuTodayView.showSnackBar(message);
+        if (letterView != null) {
+            letterView.hideProgress();
+            letterView.showSnackBar(message);
         }
     }
 
     @Override
     public void onFailure() {
-        if (menuTodayView != null) {
-            menuTodayView.hideProgress();
-            menuTodayView.showSnackBar(context.getResources().
+        if (letterView != null) {
+            letterView.hideProgress();
+            letterView.showSnackBar(context.getResources().
                     getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
         }
     }
@@ -123,3 +109,4 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
         return context.getResources().getString(idString);
     }
 }
+

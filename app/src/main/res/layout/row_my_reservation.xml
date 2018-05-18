@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/vSeparator"
+        android:orientation="horizontal"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/tvCodeReserse"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorDark"
+            android:textSize="25sp"
+            android:textStyle="bold|italic"
+            tools:text="R20" />
+
+        <TextView
+            android:id="@+id/tvDateReservation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp"
+            tools:text="20/10/2018 4:50pm" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vSeparator"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:drawable/divider_horizontal_textfield" />
+</RelativeLayout>

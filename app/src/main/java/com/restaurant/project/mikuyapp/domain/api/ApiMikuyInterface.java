@@ -1,8 +1,12 @@
 package com.restaurant.project.mikuyapp.domain.api;
 
+import com.restaurant.project.mikuyapp.domain.model.mikuy.request.MyReservationRequestEntity;
+import com.restaurant.project.mikuyapp.domain.model.mikuy.request.ReservationRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignInRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignUpRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ListPlateResponseEntity;
+import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MyReservationResponseEntity;
+import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 
 import retrofit2.Call;
@@ -19,4 +23,11 @@ public interface ApiMikuyInterface {
 
     @GET("plates/list")
     Call<ListPlateResponseEntity> requestPlatesList();
+
+    @POST("reserve/make")
+    Call<ReservationResponseEntity> makeReserve(@Body ReservationRequestEntity reservationRequestEntity);
+
+    @POST("reserve/list")
+    Call<MyReservationResponseEntity> reqeustReservationList(@Body MyReservationRequestEntity requestEntity);
+
 }

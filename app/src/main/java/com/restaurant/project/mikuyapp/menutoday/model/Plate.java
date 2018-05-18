@@ -5,10 +5,10 @@ public class Plate {
     private String name;
     private float price;
     private String category;
+    private int acount;
 
     private boolean isAggregate;
     private boolean isFirstAggregate;
-    private int accountant;
 
     //*Este es....
     public Plate(String code,String name, float price, String category) {
@@ -18,16 +18,12 @@ public class Plate {
         this.category = category;
         this.isAggregate = false;
         this.isFirstAggregate=false;
-    }
-    public Plate(String name, float price, String category) {
-        this.name = name;
-        this.price = price;
-        this.code =  "";
-        this.category = category;
-        this.isAggregate = false;
-        this.isFirstAggregate=false;
+        this.acount = 1;
     }
 
+    public float getAmount() {
+        return price * acount;
+    }
 
     public String getCode() {
         return code;
@@ -37,12 +33,12 @@ public class Plate {
         this.code = code;
     }
 
-    public int getAccountant() {
-        return accountant;
+    public int getAcount() {
+        return acount;
     }
 
-    public void setAccountant(int accountant) {
-        this.accountant = accountant;
+    public void setAcount(int acount) {
+        this.acount = acount;
     }
 
     public String getName() {

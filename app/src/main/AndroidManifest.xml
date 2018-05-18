@@ -20,27 +20,38 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".EntryMenuActivity"
-            android:noHistory="true"
-            android:theme="@style/EntryMenuTheme">
+            android:theme="@style/EntryMenuTheme" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".signin.ui.SignInActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".signup.ui.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.ui.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splash.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.SplasStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
-            android:name=".signin.ui.SignInActivity"
-            android:noHistory="true"
-            android:theme="@style/AppTheme" />
+            android:name=".detail.PlateDetailActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".signup.ui.SignUpActivity"
-            android:noHistory="true" />
-        <activity android:name=".home.ui.HomeActivity" />
-        <activity android:name=".splash.SplashActivity" />
-        <activity android:name=".detail.PlateDetailActivity" />
-        <activity android:name=".reservation.make.MakeReservationActivity" />
+            android:name=".reservation.make.MakeReservationActivity"
+            android:screenOrientation="portrait" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".address.ui.AddressMapsActivity"
             android:label="@string/title_activity_address_maps"
             android:theme="@style/AppTheme.AddressLocation" />

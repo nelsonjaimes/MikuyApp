@@ -128,6 +128,7 @@ public class MenuTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public void onClick(View v) {
             position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
+                plateRecyclerListener.selectItem(position);
                 setSelectItem(position);
             }
         }

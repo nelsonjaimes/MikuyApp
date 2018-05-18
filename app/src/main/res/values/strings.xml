@@ -64,4 +64,9 @@
     <string name="emptyGender">Seleccione alguna opción de genero</string>
     <string name="noFormatEmail">La dirección de correo no es válida</string>
     <string name="emptyPassword">La contraseña no puede ser vacia</string>
+
+    <string name="emptyBackgroundPlate">Seleccione el PLATO DE FONDO</string>
+    <string name="emptyDessert">Seleccione el POSTRE del menu</string>
+    <string name="emptyEntry">Seleccione la ENTRADA del menu</string>
+    <string name="emptyListLetterReserver">Seleccione al menos 1 platillo para realiazar la reserva</string>
 </resources>
