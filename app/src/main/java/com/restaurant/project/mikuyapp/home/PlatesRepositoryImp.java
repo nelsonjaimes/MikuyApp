@@ -15,17 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlatesRepositoryImp implements PlatesRepository {
-    private SqlLiteHelper sqlLiteHelper;
 
+    private SQLiteDatabase sqLiteDatabase;
     public PlatesRepositoryImp(Context context) {
-        sqlLiteHelper = new SqlLiteHelper(context);
+        SqlLiteHelper sqlLiteHelper = new SqlLiteHelper(context);
+        sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
     }
 
     @Override
     public void savePlatesListSqlLite(@NonNull List<ListPlateResponseEntity.
             PlateResponseEntity> platesList) {
-        SQLiteDatabase sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
-        sqLiteDatabase.execSQL(SqlGlobal.TRUNCATE_TABLE_PLATES);
+        sqLiteDatabase.execSQL(SqlGlobal.DELETE_TABLE_PLATES);
         for (ListPlateResponseEntity.PlateResponseEntity plate : platesList) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(SqlGlobal.PLATE_CODE, plate.getCode());
@@ -34,12 +34,10 @@ public class PlatesRepositoryImp implements PlatesRepository {
             contentValues.put(SqlGlobal.PLATE_CATEGORY, plate.getCategory());
             sqLiteDatabase.insert(SqlGlobal.TBL_PLATES, null, contentValues);
         }
-        sqLiteDatabase.close();
     }
 
     @Override
     public List<Plate> getListPlates() {
-        SQLiteDatabase sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
         List<Plate> plateList = new ArrayList<>();
         Cursor c = sqLiteDatabase.rawQuery(SqlGlobal.PLATES_LIST_SENTENCE, null);
         if (c.moveToFirst()) {
@@ -53,5 +51,10 @@ public class PlatesRepositoryImp implements PlatesRepository {
         }
         c.close();
         return plateList;
+    }
+
+    @Override
+    public void closeConnection() {
+        sqLiteDatabase.close();
     }
 }

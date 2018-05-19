@@ -371,7 +371,7 @@ public class AddressMapsActivity extends AppCompatActivity
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSIONS_REQUEST_CODE && grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startKnownLocation();
+                startSettingsLocation();
             } else {
                 startRequestPermissions();
             }

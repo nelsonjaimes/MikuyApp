@@ -36,7 +36,7 @@ public class SqlGlobal {
             + RESERVE_STATE + " INTEGER(1) NOT NULL )";
 
     public static final String DELETE_TBL_PLATES = "DROP TABLE IS EXITS " + TBL_PLATES;
-    public static final String TRUNCATE_TABLE_PLATES = "DELETE FROM " + TBL_PLATES;
+    public static final String DELETE_TABLE_PLATES = "DELETE FROM " + TBL_PLATES;
     public static final String PLATES_LIST_SENTENCE = "SELECT " + PLATE_CODE + "," + PLATE_NAME + "," +
             PLATE_PRICE + "," + PLATE_CATEGORY + " FROM " + TBL_PLATES;
 }

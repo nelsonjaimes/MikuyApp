@@ -33,6 +33,7 @@ public class HomePresenterImp implements HomePresenter, HomePresenter.Callback {
     @Override
     public void onDettach() {
         this.homeView = null;
+        homeInteractor.onDetach();
     }
 
     @Override

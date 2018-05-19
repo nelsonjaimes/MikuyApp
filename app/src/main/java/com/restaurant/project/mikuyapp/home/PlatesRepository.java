@@ -12,4 +12,6 @@ public interface PlatesRepository {
     void savePlatesListSqlLite(@NonNull List<ListPlateResponseEntity.PlateResponseEntity> list);
 
     List<Plate> getListPlates();
+
+    void closeConnection();
 }
