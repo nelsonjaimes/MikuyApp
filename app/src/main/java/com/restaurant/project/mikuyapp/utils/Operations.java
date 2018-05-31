@@ -1,10 +1,16 @@
 package com.restaurant.project.mikuyapp.utils;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.text.Html;
+import android.view.View;
+import android.widget.TextView;
+
+import com.restaurant.project.mikuyapp.MikuyApplication;
 
 final public class Operations {
     @SuppressWarnings("deprecation")
@@ -23,5 +29,18 @@ final public class Operations {
             return networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
         }
         return false;
+    }
+
+    public static Snackbar getSnackBar(View view, String message, int duration) {
+        Typeface fontRegular = Typeface.createFromAsset(MikuyApplication.contextApp.getAssets(),
+                "fonts/ralewayregular.ttf");
+        Typeface fontBold = Typeface.createFromAsset(MikuyApplication.contextApp.getAssets(),
+                "fonts/ralewaybold.ttf");
+        Snackbar snackbar = Snackbar.make(view, message, duration);
+        TextView tvAction = snackbar.getView().findViewById(android.support.design.R.id.snackbar_action);
+        tvAction.setTypeface(fontBold);
+        TextView tvMessage = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+        tvMessage.setTypeface(fontRegular);
+        return snackbar;
     }
 }

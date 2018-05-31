@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:fontFamily="@font/pinacolada"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:text="@string/titleApp"
             android:textSize="38sp"
             android:visibility="invisible" />

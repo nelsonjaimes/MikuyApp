@@ -39,7 +39,7 @@ import com.restaurant.project.mikuyapp.utils.LogUtil;
 import java.util.List;
 
 public class ScannerActivity extends AppCompatActivity implements ScannerAdapter.Callback,
-        ScannerCallback {
+        ScannerCallback, ChangeIpMannuallyDialog.Callback {
 
     private NetInfo netInfo;
     private String information;
@@ -114,11 +114,16 @@ public class ScannerActivity extends AppCompatActivity implements ScannerAdapter
     }
 
     @Override
+    public void updateIpAddress() {
+        setInformationAppBar(MikuyPreference.getIpAddressServer(), true);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         filter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         registerReceiver(myBroadcast, filter);
     }

@@ -41,6 +41,7 @@
         </LinearLayout>
 
         <TextView
+            android:fontFamily="@font/ralewayregular"
             android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +53,7 @@
             android:textColor="@android:color/black" />
 
         <TextView
+            android:fontFamily="@font/ralewaybold"
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,11 +76,14 @@
             android:visibility="gone">
 
             <Button
+                android:background="@drawable/selector_btn_menu"
+                android:fontFamily="@font/ralewaybold"
+                android:text="-"
                 android:id="@+id/btnMore"
+                android:textColor="@android:color/white"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:text="-"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvAccountant"
@@ -86,14 +91,18 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="1"
+                android:fontFamily="@font/ralewaybold"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="30sp" />
 
             <Button
+                android:background="@drawable/selector_btn_menu"
+                android:fontFamily="@font/ralewaybold"
                 android:id="@+id/btnLess"
+                android:textColor="@android:color/white"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:textSize="20sp"
                 android:text="+"
                 android:textStyle="bold" />
         </LinearLayout>

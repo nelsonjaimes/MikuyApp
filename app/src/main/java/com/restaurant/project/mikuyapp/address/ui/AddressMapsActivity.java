@@ -308,8 +308,9 @@ public class AddressMapsActivity extends AppCompatActivity
     }
 
     private void showSnackNetworkError(@StringRes int idString) {
-        snackNetworkError = Snackbar.make(findViewById(R.id.rlAddress), idString,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.reload, new View.OnClickListener() {
+        snackNetworkError = Operations.getSnackBar(findViewById(R.id.rlAddress),
+                getString(idString), Snackbar.LENGTH_INDEFINITE);
+        snackNetworkError.setAction(R.string.reload, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 snackNetworkError.dismiss();
@@ -321,8 +322,9 @@ public class AddressMapsActivity extends AppCompatActivity
     }
 
     private void showSnackSettingLocation() {
-        snackSettingsLocation = Snackbar.make(findViewById(R.id.rlAddress), R.string.errorSettingsLocation,
-                Snackbar.LENGTH_INDEFINITE).setAction(R.string.settings, new View.OnClickListener() {
+        snackSettingsLocation = Operations.getSnackBar(findViewById(R.id.rlAddress),
+                getString(R.string.errorSettingsLocation), Snackbar.LENGTH_INDEFINITE);
+        snackSettingsLocation.setAction(R.string.settings, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 snackSettingsLocation.dismiss();
@@ -346,7 +348,7 @@ public class AddressMapsActivity extends AppCompatActivity
                 ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.ACCESS_FINE_LOCATION);
         if (shouldProvideRationale) {
-            Snackbar.make(findViewById(R.id.rlAddress), R.string.permissionRationale,
+            Operations.getSnackBar(findViewById(R.id.rlAddress), getString(R.string.permissionRationale),
                     Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override

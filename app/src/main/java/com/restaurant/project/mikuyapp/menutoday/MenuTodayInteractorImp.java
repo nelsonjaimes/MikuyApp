@@ -44,7 +44,7 @@ public class MenuTodayInteractorImp implements MenuTodayInteractor {
                     if (callback != null)
                         callback.onSuccessMakeReservation(reservationResponseEntity);
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response.errorBody());
+                    MikuyException mikuyException = MikuyException.parseError(response);
                     if (callback != null) callback.onError(mikuyException.getMessage());
                 }
             }

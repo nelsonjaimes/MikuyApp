@@ -8,7 +8,6 @@ import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignInRequestE
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MikuyException;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,13 +30,10 @@ public class SignInInteractorImp implements SignInInteractor {
                         if (callback != null) callback.Success(signInResponseEntity);
                     }
                 } else {
-                    ResponseBody responseBody = response.errorBody();
-                    if (responseBody != null) {
-                        MikuyException mikuyException = MikuyException.parseError(responseBody);
+                    MikuyException mikuyException = MikuyException.parseError(response);
                         if (callback != null) {
                             callback.onErrorService(mikuyException.getMessage());
                         }
-                    }
                 }
             }
 

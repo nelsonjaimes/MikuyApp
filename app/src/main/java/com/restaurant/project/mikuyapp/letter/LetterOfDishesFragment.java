@@ -24,6 +24,7 @@ import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 import com.restaurant.project.mikuyapp.reservation.make.MakeReservationActivity;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.Constant;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +162,7 @@ public class LetterOfDishesFragment extends Fragment implements LetterAdapterLis
 
     @Override
     public void showSnackBar(String message) {
-        Snackbar.make(rlLetter, message, Snackbar.LENGTH_SHORT).show();
+        Operations.getSnackBar(rlLetter, message, Snackbar.LENGTH_SHORT).show();
     }
 
 

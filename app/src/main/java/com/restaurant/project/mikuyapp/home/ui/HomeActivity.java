@@ -12,11 +12,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.EntryMenuActivity;
@@ -36,19 +35,20 @@ import com.restaurant.project.mikuyapp.scan.ui.ScannerActivity;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.Constant;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 import io.fabric.sdk.android.Fabric;
 
 public class HomeActivity extends AppCompatActivity implements SideBarListener,
-        View.OnClickListener, HomeView {
+        HomeView {
 
-    private SlidingPaneLayout splHome;
     private RecyclerView rvSideBar;
-    private FragmentManager mFragmentManager;
-    private SideBarAdapter sideBarAdapter;
-    private HandlerSlidingPanel handlerSlidingPanel;
+    private SlidingPaneLayout splHome;
     private HomePresenter homePresenter;
+    private SideBarAdapter sideBarAdapter;
     private DialogProgress dialogProgress;
+    private FragmentManager mFragmentManager;
+    private HandlerSlidingPanel handlerSlidingPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +57,11 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         setContentView(R.layout.activity_home);
         splHome = findViewById(R.id.splHome);
         rvSideBar = findViewById(R.id.rvSideBar);
+        LinearLayout llSignOff = findViewById(R.id.llSignOff);
+        LinearLayout llAddressLocation = findViewById(R.id.llAddressLocation);
         homePresenter = new HomePresenterImp(this);
         mFragmentManager = getSupportFragmentManager();
         handlerSlidingPanel = new HandlerSlidingPanel(splHome);
-        Button btnAddress = findViewById(R.id.btnAddress);
-        Button btnSignOff = findViewById(R.id.btnSignOff);
-        btnAddress.setOnClickListener(this);
         initSlidingPanel();
         initSideBar();
         initToolbar();
@@ -70,12 +69,23 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
             replaceFragment(Constant.ITEM_MENU_TODAY);
         }
 
-        btnSignOff.setOnClickListener(new View.OnClickListener() {
+        llSignOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MikuyPreference.deleteAll();
-                startActivity(new Intent(HomeActivity.this, EntryMenuActivity.class));
+                startActivity(new Intent(HomeActivity.this,
+                        EntryMenuActivity.class));
                 finish();
+            }
+        });
+
+        llAddressLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (splHome.isOpen()) {
+                    startActivity(new Intent(HomeActivity.this,
+                            AddressMapsActivity.class));
+                }
             }
         });
     }
@@ -128,7 +138,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     public void showSnackBar(@NonNull String message) {
-        Snackbar.make(findViewById(R.id.llHome), message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(findViewById(R.id.llHome), message, Snackbar.LENGTH_LONG).show();
     }
 
     private void initToolbar() {
@@ -152,13 +162,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         splHome.setParallaxDistance(100);
         splHome.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
         splHome.setCoveredFadeColor(getResources().getColor(android.R.color.black));
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (splHome.isOpen()) {
-            startActivity(new Intent(this, AddressMapsActivity.class));
-        }
     }
 
     @Override

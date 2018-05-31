@@ -12,6 +12,7 @@
     <color name="colorFooter">#80000000</color>
     <color name="colorBrackgroundFragment">#F1F5F8</color>
     <color name="colorGreen">#35B14A</color>
+    <color name="colorGreenDark">#2E973F</color>
     <color name="colorWhiteTrans">#80FFFFFF</color>
     <color name="colorDisable">#9E9E9E</color>
     <color name="colorExpire">#D90000</color>

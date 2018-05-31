@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiMikuyManager {
-    private Retrofit retrofit;
+    private static Retrofit retrofit;
     private static ApiMikuyManager INSTANCE;
 
     private ApiMikuyManager() {
@@ -31,6 +31,9 @@ public class ApiMikuyManager {
         return retrofit.create(ApiMikuyInterface.class);
     }
 
+    public static Retrofit getRetrofit() {
+        return retrofit;
+    }
     public static ApiMikuyInterface getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ApiMikuyManager();

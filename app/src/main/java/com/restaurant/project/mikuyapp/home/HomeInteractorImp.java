@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class HomeInteractorImp implements HomeInteractor {
     private PlatesRepository platesRepository;
-    private Call<ListPlateResponseEntity> call;
+    private Call<ListPlateResponseEntity> callbackRetrofit;
 
     HomeInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);
@@ -26,8 +26,8 @@ public class HomeInteractorImp implements HomeInteractor {
     @Override
     public void requestDownLoadPlatesList(final HomePresenter.Callback callback) {
         ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
-        call = apiMikuyInterface.requestPlatesList();
-        call.enqueue(new Callback<ListPlateResponseEntity>() {
+        callbackRetrofit = apiMikuyInterface.requestPlatesList();
+        callbackRetrofit.enqueue(new Callback<ListPlateResponseEntity>() {
             @Override
             public void onResponse(@NonNull Call<ListPlateResponseEntity> call,
                                    @NonNull Response<ListPlateResponseEntity> response) {
@@ -40,7 +40,7 @@ public class HomeInteractorImp implements HomeInteractor {
                 } else {
                     ResponseBody responseBody = response.errorBody();
                     if (responseBody != null) {
-                        MikuyException mikuyException = MikuyException.parseError(responseBody);
+                        MikuyException mikuyException = MikuyException.parseError(response);
                         if (callback != null) callback.onErrorService(mikuyException.getMessage());
                     }
                 }
@@ -56,7 +56,7 @@ public class HomeInteractorImp implements HomeInteractor {
 
     @Override
     public void onDetach() {
-        if (call != null) call.cancel();
+        if (callbackRetrofit != null) callbackRetrofit.cancel();
         platesRepository.closeConnection();
     }
 }

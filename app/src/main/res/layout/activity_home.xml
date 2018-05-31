@@ -33,39 +33,64 @@
             android:layout_toLeftOf="@+id/vSeparator"
             android:layout_toStartOf="@+id/vSeparator"
             android:orientation="horizontal"
-            android:paddingBottom="3dp"
-            android:paddingEnd="2dp"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:paddingStart="2dp">
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="4dp">
 
-            <android.support.v7.widget.AppCompatButton
-                android:drawableLeft="@drawable/ic_off_24"
-                android:id="@+id/btnSignOff"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight=".5"
-                android:background="@drawable/selector_signoff"
-                android:text="@string/signof"
-                android:textColor="@color/colorDark"
-                android:drawableStart="@drawable/ic_off_24"
-                android:fontFamily="@font/ralewaybold"
-                android:textSize="14sp" />
+            <LinearLayout
+                android:id="@+id/llSignOff"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/selector_btn_sider"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <android.support.v7.widget.AppCompatButton
-                android:drawableLeft="@drawable/ic_location_24"
-                android:drawableStart="@drawable/ic_location_24"
-                android:fontFamily="@font/ralewaybold"
-                android:id="@+id/btnAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight=".5"
-                android:background="@drawable/selector_signoff"
-                android:text="@string/address"
-                android:textColor="@color/colorDark"
-                android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:contentDescription="@null"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_off_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ralewaybold"
+                    android:maxLines="1"
+                    android:text="@string/signof"
+                    android:textColor="@color/colorDark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAddressLocation"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_btn_sider"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:contentDescription="@null"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_location_24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/ralewaybold"
+                    android:maxLines="1"
+                    android:text="@string/address"
+                    android:textColor="@color/colorDark" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <View

@@ -30,7 +30,7 @@ public class MyReservationInteractorImp implements MyReservationInteractor {
                         callback.onSuccessMyReservationList(entity.getReservationList());
                     }
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response.errorBody());
+                    MikuyException mikuyException = MikuyException.parseError(response);
                     if (callback != null) callback.onError(mikuyException.getMessage());
                 }
             }

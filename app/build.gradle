@@ -58,4 +58,3 @@ dependencies {
         transitive = true;
     }
 }
-

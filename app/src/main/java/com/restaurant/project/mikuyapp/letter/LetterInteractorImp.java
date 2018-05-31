@@ -10,6 +10,7 @@ import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MikuyExceptio
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.home.PlatesRepository;
 import com.restaurant.project.mikuyapp.home.PlatesRepositoryImp;
+import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,8 +44,10 @@ public class LetterInteractorImp implements LetterInteractor {
                     if (callback != null)
                         callback.onSuccessMakeReservation(reservationResponseEntity);
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response.errorBody());
-                    if (callback != null) callback.onError(mikuyException.getMessage());
+                    MikuyException mikuyException = MikuyException.parseError(response);
+                    if (callback != null){
+                        callback.onError(mikuyException.getMessage());
+                    }
                 }
             }
 

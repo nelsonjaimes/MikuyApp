@@ -1,6 +1,7 @@
 package com.restaurant.project.mikuyapp.scan.manually;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,12 +23,24 @@ import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 
 public class ChangeIpMannuallyDialog extends DialogFragment {
 
+    public interface Callback {
+        void updateIpAddress();
+    }
     private EditText edtIp;
     private Button btnSave;
     private ImageView ivExit;
+    private Callback callback;
 
     public static ChangeIpMannuallyDialog getInstance() {
         return new ChangeIpMannuallyDialog();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Callback) {
+            callback = (Callback) context;
+        }
     }
 
     @Nullable
@@ -61,6 +74,7 @@ public class ChangeIpMannuallyDialog extends DialogFragment {
                     Toast.makeText(MikuyApplication.contextApp,
                             getString(R.string.saveSuccessIpAddress, newIp),
                             Toast.LENGTH_LONG).show();
+                    if (callback != null) callback.updateIpAddress();
                     dismiss();
                 }
             }
@@ -100,5 +114,9 @@ public class ChangeIpMannuallyDialog extends DialogFragment {
         return R.style.AppDialogThemeScan;
     }
 
-
+    @Override
+    public void onDetach() {
+        callback = null;
+        super.onDetach();
+    }
 }

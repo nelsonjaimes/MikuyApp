@@ -36,19 +36,24 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
                 if (!String.valueOf(gender).isEmpty()) {
                     if (!email.isEmpty()) {
                         if (!password.isEmpty()) {
-                            if (!Operations.isNetworkAvailable(context)) {
-                                signUpView.showSnackBar(get(R.string.errorNetwoork));
+                            if (password.length() >= 6) {
+                                if (!Operations.isNetworkAvailable(context)) {
+                                    signUpView.showSnackBar(get(R.string.errorNetwoork));
+                                    return;
+                                }
+                                SignUpRequestEntity signUpRequestEntity = new SignUpRequestEntity();
+                                signUpRequestEntity.setName(name);
+                                signUpRequestEntity.setEmail(email);
+                                signUpRequestEntity.setLastname(lastName);
+                                signUpRequestEntity.setGender(gender);
+                                signUpRequestEntity.setPassword(password);
+                                signUpView.showProgress();
+                                signUpInteractor.requestSignUpService(signUpRequestEntity, this);
+                                return;
+                            } else {
+                                signUpView.showSnackBar(get(R.string.shortPassword));
                                 return;
                             }
-                            SignUpRequestEntity signUpRequestEntity = new SignUpRequestEntity();
-                            signUpRequestEntity.setName(name);
-                            signUpRequestEntity.setEmail(email);
-                            signUpRequestEntity.setLastname(lastName);
-                            signUpRequestEntity.setGender(gender);
-                            signUpRequestEntity.setPassword(password);
-                            signUpView.showProgress();
-                            signUpInteractor.requestSignUpService(signUpRequestEntity, this);
-                            return;
                         }
                         signUpView.showSnackBar(get(R.string.emptyPassword));
                         return;

@@ -17,10 +17,9 @@ import com.restaurant.project.mikuyapp.dialog.DialogProgress;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MyReservationEntity;
 import com.restaurant.project.mikuyapp.reservation.adapter.MyReservationAdapter;
 import com.restaurant.project.mikuyapp.utils.Constant;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 import java.util.List;
-
-
 /**
  * @author TacuTacuRestaurant
  */
@@ -93,7 +92,7 @@ public class MyReservationsFragment extends Fragment implements MyReservationVie
 
     @Override
     public void showSnackBar(String message) {
-        Snackbar.make(llMyReservation, message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(llMyReservation, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

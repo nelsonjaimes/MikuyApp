@@ -32,7 +32,7 @@ public class SignUpInteractorImp implements SignUpInteractor {
                 }else{
                     ResponseBody responseBody = response.errorBody();
                     if (responseBody != null) {
-                        MikuyException mikuyException = MikuyException.parseError(responseBody);
+                        MikuyException mikuyException = MikuyException.parseError(response);
                         callback.onErrorService(mikuyException.getMessage());
                     }
                 }

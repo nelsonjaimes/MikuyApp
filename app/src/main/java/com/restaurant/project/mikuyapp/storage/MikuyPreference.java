@@ -45,7 +45,8 @@ final public class MikuyPreference {
     }
 
     public static void deleteAll() {
-        getSharePreference().edit().clear().apply();
+        getSharePreference().edit().remove(KEY_USER_SESSION).apply();
+        getSharePreference().edit().remove(KEY_DOWNLOAD_PLATES).apply();
     }
 
     public static void saveInterfaceName(String name) {

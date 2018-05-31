@@ -21,6 +21,7 @@ import com.restaurant.project.mikuyapp.scan.ui.ScannerActivity;
 import com.restaurant.project.mikuyapp.signin.SignInPresenter;
 import com.restaurant.project.mikuyapp.signin.SignInPresenterImp;
 import com.restaurant.project.mikuyapp.utils.Constant;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -109,7 +110,7 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
 
     @Override
     public void showSnackBar(String message) {
-        Snackbar.make(findViewById(R.id.rlSignIn), message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(findViewById(R.id.rlSignIn), message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

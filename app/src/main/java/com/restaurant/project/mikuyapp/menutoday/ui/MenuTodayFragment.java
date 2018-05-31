@@ -29,6 +29,7 @@ import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.storage.sqlite.SqlGlobal;
 import com.restaurant.project.mikuyapp.utils.Constant;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
+import com.restaurant.project.mikuyapp.utils.Operations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -196,6 +197,6 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
     }
 
     private void showSnackbar(String message) {
-        Snackbar.make(rlMenuToday, message, Snackbar.LENGTH_SHORT).show();
+        Operations.getSnackBar(rlMenuToday, message, Snackbar.LENGTH_SHORT).show();
     }
 }
