@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignUpRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 import com.restaurant.project.mikuyapp.signup.ui.SignUpView;
@@ -29,7 +28,7 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
 
     @Override
     public void initRegister(@NonNull String name, @NonNull String lastName, @NonNull String email,
-                             @NonNull char gender, @NonNull String password) {
+                             char gender, @NonNull String password) {
         if (signUpView == null || signUpInteractor == null) return;
         String message = get(R.string.emptyName);
         if (!name.isEmpty()) {
@@ -92,7 +91,7 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
         if (signUpView != null) {
             signUpView.hideProgress();
             signUpView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 

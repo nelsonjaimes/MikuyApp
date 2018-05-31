@@ -14,5 +14,6 @@
     <color name="colorGreen">#35B14A</color>
     <color name="colorWhiteTrans">#80FFFFFF</color>
     <color name="colorDisable">#9E9E9E</color>
-    <color name="colorExpire">#D96858</color>
+    <color name="colorExpire">#D90000</color>
+    <color name="colorExpireDar">#6D0000</color>
 </resources>

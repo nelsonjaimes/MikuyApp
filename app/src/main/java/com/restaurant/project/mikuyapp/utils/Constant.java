@@ -26,4 +26,9 @@ final public class Constant {
 
     //Dialog
     public static final String DIALOG_PROGRESS = "dialog_progress";
+    // Animation
+    public static final String ANIMATION_TRANSLATE_Y = "translationY";
+    public static final String ANIMATION_ALPHA = "alpha";
+    //HostName
+    public static final String DEVICE_NAME = "bluetooth_name";
 }

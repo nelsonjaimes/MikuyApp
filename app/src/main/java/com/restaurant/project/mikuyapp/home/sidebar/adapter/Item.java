@@ -7,18 +7,10 @@ public class Item {
     private int type;
     public static final int HEADER_TYPE = 1;
     public static final int NORMAL_TYPE = 2;
-    public static final int SPACE_WHITE_TYPE = 3;
 
-    Item(int type) {
-        this.type = type;
+    Item() {
+        this.type = HEADER_TYPE;
         this.isSelect = false;
-    }
-
-    public Item(int image, String option, boolean isSelect) {
-        this.image = image;
-        this.option = option;
-        this.isSelect = isSelect;
-        this.type = NORMAL_TYPE;
     }
 
     Item(int image, String option) {

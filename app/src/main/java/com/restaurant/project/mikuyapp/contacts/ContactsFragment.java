@@ -22,12 +22,12 @@ import java.util.List;
 
 public class ContactsFragment extends Fragment implements ContactsAdapter.ContactsListener {
 
-    final int ITEM_PHONE = 0;
-    final int ITEM_FACEBOOK = 1;
     final int ITEM_WEB = 2;
-    final int ITEM_EMAIL = 3;
-    private RecyclerView rvContacts;
     private Context context;
+    final int ITEM_PHONE = 0;
+    final int ITEM_EMAIL = 3;
+    final int ITEM_FACEBOOK = 1;
+    private RecyclerView rvContacts;
 
     public static ContactsFragment getInstance() {
         return new ContactsFragment();

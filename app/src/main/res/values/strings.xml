@@ -51,7 +51,7 @@
     <string name="errorApiDireccions">Error interno de servidor ApiGoogleDirections</string>
     <string name="errorNetwoork">Error de conexión,verifíque su conexión red Wi-Fi o Datos</string>
     <string name="errorSettingsLocation">Habilite algún proveedor de localización(GPS)</string>
-    <string name="settings">AJUSTES</string>
+    <string name="settings">Ajustes</string>
     <string name="permissionRationale">Para poder acceder a su ubicación, debe de conceder permisos</string>
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
@@ -69,4 +69,30 @@
     <string name="emptyDessert">Seleccione el POSTRE del menu</string>
     <string name="emptyEntry">Seleccione la ENTRADA del menu</string>
     <string name="emptyListLetterReserver">Seleccione al menos 1 platillo para realiazar la reserva</string>
+
+    <!--DialogScan -->
+    <string name="startScann">Iniciar escaner</string>
+    <string name="progressScan">%1$d %2$s Detener</string>
+    <string name="stoptScanExecute">Detener escaner</string>
+    <string name="scanTitleScan">Dirección IP actual:</string>
+    <string name="newScanTitleScan">Direccón IP nueva:</string>
+    <string name="dialogTitle">&lt;b>RED:&lt;/b>\"%1$s\"</string>
+    <string name="wifi_enabling">Habilitando Wifi..</string>
+    <string name="wifi_desabling">Desconectando Wifi..</string>
+    <string name="wifi_enabled">Wifi Habilitado</string>
+    <string name="ipAddress">IP: </string>
+    <string name="network">RED: </string>
+    <string name="cancelScanner">Se canceló el escaneo de direcciones IP</string>
+    <string name="wifi_desabled">Wifi Desabilitado</string>
+    <string name="wifi_unknown">Wifi Apagado</string>
+    <string name="wifi_scanning">Escaneando redes..</string>
+    <string name="wifi_associating">Asociando a %1$s</string>
+    <string name="wifi_completed">Obteniendo IP de %1$s</string>
+    <string name="wifi_net_ip">Conectado a %1$s \nIP: %2$s \nRED: %3$s /%4$d</string>
+    <string name="wifi_detect_internet">Conectividad de internet detectata!</string>
+    <string name="scan_wifi_title">Cambio de dirección IP</string>
+    <string name="scan_hold">Cambiar IP manualmente</string>
+    <string name="emptyDispositive">No se encontró ningún dispositivo en red</string>
+    <string name="save">guardar</string>
+    <string name="saveSuccessIpAddress">Dirección IP: %1$s \n correctamente guardada</string>
 </resources>

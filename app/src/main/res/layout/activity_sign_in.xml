@@ -22,6 +22,7 @@
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/signin"
+            app:titleTextAppearance="@style/styleTitleToolbar"
             app:titleTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
 
@@ -60,6 +61,7 @@
                 android:textAllCaps="true" />
 
             <TextView
+                android:fontFamily="@font/ralewaybold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -70,6 +72,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:fontFamily="@font/ralewaybold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -85,6 +88,7 @@
                 android:drawableLeft="@drawable/ic_action_facebook"
                 android:drawableStart="@drawable/ic_action_facebook"
                 android:text="@string/connectToFacebook"
+                android:textSize="14sp"
                 android:textAllCaps="true" />
 
             <Button

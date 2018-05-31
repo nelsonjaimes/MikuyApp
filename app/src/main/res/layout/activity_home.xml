@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/splHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,6 +21,7 @@
             android:layout_above="@+id/llFooter"
             android:layout_toLeftOf="@+id/vSeparator"
             android:layout_toStartOf="@+id/vSeparator"
+            tools:listitem="@layout/sidebar_simple_item"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
 
@@ -37,7 +39,8 @@
             android:paddingRight="2dp"
             android:paddingStart="2dp">
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
+                android:drawableLeft="@drawable/ic_off_24"
                 android:id="@+id/btnSignOff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -46,9 +49,14 @@
                 android:background="@drawable/selector_signoff"
                 android:text="@string/signof"
                 android:textColor="@color/colorDark"
-                android:textSize="15sp" />
+                android:drawableStart="@drawable/ic_off_24"
+                android:fontFamily="@font/ralewaybold"
+                android:textSize="14sp" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
+                android:drawableLeft="@drawable/ic_location_24"
+                android:drawableStart="@drawable/ic_location_24"
+                android:fontFamily="@font/ralewaybold"
                 android:id="@+id/btnAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -57,7 +65,7 @@
                 android:background="@drawable/selector_signoff"
                 android:text="@string/address"
                 android:textColor="@color/colorDark"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <View
@@ -67,7 +75,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:background="@android:drawable/divider_horizontal_textfield" />
-
     </RelativeLayout>
 
     <include

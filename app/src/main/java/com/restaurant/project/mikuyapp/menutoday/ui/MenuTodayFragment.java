@@ -40,17 +40,17 @@ import java.util.List;
 public class MenuTodayFragment extends Fragment implements PlateRecyclerListener,
         View.OnClickListener, MenuTodayView {
 
-    private RecyclerView rvTodayPlate;
     private Context context;
     private Button btnReserve;
+    private RecyclerView rvTodayPlate;
     private RelativeLayout rlMenuToday;
-    private MenuTodayPresenter menuTodayPresenter;
     private List<Object> todayPlateList;
     private DialogProgress dialogProgress;
+    private MenuTodayPresenter menuTodayPresenter;
     // Pedido
     private Plate menuPlate, entryPlate, dessertPlate;
-    public static String EXTRA_CODE_RESERVE = "codeReserve";
     public static String EXTRA_AMOUNT = "amountReserve";
+    public static String EXTRA_CODE_RESERVE = "codeReserve";
     public static String EXTRA_DATE_RESERVE = "dateReserve";
 
     public static MenuTodayFragment getInstance() {

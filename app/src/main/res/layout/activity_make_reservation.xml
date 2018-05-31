@@ -16,6 +16,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            app:titleTextAppearance="@style/styleTitleToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/ralewayregular"
                 android:id="@+id/tvReservationDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,6 +47,7 @@
                 tools:text="Fecha y hora: 18/06/2018 6:30pm" />
 
             <TextView
+                android:fontFamily="@font/ralewaybold"
                 android:id="@+id/tvAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:fontFamily="@font/ralewayregular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -63,13 +67,13 @@
                 android:textColor="@color/colorDark"
                 android:textSize="25sp" />
             <TextView
+                android:fontFamily="@font/ralewaybold"
                 android:id="@+id/tvReservationNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/colorDark"
                 android:textSize="42sp"
-                android:textStyle="bold|italic"
                 tools:text="R30" />
 
             <Button

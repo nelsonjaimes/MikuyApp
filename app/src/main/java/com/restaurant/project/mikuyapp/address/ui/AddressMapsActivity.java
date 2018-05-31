@@ -66,27 +66,25 @@ import io.fabric.sdk.android.Fabric;
 public class AddressMapsActivity extends AppCompatActivity
         implements OnMapReadyCallback, AddressMapsView {
 
-    private ProgressBar pbLoad;
+    private LatLng latLng;
     private TextView tvTime;
     private ImageView ivBus;
-    private TextView tvStartUbication;
+    private ProgressBar pbLoad;
+    private String pathLocation;
     private TextView tvEndUbication;
-    private AddressMapsPresenter addressMapsPresenter;
-    /*MyLocation*/
+    private List<LatLng> latLngList;
+    private TextView tvStartUbication;
+    private boolean restoreState = true;
     private SupportMapFragment mapFragment;
     private LocationRequest mLocationRequest;
-    private FusedLocationProviderClient mFusedLocationProviderClient;
     private LocationCallback mLocationCallback;
-    private Snackbar snackNetworkError, snackSettingsLocation;
-    private LatLng latLng;
-    private List<LatLng> latLngList;
     final long INTERVAL_REQUEST = 2 * 60 * 1000;
-    final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
-    private final String KEY_LIST_LOCATION = "key_list_location";
-    private String pathLocation;
-    private boolean restoreState = true;
-    /*Permission*/
     private final int PERMISSIONS_REQUEST_CODE = 100;
+    private AddressMapsPresenter addressMapsPresenter;
+    final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
+    private Snackbar snackNetworkError, snackSettingsLocation;
+    private final String KEY_LIST_LOCATION = "key_list_location";
+    private FusedLocationProviderClient mFusedLocationProviderClient;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

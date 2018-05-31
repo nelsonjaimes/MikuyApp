@@ -26,11 +26,11 @@ import java.util.List;
  */
 public class MyReservationsFragment extends Fragment implements MyReservationView {
 
-    private MyReservationPresenter myReservationPresenter;
     private Context context;
     private RecyclerView rvMyReservation;
-    private DialogProgress dialogProgress;
     private LinearLayout llMyReservation;
+    private DialogProgress dialogProgress;
+    private MyReservationPresenter myReservationPresenter;
 
 
     public static MyReservationsFragment getInstance() {

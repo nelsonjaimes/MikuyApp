@@ -6,8 +6,8 @@
     key, or create a new key.
 
     Note that this file specifies the API key for the release build target.
-    If you have previously set up a key for the debug target with the debug signing certificate,
-    you will also need to set up a key for your release certificate.
+    If you have previously set down a key for the debug target with the debug signing certificate,
+    you will also need to set down a key for your release certificate.
 
     Follow the directions here:
 

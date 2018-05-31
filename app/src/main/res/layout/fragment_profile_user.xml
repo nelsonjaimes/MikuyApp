@@ -23,6 +23,7 @@
             android:tint="@color/colorPrimary" />
 
         <TextView
+            android:fontFamily="@font/ralewayregular"
             android:id="@+id/tvProfileName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,6 +47,7 @@
                 android:tint="@color/colorDark" />
 
             <TextView
+                android:fontFamily="@font/ralewaybold"
                 android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

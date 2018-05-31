@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <LinearLayout
+        android:id="@+id/llCheck"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/shape_circle_disable"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_circle_enable"
+            android:contentDescription="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_done"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSSID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/llCheck"
+        android:layout_toLeftOf="@+id/tvIP"
+        android:layout_toRightOf="@+id/llCheck"
+        android:layout_toStartOf="@+id/tvIP"
+        android:background="@null"
+        android:ellipsize="end"
+        android:fontFamily="@font/ralewaybold"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        tools:text="El Maccasador con slas  de peladas" />
+
+    <TextView
+        android:id="@+id/tvMac"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tvSSID"
+        android:layout_toEndOf="@+id/llCheck"
+        android:layout_toLeftOf="@+id/tvIP"
+        android:layout_toRightOf="@+id/llCheck"
+        android:layout_toStartOf="@+id/tvIP"
+        android:background="@null"
+        android:ellipsize="end"
+        android:fontFamily="@font/ralewayregular"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        tools:text="7a:0B:C6:D5:65:f7" />
+
+    <TextView
+        android:id="@+id/tvIP"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:fontFamily="@font/ralewayregular"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        tools:text="192.168.111.111" />
+</RelativeLayout>

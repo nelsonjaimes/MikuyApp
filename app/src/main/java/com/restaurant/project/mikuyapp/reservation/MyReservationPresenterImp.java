@@ -3,8 +3,8 @@ package com.restaurant.project.mikuyapp.reservation;
 import android.content.Context;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MyReservationEntity;
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.Operations;
 
 import java.util.List;
@@ -68,7 +68,7 @@ public class MyReservationPresenterImp implements MyReservationPresenter, MyRese
         if (myReservationView != null) {
             myReservationView.hideProgress();
             myReservationView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 }

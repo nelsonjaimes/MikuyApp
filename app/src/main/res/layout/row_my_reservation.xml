@@ -17,16 +17,17 @@
         android:paddingStart="16dp">
 
         <TextView
+            android:fontFamily="@font/ralewaybold"
             android:id="@+id/tvCodeReserse"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:gravity="center"
             android:textColor="@color/colorDark"
             android:textSize="25sp"
-            android:textStyle="bold|italic"
             tools:text="R20" />
 
         <TextView
+            android:fontFamily="@font/ralewayregular"
             android:id="@+id/tvDateReservation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

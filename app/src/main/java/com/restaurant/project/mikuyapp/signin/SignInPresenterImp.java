@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignInRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
 import com.restaurant.project.mikuyapp.signin.ui.SignInView;
@@ -68,7 +67,7 @@ public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Call
         if (signInView != null) {
             signInView.hideProgress();
             signInView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 

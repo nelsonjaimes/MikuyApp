@@ -14,13 +14,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignInInteractorImp implements SignInInteractor {
+    private static Call<SignInResponseEntity> requestSignIn;
     @Override
     public void requestSignInService(@NonNull SignInRequestEntity signInRequestEntity,
                                      final SignInPresenter.Callback callback) {
 
         ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
-        Call<SignInResponseEntity> call = apiMikuyInterface.requestSignIn(signInRequestEntity);
-        call.enqueue(new Callback<SignInResponseEntity>() {
+        requestSignIn = apiMikuyInterface.requestSignIn(signInRequestEntity);
+        requestSignIn.enqueue(new Callback<SignInResponseEntity>() {
             @Override
             public void onResponse(@NonNull Call<SignInResponseEntity> call,
                                    @NonNull Response<SignInResponseEntity> response) {
@@ -33,7 +34,9 @@ public class SignInInteractorImp implements SignInInteractor {
                     ResponseBody responseBody = response.errorBody();
                     if (responseBody != null) {
                         MikuyException mikuyException = MikuyException.parseError(responseBody);
-                        if (callback != null) callback.onErrorService(mikuyException.getMessage());
+                        if (callback != null) {
+                            callback.onErrorService(mikuyException.getMessage());
+                        }
                     }
                 }
             }
@@ -41,8 +44,17 @@ public class SignInInteractorImp implements SignInInteractor {
             @Override
             public void onFailure(@NonNull Call<SignInResponseEntity> call,
                                   @NonNull Throwable t) {
-                if (callback != null) callback.onFailure();
+                if (callback != null) {
+                    callback.onFailure();
+                }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        if (requestSignIn != null) {
+            requestSignIn.cancel();
+        }
     }
 }

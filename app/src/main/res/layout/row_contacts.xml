@@ -21,6 +21,7 @@
             android:scaleType="centerInside" />
 
         <TextView
+            android:fontFamily="@font/ralewayregular"
             android:id="@+id/tvDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

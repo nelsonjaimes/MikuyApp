@@ -26,7 +26,7 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public SideBarAdapter(Context context) {
         this.context = context;
         itemList = new ArrayList<>();
-        itemList.add(new Item(Item.HEADER_TYPE));
+        itemList.add(new Item());
         itemList.add(new Item(R.drawable.menu_today, get(R.string.menu)));
         itemList.add(new Item(R.drawable.letter_dark, get(R.string.foodLetter)));
         itemList.add(new Item(R.drawable.reservation_dark, get(R.string.myReservations)));

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.StringRes;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.ReservationRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
@@ -115,7 +114,7 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
         if (menuTodayView != null) {
             menuTodayView.hideProgress();
             menuTodayView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 

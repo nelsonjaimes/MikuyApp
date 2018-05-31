@@ -2,42 +2,102 @@
   <dictionary name="NJG_3">
     <words>
       <w>acount</w>
+      <w>addr</w>
+      <w>adress</w>
+      <w>alguna</w>
+      <w>apagado</w>
+      <w>asociando</w>
+      <w>asyntask</w>
       <w>atributes</w>
+      <w>busqueda</w>
+      <w>cambiar</w>
+      <w>cambio</w>
       <w>campo</w>
+      <w>canceló</w>
       <w>categori</w>
+      <w>cidr</w>
       <w>codereserve</w>
+      <w>conectado</w>
+      <w>conectividad</w>
+      <w>configuración</w>
+      <w>configurar</w>
+      <w>correctamente</w>
       <w>cuenta</w>
       <w>datehour</w>
+      <w>desabilitado</w>
+      <w>desabled</w>
+      <w>desabling</w>
+      <w>desconectando</w>
+      <w>desconocido</w>
+      <w>detectata</w>
+      <w>detener</w>
       <w>dettach</w>
+      <w>direcciones</w>
+      <w>direccón</w>
+      <w>direción</w>
+      <w>dispositive</w>
+      <w>dispositivo</w>
+      <w>dports</w>
       <w>emailuser</w>
+      <w>encontró</w>
+      <w>escaneando</w>
+      <w>escaneo</w>
+      <w>escaner</w>
       <w>estar</w>
       <w>femenino</w>
       <w>genero</w>
+      <w>guardada</w>
+      <w>habilitado</w>
+      <w>habilitando</w>
+      <w>inet</w>
       <w>ingrese</w>
+      <w>intf</w>
       <w>lastname</w>
+      <w>mannually</w>
+      <w>manualmente</w>
       <w>masculino</w>
       <w>menos</w>
+      <w>netmask</w>
       <w>netwoork</w>
+      <w>ningún</w>
+      <w>noip</w>
+      <w>nomac</w>
+      <w>nomask</w>
       <w>nombre</w>
+      <w>noname</w>
+      <w>nueva</w>
+      <w>obteniendo</w>
+      <w>opción</w>
       <w>pedido</w>
       <w>permisos</w>
       <w>platelist</w>
       <w>platillo</w>
       <w>puede</w>
       <w>pueden</w>
+      <w>ralewaybold</w>
+      <w>ralewayregular</w>
       <w>recargar</w>
+      <w>redes</w>
       <w>reserse</w>
       <w>reservationlist</w>
+      <w>reserver</w>
+      <w>scann</w>
+      <w>scannear</w>
       <w>seleccione</w>
       <w>señor</w>
       <w>snackbar</w>
+      <w>splas</w>
+      <w>ssid</w>
+      <w>stopt</w>
       <w>sucess</w>
+      <w>unkowok</w>
       <w>vacia</w>
       <w>vacio</w>
       <w>vacios</w>
       <w>verifíque</w>
       <w>vinculela</w>
       <w>válida</w>
+      <w>wlan</w>
     </words>
   </dictionary>
 </component>

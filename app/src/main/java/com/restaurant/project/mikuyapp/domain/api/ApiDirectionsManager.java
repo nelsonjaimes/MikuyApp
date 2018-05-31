@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiDirectionsManager {
     private Retrofit retrofit;
-    private final String URL_BASE = "https://maps.googleapis.com/maps/api/";
+    private static final String URL_BASE = "https://maps.googleapis.com/maps/api/";
     public static final String KEY = "AIzaSyDCaUIFxpS9oqI12NrYDsv5BUKqefsvytw";
     public static final String OK = "OK";
     private static ApiDirectionsManager INSTANCE;

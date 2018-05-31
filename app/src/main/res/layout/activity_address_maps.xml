@@ -26,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:fontFamily="@font/ralewaybold"
                     style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -69,6 +70,7 @@
                 android:background="@drawable/shape_circle_location" />
 
             <TextView
+                android:fontFamily="@font/ralewayregular"
                 android:id="@+id/tvStartUbication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,6 +118,7 @@
                 android:tint="@color/colorGreen" />
 
             <TextView
+                android:fontFamily="@font/ralewayregular"
                 android:id="@+id/tvEndUbication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -146,6 +149,7 @@
                 android:visibility="visible" />
 
             <TextView
+                android:fontFamily="@font/ralewayregular"
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

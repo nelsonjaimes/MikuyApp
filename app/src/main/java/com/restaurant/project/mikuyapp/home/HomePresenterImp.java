@@ -3,8 +3,8 @@ package com.restaurant.project.mikuyapp.home;
 import android.content.Context;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.home.ui.HomeView;
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 public class HomePresenterImp implements HomePresenter, HomePresenter.Callback {
@@ -58,7 +58,7 @@ public class HomePresenterImp implements HomePresenter, HomePresenter.Callback {
         if (homeView != null) {
             homeView.hideProgress();
             homeView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 }

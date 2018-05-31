@@ -22,6 +22,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:titleTextAppearance="@style/styleTitleToolbar"
             app:title="@string/signup"
             app:titleTextColor="@color/colorWhite" />
     </android.support.design.widget.AppBarLayout>
@@ -68,6 +69,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:fontFamily="@font/ralewayregular"
                     android:id="@+id/rbMale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -79,6 +81,7 @@
                     android:theme="@style/styleRadio" />
 
                 <RadioButton
+                    android:fontFamily="@font/ralewayregular"
                     android:id="@+id/rbFemale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -141,7 +144,7 @@
                 android:drawableStart="@drawable/ic_action_facebook"
                 android:text="@string/connectToFacebook"
                 android:textAllCaps="true"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/btnConnectToTwitter"

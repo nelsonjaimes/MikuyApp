@@ -3,33 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@color/colorPrimary"
     tools:context=".splash.SplashActivity">
 
-    <LinearLayout
-        android:id="@+id/llFooter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="@dimen/heightImgLogo"
+        android:layout_height="@dimen/heightImgLogo"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/logo_256" />
+        android:contentDescription="@null"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo_256"
+        android:visibility="invisible" />
 
         <TextView
+            android:id="@+id/tvFooter"
+            android:layout_height="@dimen/heightTxtFooter"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:fontFamily="@font/pinacolada"
             android:gravity="center"
-            android:padding="4dp"
+            android:textColor="@android:color/black"
             android:text="@string/titleApp"
-            android:textColor="@color/colorWhite"
-            android:textSize="35sp" />
-    </LinearLayout>
+            android:textSize="38sp"
+            android:visibility="invisible" />
 </RelativeLayout>

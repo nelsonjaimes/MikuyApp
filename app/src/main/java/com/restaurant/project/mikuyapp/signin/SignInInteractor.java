@@ -7,4 +7,6 @@ import com.restaurant.project.mikuyapp.domain.model.mikuy.request.SignInRequestE
 public interface SignInInteractor {
     void requestSignInService(@NonNull SignInRequestEntity signInRequestEntity,
                               SignInPresenter.Callback callback);
+
+    void onDestroy();
 }

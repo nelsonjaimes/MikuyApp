@@ -101,7 +101,7 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
         if (letterView != null) {
             letterView.hideProgress();
             letterView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, ApiMikuyManager.URL_BASE));
+                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
     }
 

@@ -1,38 +1,19 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
 import com.google.gson.Gson;
-
-import java.io.IOException;
+import com.restaurant.project.mikuyapp.MikuyApplication;
+import com.restaurant.project.mikuyapp.R;
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 
 import okhttp3.ResponseBody;
 
 public class MikuyException {
-    private int status;
-    private int code;
     private String message;
-    private String moreInfo;
-    private String developerMessage;
 
-    public MikuyException() {
-        message = "";
+    private MikuyException() {
+        message = MikuyApplication.contextApp.getString(R.string.errorConnectionServer,
+                MikuyPreference.getUrlBaseServer());
     }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -41,29 +22,16 @@ public class MikuyException {
         this.message = message;
     }
 
-    public String getMoreInfo() {
-        return moreInfo;
-    }
-
-    public void setMoreInfo(String moreInfo) {
-        this.moreInfo = moreInfo;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
-
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
     public static MikuyException parseError(ResponseBody responseBody) {
-        Gson gson = new Gson();
-        MikuyException mikuyException;
+        MikuyException mikuyException = null;
         try {
-            mikuyException = gson.fromJson(responseBody.string(), MikuyException.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+            if (responseBody.string() != null) {
+                mikuyException = new Gson().fromJson(responseBody.string(), MikuyException.class);
+                if (mikuyException == null) {
+                    mikuyException = new MikuyException();
+                }
+            }
+        } catch (Exception e) {
             mikuyException = new MikuyException();
         }
         return mikuyException;

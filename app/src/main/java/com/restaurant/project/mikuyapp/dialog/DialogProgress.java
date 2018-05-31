@@ -15,8 +15,6 @@ import com.restaurant.project.mikuyapp.R;
 
 public class DialogProgress extends DialogFragment {
 
-    private Context context;
-
     public static DialogProgress getInstance() {
         return new DialogProgress();
     }
@@ -24,7 +22,6 @@ public class DialogProgress extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context = context;
     }
 
     @Nullable
@@ -55,5 +52,6 @@ public class DialogProgress extends DialogFragment {
     public int getTheme() {
         return R.style.AppDialogTheme;
     }
+
 
 }

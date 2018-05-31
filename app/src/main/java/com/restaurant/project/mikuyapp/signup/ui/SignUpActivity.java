@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.restaurant.project.mikuyapp.EntryMenuActivity;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.dialog.DialogProgress;
 import com.restaurant.project.mikuyapp.home.ui.HomeActivity;
+import com.restaurant.project.mikuyapp.scan.ui.ScannerActivity;
 import com.restaurant.project.mikuyapp.signup.SignUpPresenter;
 import com.restaurant.project.mikuyapp.signup.SignUpPresenterImp;
 import com.restaurant.project.mikuyapp.utils.Constant;
@@ -92,10 +94,18 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             startActivity(new Intent(this, EntryMenuActivity.class));
             finish();
+        } else if (item.getItemId() == R.id.itemSettings) {
+            startActivity(new Intent(SignUpActivity.this, ScannerActivity.class));
         }
         return true;
     }

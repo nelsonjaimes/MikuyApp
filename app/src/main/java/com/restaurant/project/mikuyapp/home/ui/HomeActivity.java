@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +32,7 @@ import com.restaurant.project.mikuyapp.letter.LetterOfDishesFragment;
 import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
+import com.restaurant.project.mikuyapp.scan.ui.ScannerActivity;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.Constant;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
@@ -199,9 +202,17 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             toggleDrawerLayout();
+        } else if (item.getItemId() == R.id.itemSettings) {
+            startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
         }
         return true;
     }

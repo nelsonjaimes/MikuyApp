@@ -20,11 +20,7 @@ final public class Operations {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected()) {
-                return true;
-            } else {
-                return false;
-            }
+            return networkInfo != null && networkInfo.isAvailable() && networkInfo.isConnected();
         }
         return false;
     }

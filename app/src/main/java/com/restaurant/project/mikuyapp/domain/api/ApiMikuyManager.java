@@ -1,5 +1,7 @@
 package com.restaurant.project.mikuyapp.domain.api;
 
+import com.restaurant.project.mikuyapp.storage.MikuyPreference;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -10,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiMikuyManager {
     private Retrofit retrofit;
     private static ApiMikuyManager INSTANCE;
-    public static final String URL_BASE = "http://192.168.43.92/api.mikuy.com/v1/";
 
     private ApiMikuyManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -20,14 +21,10 @@ public class ApiMikuyManager {
         okBuilder.connectTimeout(8, TimeUnit.SECONDS);
         okBuilder.addInterceptor(logging);
         retrofit = new Retrofit.Builder()
-                .baseUrl(URL_BASE)
+                .baseUrl(MikuyPreference.getUrlBaseServer())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okBuilder.build())
                 .build();
-    }
-
-    public Retrofit gerRetrofit() {
-        return retrofit;
     }
 
     private ApiMikuyInterface get() {
