@@ -7,7 +7,7 @@ import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 
 import java.util.List;
 
-public interface LetterView {
+interface LetterView {
     void showProgress();
 
     void hideProgress();

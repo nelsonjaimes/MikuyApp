@@ -48,8 +48,8 @@ public class SignInInteractorImp implements SignInInteractor {
     }
 
     @Override
-    public void onDestroy() {
-        if (requestSignIn != null) {
+    public void onCancel() {
+        if (requestSignIn != null && requestSignIn.isExecuted()) {
             requestSignIn.cancel();
         }
     }

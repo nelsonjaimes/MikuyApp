@@ -10,13 +10,6 @@ public class Host {
         this.select = false;
     }
 
-    public Host(String name, String ipAddress, String hardwareAddress) {
-        this.name = name;
-        this.hardwareAddress = hardwareAddress;
-        this.ipAddress = ipAddress;
-        this.select = false;
-    }
-
     public boolean isSelect() {
         return select;
     }

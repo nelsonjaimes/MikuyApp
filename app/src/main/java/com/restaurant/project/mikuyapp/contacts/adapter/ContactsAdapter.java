@@ -19,7 +19,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Concta
         void selectItem(int pos);
     }
 
-    private Context context;
+    private final Context context;
     private List<ItemContacts> itemContactsList;
     private ContactsListener contactsListener;
 
@@ -53,8 +53,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.Concta
     }
 
     class ConctactsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView ivImage;
-        private TextView tvDescription;
+        private final ImageView ivImage;
+        private final TextView tvDescription;
         int position;
 
         ConctactsViewHolder(View itemView) {

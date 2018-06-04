@@ -2,7 +2,7 @@ package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DetailReservationResponseEntity {
+class DetailReservationResponseEntity {
 
     @SerializedName("code_reserve")
     private String codeReserve;
@@ -35,7 +35,4 @@ public class DetailReservationResponseEntity {
         this.countPlate = countPlate;
     }
 
-    /* "code_reserve": "R1",
-            "code_plate": "A003",
-            "count_plate":*/
 }

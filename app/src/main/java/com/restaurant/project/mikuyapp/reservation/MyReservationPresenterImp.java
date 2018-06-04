@@ -11,13 +11,13 @@ import java.util.List;
 
 public class MyReservationPresenterImp implements MyReservationPresenter, MyReservationPresenter.Callback {
 
-    private Context context;
+    private final Context context;
     private MyReservationView myReservationView;
-    private MyReservationInteractor myReservationInteractor;
+    private final MyReservationInteractor myReservationInteractor;
 
-    public MyReservationPresenterImp(Context context) {
+    MyReservationPresenterImp(Context context) {
         this.context = context;
-        this.myReservationInteractor = new MyReservationInteractorImp();
+        myReservationInteractor = new MyReservationInteractorImp();
     }
 
     @Override
@@ -39,14 +39,9 @@ public class MyReservationPresenterImp implements MyReservationPresenter, MyRese
             myReservationView.showProgress();
             myReservationInteractor.requestMyReservationList(this);
         } else {
-            myReservationView.showSnackBar(get(R.string.errorNetwoork));
+            myReservationView.showSnackBar(context.getString(R.string.errorNetwoork));
         }
     }
-
-    private String get(int res) {
-        return context.getResources().getString(res);
-    }
-
     @Override
     public void onSuccessMyReservationList(List<MyReservationEntity> list) {
         if (myReservationView != null) {

@@ -23,7 +23,7 @@ import static com.restaurant.project.mikuyapp.utils.Constant.TYPE_MENU_ENTRY;
 public class MenuTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int ITEM_CATEGORY = 2;
-    private Context context;
+    private final Context context;
     private List<Object> objectList;
     private PlateRecyclerListener plateRecyclerListener;
 
@@ -95,9 +95,9 @@ public class MenuTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     class PlateTodayViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
-        private TextView tvName;
-        private ImageView ivCheck;
-        private TextView tvPrice;
+        private final TextView tvName;
+        private final ImageView ivCheck;
+        private final TextView tvPrice;
         private int position;
 
         PlateTodayViewHolder(View itemView) {
@@ -135,8 +135,8 @@ public class MenuTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
-        private ImageView ivImage;
-        private TextView tvTitle;
+        private final ImageView ivImage;
+        private final TextView tvTitle;
 
         CategoryViewHolder(View itemView) {
             super(itemView);

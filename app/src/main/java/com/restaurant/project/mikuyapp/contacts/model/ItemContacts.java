@@ -1,8 +1,8 @@
 package com.restaurant.project.mikuyapp.contacts.model;
 
 public class ItemContacts {
-    private int image;
-    private String description;
+    private final int image;
+    private final String description;
 
     public ItemContacts(int image, String description) {
         this.image = image;

@@ -26,63 +26,141 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardViewSuccess"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_below="@+id/appbar"
         android:layout_margin="12dp">
 
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        <View
+            android:layout_width="3dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorGreen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="12dp">
-            <TextView
-                android:fontFamily="@font/ralewayregular"
-                android:id="@+id/tvReservationDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorDark"
-                tools:text="Fecha y hora: 18/06/2018 6:30pm" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="@null"
+                android:scaleType="centerInside"
+                android:src="@drawable/check"
+                android:tint="@color/colorGreen" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ralewayregular"
+                android:text="@string/successReservation"
+                android:textColor="@color/colorDark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/cardViewSuccess"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="12dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreen" />
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:padding="12dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reservationDate"
+                android:fontFamily="@font/ralewayregular"
+                android:textColor="@color/colorDark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/tvReservationDate"
                 android:fontFamily="@font/ralewaybold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorDark"
+                android:textSize="16sp"
+                tools:text="18/06/2018 6:30pm" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/divider_horizontal_textfield" />
+            <TextView
+                android:fontFamily="@font/ralewayregular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/amount"
+                android:textColor="@color/colorDark" />
+
+            <TextView
                 android:id="@+id/tvAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:text="Total: s/.20"
+                android:fontFamily="@font/ralewaybold"
+                android:textSize="16sp"
                 android:textColor="@color/colorDark"
-                android:textSize="20sp" />
+                tools:text="s/20.00" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/divider_horizontal_textfield" />
             <TextView
                 android:fontFamily="@font/ralewayregular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="CODIGO DE RESERVACIÓN"
-                android:textColor="@color/colorDark"
-                android:textSize="25sp" />
+                android:text="@string/reservationNumber"
+                android:textColor="@color/colorDark" />
+
             <TextView
                 android:fontFamily="@font/ralewaybold"
                 android:id="@+id/tvReservationNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:textColor="@color/colorDark"
-                android:textSize="42sp"
+                android:textSize="16sp"
                 tools:text="R30" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:drawable/divider_horizontal_textfield" />
             <Button
-                android:id="@+id/btnMakePayment"
+                android:id="@+id/btnReturn"
                 style="@style/btnActionStyle"
-                android:layout_margin="12dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/selector_signup"
-                android:text="ENVIAR A CORREO"
+                android:text="@string/returnLetter"
                 android:textAllCaps="true" />
         </LinearLayout>
     </android.support.v7.widget.CardView>

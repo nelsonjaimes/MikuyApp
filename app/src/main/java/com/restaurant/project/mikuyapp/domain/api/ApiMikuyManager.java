@@ -9,9 +9,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiMikuyManager {
+public final class ApiMikuyManager {
     private static Retrofit retrofit;
-    private static ApiMikuyManager INSTANCE;
 
     private ApiMikuyManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -35,9 +34,6 @@ public class ApiMikuyManager {
         return retrofit;
     }
     public static ApiMikuyInterface getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ApiMikuyManager();
-        }
-        return INSTANCE.get();
+        return new ApiMikuyManager().get();
     }
 }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.restaurant.project.mikuyapp.MikuyApplication;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
+import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 import static com.restaurant.project.mikuyapp.scan.NetInfo.DEFAULT_INTERFACE;
 
@@ -71,6 +72,7 @@ final public class MikuyPreference {
     }
 
     public static String getUrlBaseServer() {
+        LogUtil.d("http://".concat(getIpAddressServer()).concat("/api.mikuy.com/v1/"));
         return "http://".concat(getIpAddressServer()).concat("/api.mikuy.com/v1/");
     }
 

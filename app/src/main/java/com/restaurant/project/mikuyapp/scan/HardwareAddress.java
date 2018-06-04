@@ -9,7 +9,7 @@ package com.restaurant.project.mikuyapp.scan;
 
 import static jcifs.util.Hexdump.HEX_DIGITS;
 
-public final class HardwareAddress {
+final class HardwareAddress {
 
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[17];

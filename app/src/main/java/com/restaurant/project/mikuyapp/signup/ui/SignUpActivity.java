@@ -70,7 +70,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
         signUpPresenter.dettachView();
         super.onStop();
     }
-    public void onClickRadio(View v) {
+
+    public void onClickRadio(View view) {
         int id = rgGender.getCheckedRadioButtonId();
         RadioButton rbMale = rgGender.findViewById(R.id.rbMale);
         RadioButton rbFemale = rgGender.findViewById(R.id.rbFemale);

@@ -7,11 +7,9 @@
     <string name="email">Correo Electrónico</string>
     <string name="passwoord">Contraseña</string>
     <string name="helpPassword">¿Olvidó su contraseña?</string>
-    <string name="hereClick">Click Aqui</string>
     <string name="connectToFacebook">Conectar con Facebook</string>
     <string name="connectToTwitter">Conectar con Twiter</string>
     <!-- SignUp-->
-    <string name="registerNow">Registrate Ahora</string>
     <string name="name">Nombres</string>
     <string name="lastName">Apellidos</string>
     <string name="or">O</string>
@@ -23,28 +21,22 @@
     <string name="address">Dirección</string>
     <string name="userProfile">Perfil de usuario</string>
     <string name="signof">Cerrar sesión</string>
-    <string name="addressOfThePlace">Av. Tomas Marzano 356</string>
-    <string name="city">Lima, Perú</string>
     <!--Menu Today -->
     <string name="entry">Entrada</string>
     <string name="backgroundPlate">Plato de fondo</string>
     <string name="dessert">Postres</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="formatPrice">s/ %.2f</string>
     <string name="reserve">Realizar Reserva</string>
     <string name="amount">Monto:</string>
     <string name="reservation">Reservación</string>
-    <string name="reservationNumber"> &lt;b>Número de reserva:&lt;/b> %1$s</string>
-    <string name="reservationDate">&lt;b>Fecha y hora:&lt;/b> %1$s</string>
-    <string name="OrderList">Lista de pedidos</string>
-    <string name="makePayment">Realizar pago</string>
-    <string name="AmountReservation">Total:</string>
+    <string name="reservationNumber">Código de reserva:</string>
+    <string name="reservationDate">Fecha y hora:</string>
     <string name="titleDialogSend">Enviar email a MikuyApp</string>
     <string name="subjectSendEmail">Contacto a MikuyApp</string>
     <string name="title_activity_address_maps">Map</string>
-    <string name="nameRestaurant">MikuyRestaurant</string>
     <string name="startUbication">&lt;b>Mi ubicación&lt;/b> (%1$s)</string>
     <string name="endUbication">&lt;b>Restaurant&lt;/b> (%1$s)</string>
+    <string name="returnLetter">Volver</string>
     <string name="titleStart">Mi ubicación</string>
     <string name="titleEnd">Señor de Muruhuay</string>
     <string name="reload">RECARGAR</string>
@@ -62,26 +54,21 @@
     <string name="emptyEmail">El email no puede ser vacio</string>
     <string name="errorConnectionServer">Error de conexión con  %1$s</string>
     <string name="emptyGender">Seleccione alguna opción de genero</string>
-    <string name="noFormatEmail">La dirección de correo no es válida</string>
     <string name="emptyPassword">La contraseña no puede ser vacia</string>
     <string name="shortPassword">La contraseña ingresada de muy corta (mínimo 6 caracteres)</string>
-    <string name="emptyBackgroundPlate">Seleccione el PLATO DE FONDO</string>
-    <string name="emptyDessert">Seleccione el POSTRE del menu</string>
-    <string name="emptyEntry">Seleccione la ENTRADA del menu</string>
+    <string name="emptyBackgroundPlate">Seleccione un \"Plato de fondo\"</string>
+    <string name="emptyDessert">Seleccione el \"Postre del menú\"</string>
+    <string name="emptyEntry">Seleccione el \"Plato de entrada\"</string>
     <string name="emptyListLetterReserver">Seleccione al menos 1 platillo para realiazar la reserva</string>
 
     <!--DialogScan -->
     <string name="startScann">Iniciar escaner</string>
-    <string name="progressScan">%1$d %2$s Detener</string>
     <string name="stoptScanExecute">Detener escaner</string>
     <string name="scanTitleScan">Dirección IP actual:</string>
     <string name="newScanTitleScan">Direccón IP nueva:</string>
-    <string name="dialogTitle">&lt;b>RED:&lt;/b>\"%1$s\"</string>
     <string name="wifi_enabling">Habilitando Wifi..</string>
     <string name="wifi_desabling">Desconectando Wifi..</string>
     <string name="wifi_enabled">Wifi Habilitado</string>
-    <string name="ipAddress">IP: </string>
-    <string name="network">RED: </string>
     <string name="cancelScanner">Se canceló el escaneo de direcciones IP</string>
     <string name="wifi_desabled">Wifi Desabilitado</string>
     <string name="wifi_unknown">Wifi Apagado</string>
@@ -94,5 +81,11 @@
     <string name="scan_hold">Cambiar IP manualmente</string>
     <string name="emptyDispositive">No se encontró ningún dispositivo en red</string>
     <string name="save">guardar</string>
+    <string name="successReservation">Se realizó la reservación correctamente</string>
     <string name="saveSuccessIpAddress">Dirección IP: %1$s \n correctamente guardada</string>
+    <string name="simbolAmount">s/ %1$s0</string>
+    <string name="signOffMessage">¿Esta seguro de cerrar sesión?</string>
+    <string name="yes">si</string>
+    <string name="not">no</string>
+    <string name="DateHour">Fecha y Hora :</string>
 </resources>

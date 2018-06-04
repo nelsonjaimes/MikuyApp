@@ -21,13 +21,13 @@ public class ScannerAdapter extends RecyclerView.Adapter<ScannerAdapter.ScanView
         void onClickHost(String ipAddress);
     }
 
-    private Context context;
-    private List<Host> hostList;
+    private final Context context;
+    private final List<Host> hostList;
     private ScannerAdapter.Callback callback;
 
     public ScannerAdapter(Context context) {
         this.context = context;
-        this.hostList = new ArrayList<>();
+        hostList = new ArrayList<>();
     }
 
     public void setCallback(Callback callback) {
@@ -75,10 +75,10 @@ public class ScannerAdapter extends RecyclerView.Adapter<ScannerAdapter.ScanView
     }
 
     class ScanViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView tvSSID;
-        private TextView tvIP;
-        private ImageView ivCheck;
-        private TextView tvMac;
+        private final TextView tvSSID;
+        private final TextView tvIP;
+        private final ImageView ivCheck;
+        private final TextView tvMac;
         int position = RecyclerView.NO_POSITION;
 
         ScanViewHolder(View itemView) {

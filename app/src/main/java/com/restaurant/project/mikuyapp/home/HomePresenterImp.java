@@ -9,8 +9,8 @@ import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 public class HomePresenterImp implements HomePresenter, HomePresenter.Callback {
     private HomeView homeView;
-    private HomeInteractor homeInteractor;
-    private Context context;
+    private final HomeInteractor homeInteractor;
+    private final Context context;
 
     public HomePresenterImp(Context context) {
         this.context = context;

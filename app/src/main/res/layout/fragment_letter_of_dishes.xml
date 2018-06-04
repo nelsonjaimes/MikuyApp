@@ -7,7 +7,7 @@
     android:background="@color/colorBrackgroundFragment"
     android:orientation="vertical"
     android:id="@+id/rlLetter"
-    tools:context=".letter.LetterOfDishesFragment">
+    tools:context=".letter.LetterOfThePlatesFragment">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

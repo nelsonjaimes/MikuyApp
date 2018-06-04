@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,17 +19,13 @@ import java.util.List;
 
 public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterViewHolder> {
 
-    private Context context;
-    private LetterAdapterListener letterAdapterListener;
+    private final Context context;
     private List<Plate> plateList;
 
     public LettherAdapter(Context context) {
         this.context = context;
     }
 
-    public void setLetterAdapterListener(LetterAdapterListener letterAdapterListener) {
-        this.letterAdapterListener = letterAdapterListener;
-    }
 
     public void setPlateList(List<Plate> plateList) {
         this.plateList = plateList;
@@ -54,15 +50,13 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
     }
 
     private void setItemSelect(int position) {
-        letterAdapterListener.selectItem(position);
         plateList.get(position).setAggregate(true);
         notifyItemChanged(position);
     }
 
     private void unItemSelect(int position) {
-        letterAdapterListener.selectItem(position);
         plateList.get(position).setAggregate(false);
-        plateList.get(position).setAcount(0);
+        plateList.get(position).setAcount(1);
         plateList.get(position).setFirstAggregate(false);
         notifyItemChanged(position);
     }
@@ -81,13 +75,13 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
     }
 
     class LetterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView ivCheck;
-        private TextView tvName;
-        private TextView tvPrice;
-        private Button btnMore;
-        private Button btnLess;
-        private TextView tvAccountant;
-        private LinearLayout llAccountant;
+        private final ImageView ivCheck;
+        private final TextView tvName;
+        private final TextView tvPrice;
+        private final ImageButton btnMore;
+        private final ImageButton btnLess;
+        private final TextView tvAccountant;
+        private final LinearLayout llAccountant;
         private int position;
         LetterViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +102,8 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
                         count++;
                         tvAccountant.setText(String.valueOf(count));
                         plateList.get(position).setAcount(count);
+                        tvPrice.setText(context.getString(R.string.formatPrice,
+                                plateList.get(position).getAmount()));
                     }
                 }
             });
@@ -122,6 +118,8 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
                             count--;
                             tvAccountant.setText(String.valueOf(count));
                             plateList.get(position).setAcount(count);
+                            tvPrice.setText(context.getString(R.string.formatPrice,
+                                    plateList.get(position).getAmount()));
                         }
                     }
                 }
@@ -130,7 +128,7 @@ public class LettherAdapter extends RecyclerView.Adapter<LettherAdapter.LetterVi
 
         void setLetterPlate(Plate plate, int position) {
             tvName.setText(plate.getName());
-            tvPrice.setText(context.getString(R.string.formatPrice, plate.getPrice()));
+            tvPrice.setText(context.getString(R.string.formatPrice, plate.getAmount()));
             tvAccountant.setText(String.valueOf(plate.getAcount()));
             if (plate.isAggregate()) {
                 if (plate.isFirstAggregate()) {

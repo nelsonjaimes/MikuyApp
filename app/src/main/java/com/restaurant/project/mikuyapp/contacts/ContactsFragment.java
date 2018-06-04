@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,28 +14,41 @@ import android.view.ViewGroup;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.contacts.adapter.ContactsAdapter;
 import com.restaurant.project.mikuyapp.contacts.model.ItemContacts;
+import com.restaurant.project.mikuyapp.utils.BaseFragment;
 import com.restaurant.project.mikuyapp.utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactsFragment extends Fragment implements ContactsAdapter.ContactsListener {
+public class ContactsFragment extends BaseFragment implements ContactsAdapter.ContactsListener {
 
-    final int ITEM_WEB = 2;
     private Context context;
-    final int ITEM_PHONE = 0;
-    final int ITEM_EMAIL = 3;
-    final int ITEM_FACEBOOK = 1;
+    private static final int ITEM_WEB = 2;
+    private static final int ITEM_PHONE = 0;
+    private static final int ITEM_EMAIL = 3;
+    private static final int ITEM_FACEBOOK = 1;
     private RecyclerView rvContacts;
+    private ContactsAdapter contactsAdapter;
 
     public static ContactsFragment getInstance() {
         return new ContactsFragment();
     }
 
     @Override
+    public void update() {
+        initRecyclerView();
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onDetach() {
+        contactsAdapter.setContactsListener(null);
+        super.onDetach();
     }
 
     @Override
@@ -63,7 +75,7 @@ public class ContactsFragment extends Fragment implements ContactsAdapter.Contac
         contactsList.add(new ItemContacts(R.drawable.ic_face_64, Constant.ACCOUNT_FACEBOOK));
         contactsList.add(new ItemContacts(R.drawable.ic_destokc_64, Constant.URL_WEB));
         contactsList.add(new ItemContacts(R.drawable.ic_email_64, Constant.EMAIL));
-        ContactsAdapter contactsAdapter = new ContactsAdapter(context);
+        contactsAdapter = new ContactsAdapter(context);
         contactsAdapter.setItemContactsList(contactsList);
         contactsAdapter.setContactsListener(this);
         rvContacts.setAdapter(contactsAdapter);

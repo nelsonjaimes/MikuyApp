@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- SignUp-->
     <dimen name="heigthBoxSignUp">45dp</dimen>
     <dimen name="widthBoxSignUp">250dp</dimen>
-    <!-- sideBar-->
-    <dimen name="marginTopBtnSignOff">50dp</dimen>
     <!--Splash -->
     <dimen name="heightImgLogo">150dp</dimen>
     <dimen name="heightTxtFooter">50dp</dimen>
-    <!--DialogScan -->
-    <dimen name="widthDialogScan">310dp</dimen>
-    <dimen name="heigthDialogScan">330dp</dimen>
     <!--DialogChange IP Address -->
     <dimen name="widthChangeIpAddress">300dp</dimen>
     <dimen name="heigthChageIpAddress">200dp</dimen>

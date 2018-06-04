@@ -78,10 +78,10 @@ public class AddressMapsActivity extends AppCompatActivity
     private SupportMapFragment mapFragment;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
-    final long INTERVAL_REQUEST = 2 * 60 * 1000;
+    private static final long INTERVAL_REQUEST = 2 * 60 * 1000;
     private final int PERMISSIONS_REQUEST_CODE = 100;
     private AddressMapsPresenter addressMapsPresenter;
-    final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
+    private static final long FAST_INTERVAL_REQUEST = INTERVAL_REQUEST / 2;
     private Snackbar snackNetworkError, snackSettingsLocation;
     private final String KEY_LIST_LOCATION = "key_list_location";
     private FusedLocationProviderClient mFusedLocationProviderClient;
@@ -245,13 +245,13 @@ public class AddressMapsActivity extends AppCompatActivity
         if (latLngList != null) {
             googleMap.clear();
             PolylineOptions polylineOptions = new PolylineOptions();
-            polylineOptions.color(getResources().getColor(R.color.colorPrimary));
+            polylineOptions.color(getResources().getColor(R.color.colorGreen));
             polylineOptions.addAll(latLngList);
             googleMap.addPolyline(polylineOptions);
             addMarker(latLngList.get(0), googleMap, getString(R.string.titleStart),
                     IconGenerator.STYLE_WHITE);
             addMarker(latLngList.get(latLngList.size() - 1), googleMap,
-                    getString(R.string.titleEnd), IconGenerator.STYLE_GREEN);
+                    getString(R.string.titleEnd), IconGenerator.STYLE_ORANGE);
             CameraPosition cameraPosition = CameraPosition.builder()
                     .target(latLngList.get(0))
                     .tilt(45.0f)

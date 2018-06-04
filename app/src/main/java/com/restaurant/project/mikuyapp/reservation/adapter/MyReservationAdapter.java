@@ -1,7 +1,6 @@
 package com.restaurant.project.mikuyapp.reservation.adapter;
 
 import android.content.Context;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ import java.util.List;
 public class MyReservationAdapter extends RecyclerView.Adapter<MyReservationAdapter.
         ReservationViewHolder> {
     private List<MyReservationEntity> entityList;
-    private Context context;
+    private final Context context;
 
     public MyReservationAdapter(Context context) {
         this.context = context;
@@ -46,8 +45,8 @@ public class MyReservationAdapter extends RecyclerView.Adapter<MyReservationAdap
     }
 
     class ReservationViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvCodeReserse;
-        private TextView tvDateReservation;
+        private final TextView tvCodeReserse;
+        private final TextView tvDateReservation;
 
         ReservationViewHolder(View itemView) {
             super(itemView);
@@ -59,14 +58,10 @@ public class MyReservationAdapter extends RecyclerView.Adapter<MyReservationAdap
             tvCodeReserse.setText(entity.getCodeReserve());
             tvDateReservation.setText(entity.getDatehour());
             if (entity.getState() == 0) {
-                tvCodeReserse.setBackgroundColor(get(R.color.colorExpire));
+                tvCodeReserse.setBackgroundResource(R.drawable.circle_expire);
             } else {
-                tvCodeReserse.setBackgroundColor(get(R.color.colorGreen));
+                tvCodeReserse.setBackgroundResource(R.drawable.circle_reserve);
             }
-        }
-
-        private int get(@ColorRes int idColor) {
-            return context.getResources().getColor(idColor);
         }
     }
 }

@@ -5,7 +5,7 @@ import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 
 import java.util.List;
 
-public interface LetterPresenter {
+interface LetterPresenter {
     void onAttach(LetterView letterView);
 
     void onDetach();

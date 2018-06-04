@@ -4,7 +4,7 @@ import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MyReservation
 
 import java.util.List;
 
-public interface MyReservationView {
+interface MyReservationView {
     void showProgress();
 
     void hideProgress();

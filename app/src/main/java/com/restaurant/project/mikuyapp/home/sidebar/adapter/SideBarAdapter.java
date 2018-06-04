@@ -17,11 +17,11 @@ import java.util.List;
 
 public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Item> itemList;
-    private Context context;
+    private final List<Item> itemList;
+    private final Context context;
     private SideBarListener sideBarListener;
-    private int colorDefault;
-    private int colorSelect;
+    private final int colorDefault;
+    private final int colorSelect;
 
     public SideBarAdapter(Context context) {
         this.context = context;
@@ -85,8 +85,8 @@ public class SideBarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class NormalItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ivItem;
-        TextView tvItem;
+        final ImageView ivItem;
+        final TextView tvItem;
         private int position;
 
         NormalItemHolder(View itemView) {

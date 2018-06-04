@@ -1,10 +1,8 @@
 package com.restaurant.project.mikuyapp.letter;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 
 import com.restaurant.project.mikuyapp.R;
-import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.ReservationRequestEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.SignInResponseEntity;
@@ -19,10 +17,10 @@ import java.util.List;
 
 public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Callback {
     private LetterView letterView;
-    private Context context;
-    private LetterInteractor letterInteractor;
+    private final Context context;
+    private final LetterInteractor letterInteractor;
 
-    public LetterPresenterImp(Context context) {
+    LetterPresenterImp(Context context) {
         this.context = context;
         this.letterInteractor = new LetterInteractorImp(context);
     }
@@ -56,14 +54,14 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
         SignInResponseEntity session = MikuyPreference.getUserSession();
         String emailUser = session.getEmail();
         if (!Operations.isNetworkAvailable(context)) {
-            if (letterView != null) letterView.showSnackBar(get(R.string.errorNetwoork));
+            if (letterView != null) {
+                letterView.showSnackBar(context.getString(R.string.errorNetwoork));
+            }
             return;
         }
         if (letterView != null && letterInteractor != null) {
-            ReservationRequestEntity reservationRequestEntity = new ReservationRequestEntity();
-            reservationRequestEntity.setAmount(amount);
-            reservationRequestEntity.setEmailuser(emailUser);
-            reservationRequestEntity.setPlatesList(plateList);
+            ReservationRequestEntity reservationRequestEntity =
+                    new ReservationRequestEntity(emailUser, amount, plateList);
             letterView.showProgress();
             letterInteractor.requestMakeReservation(reservationRequestEntity, this);
         }
@@ -77,7 +75,9 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
                 plateList.add(plate);
             }
         }
-        if (letterView != null) letterView.populateRecyclerLetter(plateList);
+        if (letterView != null) {
+            letterView.populateRecyclerLetter(plateList);
+        }
     }
 
     @Override
@@ -103,10 +103,6 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
             letterView.showSnackBar(context.getResources().
                     getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
-    }
-
-    private String get(@StringRes int idString) {
-        return context.getResources().getString(idString);
     }
 }
 

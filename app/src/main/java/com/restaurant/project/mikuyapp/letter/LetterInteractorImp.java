@@ -10,14 +10,13 @@ import com.restaurant.project.mikuyapp.domain.model.mikuy.response.MikuyExceptio
 import com.restaurant.project.mikuyapp.domain.model.mikuy.response.ReservationResponseEntity;
 import com.restaurant.project.mikuyapp.home.PlatesRepository;
 import com.restaurant.project.mikuyapp.home.PlatesRepositoryImp;
-import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LetterInteractorImp implements LetterInteractor {
-    private PlatesRepository platesRepository;
+    private final PlatesRepository platesRepository;
 
     LetterInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);

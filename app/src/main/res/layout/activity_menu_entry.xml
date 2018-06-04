@@ -12,7 +12,8 @@
         android:layout_above="@+id/llOptions"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@drawable/entry" />
+        android:src="@drawable/food"
+        />
 
     <LinearLayout
         android:id="@+id/llOptions"

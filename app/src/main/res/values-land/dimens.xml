@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="marginTopBtnSignOff">0dp</dimen>
-    <!--DialogScan -->
-    <dimen name="widthDialogScan">400dp</dimen>
-    <dimen name="heigthDialogScan">300dp</dimen>
-</resources>

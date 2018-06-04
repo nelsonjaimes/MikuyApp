@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class MenuTodayInteractorImp implements MenuTodayInteractor {
 
-    private PlatesRepository platesRepository;
+    private final PlatesRepository platesRepository;
 
     MenuTodayInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);

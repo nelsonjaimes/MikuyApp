@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="75dp"
     android:background="?attr/selectableItemBackground">
 
     <RelativeLayout
@@ -41,6 +41,8 @@
         </LinearLayout>
 
         <TextView
+            android:ellipsize="end"
+            android:maxLines="2"
             android:fontFamily="@font/ralewayregular"
             android:id="@+id/tvName"
             android:layout_width="match_parent"
@@ -49,8 +51,8 @@
             android:layout_toLeftOf="@+id/llCheck"
             android:layout_toRightOf="@+id/llAccountant"
             android:layout_toStartOf="@id/llAccountant"
-            android:text="Lomo Saltado con pescado"
-            android:textColor="@android:color/black" />
+            android:text="Lomo Saltado con pescado cdddjdjdjd ii oelsos odrjon ldldldldldd"
+            android:textColor="@color/colorDark" />
 
         <TextView
             android:fontFamily="@font/ralewaybold"
@@ -61,49 +63,55 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/llCheck"
             android:layout_toRightOf="@+id/llCheck"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorDark"
             android:textStyle="bold"
             tools:text="s/12.00" />
 
         <LinearLayout
             android:id="@+id/llAccountant"
-            android:layout_width="120dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:gravity="center"
-            android:visibility="gone">
+            android:gravity="center">
 
-            <Button
-                android:background="@drawable/selector_btn_menu"
-                android:fontFamily="@font/ralewaybold"
-                android:text="-"
+            <ImageButton
                 android:id="@+id/btnMore"
-                android:textColor="@android:color/white"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:contentDescription="@null"
+                android:background="@drawable/selector_btn_menu"
+                android:fontFamily="@font/ralewaybold"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/remove"
+                android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tvAccountant"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/ralewaybold"
                 android:gravity="center"
-                android:text="1"
-                android:fontFamily="@font/ralewaybold"
-                android:textColor="@android:color/black"
-                android:textSize="30sp" />
+                android:textColor="@color/colorDark"
+                android:textSize="25sp"
+                tools:text="10" />
 
-            <Button
-                android:background="@drawable/selector_btn_menu"
-                android:fontFamily="@font/ralewaybold"
+            <ImageButton
                 android:id="@+id/btnLess"
-                android:textColor="@android:color/white"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:textSize="20sp"
+                android:contentDescription="@null"
+                android:background="@drawable/selector_btn_menu"
+                android:fontFamily="@font/ralewaybold"
+                android:padding="10dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/add"
                 android:text="+"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -13,8 +13,8 @@ import com.restaurant.project.mikuyapp.utils.Operations;
 
 public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Callback {
 
-    private SignInInteractor signInInteractor;
-    private Context context;
+    private final SignInInteractor signInInteractor;
+    private final Context context;
     private SignInView signInView;
 
     public SignInPresenterImp(Context context) {
@@ -51,6 +51,8 @@ public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Call
 
     @Override
     public void dettachView() {
+        signInInteractor.onCancel();
+        signInView.hideProgress();
         signInView = null;
     }
 

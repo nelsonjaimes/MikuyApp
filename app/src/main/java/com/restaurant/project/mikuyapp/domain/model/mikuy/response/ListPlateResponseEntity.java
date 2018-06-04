@@ -6,24 +6,11 @@ import java.util.List;
 
 public class ListPlateResponseEntity {
 
-    private int status;
     @SerializedName("platelist")
     private List<PlateResponseEntity> plateList;
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public List<PlateResponseEntity> getPlateList() {
         return plateList;
-    }
-
-    public void setPlateList(List<PlateResponseEntity> plateList) {
-        this.plateList = plateList;
     }
 
     public class PlateResponseEntity {
@@ -36,34 +23,18 @@ public class ListPlateResponseEntity {
             return code;
         }
 
-        public void setCode(String code) {
-            this.code = code;
-        }
-
         public String getName() {
             return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
 
         public float getPrice() {
             return price;
         }
 
-        public void setPrice(float price) {
-            this.price = price;
-        }
-
         public String getCategory() {
             return category;
         }
-
-        public void setCategory(String category) {
-            this.category = category;
-        }
-    /*
+        /*
     "code": "A001",
         "name": "Lomo Saltado",
         "price": "10.5",

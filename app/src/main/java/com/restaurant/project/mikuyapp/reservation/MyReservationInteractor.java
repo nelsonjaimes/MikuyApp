@@ -1,6 +1,6 @@
 package com.restaurant.project.mikuyapp.reservation;
 
-public interface MyReservationInteractor {
+interface MyReservationInteractor {
 
     void requestMyReservationList(MyReservationPresenter.Callback callback);
 }

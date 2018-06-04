@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeInteractorImp implements HomeInteractor {
-    private PlatesRepository platesRepository;
+    private final PlatesRepository platesRepository;
     private Call<ListPlateResponseEntity> callbackRetrofit;
 
     HomeInteractorImp(Context context) {

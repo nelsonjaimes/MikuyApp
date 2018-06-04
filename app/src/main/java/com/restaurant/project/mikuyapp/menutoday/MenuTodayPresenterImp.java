@@ -1,7 +1,6 @@
 package com.restaurant.project.mikuyapp.menutoday;
 
 import android.content.Context;
-import android.support.annotation.StringRes;
 
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.domain.model.mikuy.request.ReservationRequestEntity;
@@ -19,8 +18,8 @@ import java.util.List;
 public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPresenter.Callback {
 
     private MenuTodayView menuTodayView;
-    private Context context;
-    private MenuTodayInteractor menuTodayInteractor;
+    private final Context context;
+    private final MenuTodayInteractor menuTodayInteractor;
 
     public MenuTodayPresenterImp(Context context) {
         this.context = context;
@@ -49,18 +48,17 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
         SignInResponseEntity session = MikuyPreference.getUserSession();
         String emailUser = session.getEmail();
         if (!Operations.isNetworkAvailable(context)) {
-            if (menuTodayView != null) menuTodayView.showSnackBar(get(R.string.errorNetwoork));
+            if (menuTodayView != null) {
+                menuTodayView.showSnackBar(context.getString(R.string.errorNetwoork));
+            }
             return;
         }
         if (menuTodayInteractor != null && menuTodayView != null) {
-            ReservationRequestEntity reservationRequestEntity = new ReservationRequestEntity();
-            reservationRequestEntity.setAmount(amount);
-            reservationRequestEntity.setEmailuser(emailUser);
-            reservationRequestEntity.setPlatesList(plateList);
+            ReservationRequestEntity reservationRequestEntity =
+                    new ReservationRequestEntity(emailUser, amount, plateList);
             menuTodayView.showProgress();
             menuTodayInteractor.requestMakeReservation(reservationRequestEntity, this);
         }
-
     }
 
     @Override
@@ -116,9 +114,5 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
             menuTodayView.showSnackBar(context.getResources().
                     getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
         }
-    }
-
-    private String get(@StringRes int idString) {
-        return context.getResources().getString(idString);
     }
 }

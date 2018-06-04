@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PlatesRepositoryImp implements PlatesRepository {
 
-    private SQLiteDatabase sqLiteDatabase;
+    private final SQLiteDatabase sqLiteDatabase;
     public PlatesRepositoryImp(Context context) {
         SqlLiteHelper sqlLiteHelper = new SqlLiteHelper(context);
         sqLiteDatabase = sqlLiteHelper.getWritableDatabase();

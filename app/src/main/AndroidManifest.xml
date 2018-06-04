@@ -44,9 +44,7 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".detail.PlateDetailActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".reservation.make.MakeReservationActivity"
             android:screenOrientation="portrait" />

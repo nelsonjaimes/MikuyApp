@@ -24,10 +24,6 @@ public class MikuyException {
         return developerMessage;
     }
 
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
     public String getMessage() {
         return message;
     }

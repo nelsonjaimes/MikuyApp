@@ -1,6 +1,6 @@
 package com.restaurant.project.mikuyapp.home;
 
-public interface HomeInteractor {
+interface HomeInteractor {
     void requestDownLoadPlatesList(HomePresenter.Callback callback);
 
     void onDetach();

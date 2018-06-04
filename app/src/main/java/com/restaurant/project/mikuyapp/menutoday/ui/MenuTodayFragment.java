@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +27,7 @@ import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 import com.restaurant.project.mikuyapp.reservation.make.MakeReservationActivity;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.storage.sqlite.SqlGlobal;
+import com.restaurant.project.mikuyapp.utils.BaseFragment;
 import com.restaurant.project.mikuyapp.utils.Constant;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
 import com.restaurant.project.mikuyapp.utils.Operations;
@@ -38,7 +39,7 @@ import java.util.List;
 /**
  * @author TacuTacuRestaurant
  */
-public class MenuTodayFragment extends Fragment implements PlateRecyclerListener,
+public class MenuTodayFragment extends BaseFragment implements PlateRecyclerListener,
         View.OnClickListener, MenuTodayView {
 
     private Context context;
@@ -50,12 +51,20 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
     private MenuTodayPresenter menuTodayPresenter;
     // Pedido
     private Plate menuPlate, entryPlate, dessertPlate;
-    public static String EXTRA_AMOUNT = "amountReserve";
-    public static String EXTRA_CODE_RESERVE = "codeReserve";
-    public static String EXTRA_DATE_RESERVE = "dateReserve";
+    public static final String EXTRA_AMOUNT = "amountReserve";
+    public static final String EXTRA_CODE_RESERVE = "codeReserve";
+    public static final String EXTRA_DATE_RESERVE = "dateReserve";
 
     public static MenuTodayFragment getInstance() {
         return new MenuTodayFragment();
+    }
+
+
+    @Override
+    public void update() {
+        if (MikuyPreference.getStateDownloadPlatesList()) {
+            menuTodayPresenter.startLoadingPlates();
+        }
     }
 
     @Override
@@ -140,12 +149,7 @@ public class MenuTodayFragment extends Fragment implements PlateRecyclerListener
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    private String get(int idRes) {
+    private String get(@StringRes int idRes) {
         return context.getResources().getString(idRes);
     }
 

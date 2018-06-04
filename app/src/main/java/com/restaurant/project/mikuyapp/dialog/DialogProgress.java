@@ -1,7 +1,6 @@
 package com.restaurant.project.mikuyapp.dialog;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,11 +16,6 @@ public class DialogProgress extends DialogFragment {
 
     public static DialogProgress getInstance() {
         return new DialogProgress();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
     @Nullable

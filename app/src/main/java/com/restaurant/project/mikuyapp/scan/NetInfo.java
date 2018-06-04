@@ -165,10 +165,6 @@ public class NetInfo {
         return false;
     }
 
-    public WifiInfo getInfo() {
-        return info;
-    }
-
     public String getIp() {
         return ip;
     }

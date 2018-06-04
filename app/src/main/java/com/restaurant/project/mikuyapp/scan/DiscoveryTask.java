@@ -21,7 +21,7 @@ import jcifs.netbios.NbtAddress;
 public class DiscoveryTask extends AsyncTask<DiscoveryModel, Host, List<Host>> {
 
     private static final String NONAME = "unkowok";
-    private ScannerCallback scannerCallback;
+    private final ScannerCallback scannerCallback;
 
     public DiscoveryTask(ScannerCallback scannerCallback) {
         this.scannerCallback = scannerCallback;
@@ -87,9 +87,5 @@ public class DiscoveryTask extends AsyncTask<DiscoveryModel, Host, List<Host>> {
         if (scannerCallback != null) {
             scannerCallback.onCancelled();
         }
-    }
-
-    public void destroy() {
-        scannerCallback = null;
     }
 }

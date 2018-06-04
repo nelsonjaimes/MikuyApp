@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBar;
@@ -23,24 +22,25 @@ import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.address.ui.AddressMapsActivity;
 import com.restaurant.project.mikuyapp.contacts.ContactsFragment;
 import com.restaurant.project.mikuyapp.dialog.DialogProgress;
+import com.restaurant.project.mikuyapp.dialog.SignOffDialog;
 import com.restaurant.project.mikuyapp.home.HomePresenter;
 import com.restaurant.project.mikuyapp.home.HomePresenterImp;
 import com.restaurant.project.mikuyapp.home.sidebar.adapter.SideBarAdapter;
 import com.restaurant.project.mikuyapp.home.sidebar.ui.SideBarListener;
-import com.restaurant.project.mikuyapp.letter.LetterOfDishesFragment;
+import com.restaurant.project.mikuyapp.letter.LetterOfThePlatesFragment;
 import com.restaurant.project.mikuyapp.menutoday.ui.MenuTodayFragment;
 import com.restaurant.project.mikuyapp.profile.ProfileUserFragment;
 import com.restaurant.project.mikuyapp.reservation.MyReservationsFragment;
 import com.restaurant.project.mikuyapp.scan.ui.ScannerActivity;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
+import com.restaurant.project.mikuyapp.utils.BaseFragment;
 import com.restaurant.project.mikuyapp.utils.Constant;
-import com.restaurant.project.mikuyapp.utils.LogUtil;
 import com.restaurant.project.mikuyapp.utils.Operations;
 
 import io.fabric.sdk.android.Fabric;
 
 public class HomeActivity extends AppCompatActivity implements SideBarListener,
-        HomeView {
+        HomeView, SignOffDialog.Callback {
 
     private RecyclerView rvSideBar;
     private SlidingPaneLayout splHome;
@@ -48,7 +48,10 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     private SideBarAdapter sideBarAdapter;
     private DialogProgress dialogProgress;
     private FragmentManager mFragmentManager;
+    private static final String TAG_DIALOG = "dialogOff";
+    private static final String TAG_ITEM = "itemTag";
     private HandlerSlidingPanel handlerSlidingPanel;
+    private BaseFragment itemFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +75,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         llSignOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MikuyPreference.deleteAll();
-                startActivity(new Intent(HomeActivity.this,
-                        EntryMenuActivity.class));
-                finish();
+                SignOffDialog.getInstance().show(getSupportFragmentManager(), TAG_DIALOG);
             }
         });
 
@@ -91,6 +91,14 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     }
 
     @Override
+    public void signOff() {
+        MikuyPreference.deleteAll();
+        startActivity(new Intent(HomeActivity.this,
+                EntryMenuActivity.class));
+        finish();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         sideBarAdapter.setSideBarListener(this);
@@ -102,6 +110,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     protected void onStop() {
+        sideBarAdapter.setSideBarListener(null);
         homePresenter.onDettach();
         super.onStop();
     }
@@ -111,7 +120,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         if (splHome.isOpen()) {
             splHome.closePane();
         } else {
-            super.onBackPressed();
+            SignOffDialog.getInstance().show(getSupportFragmentManager(), TAG_DIALOG);
         }
     }
 
@@ -133,7 +142,10 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     @Override
     public void onSuccessDownloadPlatesList() {
         MikuyPreference.saveStateDownloadPlatesList(true);
-        LogUtil.d("Se descargo correctamente... !!! ");
+        itemFragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(TAG_ITEM);
+        if (itemFragment != null) {
+            itemFragment.update();
+        }
     }
 
     @Override
@@ -173,32 +185,32 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     }
 
     private void replaceFragment(int position) {
-        Fragment fragment = null;
         String title = null;
         switch (position) {
             case Constant.ITEM_MENU_TODAY:
-                fragment = MenuTodayFragment.getInstance();
+                itemFragment = MenuTodayFragment.getInstance();
                 title = getString(R.string.menu);
                 break;
             case Constant.ITEM_LETTER_DISHES:
-                fragment = LetterOfDishesFragment.getInstance();
+                itemFragment = LetterOfThePlatesFragment.getInstance();
                 title = getString(R.string.foodLetter);
                 break;
             case Constant.ITEM_RESERVATIONS:
-                fragment = MyReservationsFragment.getInstance();
+                itemFragment = MyReservationsFragment.getInstance();
                 title = getString(R.string.myReservations);
                 break;
             case Constant.ITEM_CONTACTS:
-                fragment = ContactsFragment.getInstance();
+                itemFragment = ContactsFragment.getInstance();
                 title = getString(R.string.contacts);
                 break;
             case Constant.ITEM_PROFILE_USER:
-                fragment = ProfileUserFragment.getInstance();
+                itemFragment = ProfileUserFragment.getInstance();
                 title = getString(R.string.userProfile);
                 break;
         }
-        if (fragment != null && mFragmentManager != null) {
-            mFragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+        if (itemFragment != null && mFragmentManager != null) {
+            mFragmentManager.beginTransaction().replace(R.id.flContent,
+                    itemFragment, TAG_ITEM).commit();
             sideBarAdapter.selectItem(position);
             setTitle(title);
         }
@@ -229,7 +241,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     }
 
     private static class HandlerSlidingPanel extends Handler implements Runnable {
-        private SlidingPaneLayout slidingPaneLayout;
+        private final SlidingPaneLayout slidingPaneLayout;
 
         HandlerSlidingPanel(SlidingPaneLayout slidingPaneLayout) {
             super();

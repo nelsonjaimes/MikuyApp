@@ -16,6 +16,7 @@
         android:src="@drawable/entry_64" />
 
     <TextView
+        android:fontFamily="@font/ralewaybold"
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

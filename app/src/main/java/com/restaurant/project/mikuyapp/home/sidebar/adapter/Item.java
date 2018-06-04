@@ -1,10 +1,10 @@
 package com.restaurant.project.mikuyapp.home.sidebar.adapter;
 
-public class Item {
+ class Item {
     private int image;
     private String option;
     private boolean isSelect;
-    private int type;
+    private final int type;
     public static final int HEADER_TYPE = 1;
     public static final int NORMAL_TYPE = 2;
 

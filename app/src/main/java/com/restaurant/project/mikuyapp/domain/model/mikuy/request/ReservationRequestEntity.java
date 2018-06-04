@@ -10,30 +10,15 @@ public class ReservationRequestEntity {
     private float amount;
     private List<Plate> platesList;
 
-    public String getEmailuser() {
-        return emailuser;
-    }
-
-    public void setEmailuser(String emailuser) {
+    public ReservationRequestEntity(String emailuser, float amount, List<Plate> platesList) {
         this.emailuser = emailuser;
+        this.amount = amount;
+        this.platesList = platesList;
     }
 
     public float getAmount() {
         return amount;
     }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
-
-    public List<Plate> getPlatesList() {
-        return platesList;
-    }
-
-    public void setPlatesList(List<Plate> platesList) {
-        this.platesList = platesList;
-    }
-
     /*
     * "emailuser":"nelsonjaimesgonzales@gmail.com",
 	"amount":20.5,

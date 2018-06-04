@@ -10,9 +10,6 @@ final public class Constant {
     /*Category*/
     public static final String TYPE_MENU_ENTRY = "ENTRADA";
     public static final String TYPE_MENU_DESSERT = "POSTRE";
-    public static final String TYPE_MENU_BACKGROUND = "PLATO DE FONDO";
-    public static final String TYPE_LETTER_FOOD = "PLATO DE CARTA";
-
     //information contacts
     public static final String URL_WEB = "https://developers.google.com/maps/documentation/android-api/map?hl=es-419";
     public static final String PAGE_ID_FACEBOOK = "fb://page/112951828852501";
@@ -21,9 +18,6 @@ final public class Constant {
     public static final String PHONE_NUMBER = "923123456";
     public static final String FORMAT_PHONE_NUMBER = "tel:" + PHONE_NUMBER;
     public static final String EMAIL = "senordemurihuay@gmail.com";
-    //Settings
-    public static final String SCHEME_PACKAGE = "package";
-
     //Dialog
     public static final String DIALOG_PROGRESS = "dialog_progress";
     // Animation

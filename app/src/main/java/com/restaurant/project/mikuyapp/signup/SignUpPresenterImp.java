@@ -13,8 +13,8 @@ import com.restaurant.project.mikuyapp.utils.Operations;
 
 public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Callback {
     private SignUpView signUpView;
-    private SignUpInteractor signUpInteractor;
-    private Context context;
+    private final SignUpInteractor signUpInteractor;
+    private final Context context;
 
     public SignUpPresenterImp(Context context) {
         signUpInteractor = new SignUpInteractorImp();
