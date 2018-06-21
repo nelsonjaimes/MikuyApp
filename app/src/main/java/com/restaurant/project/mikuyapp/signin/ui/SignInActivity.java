@@ -110,7 +110,8 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
 
     @Override
     public void showSnackBar(String message) {
-        Operations.getSnackBar(findViewById(R.id.rlSignIn), message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(this, findViewById(R.id.rlSignIn),
+                message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

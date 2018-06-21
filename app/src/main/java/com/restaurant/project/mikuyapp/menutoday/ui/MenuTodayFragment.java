@@ -62,7 +62,7 @@ public class MenuTodayFragment extends BaseFragment implements PlateRecyclerList
 
     @Override
     public void update() {
-        if (MikuyPreference.getStateDownloadPlatesList()) {
+        if (MikuyPreference.getStateDownloadPlatesList(context)) {
             menuTodayPresenter.startLoadingPlates();
         }
     }
@@ -93,7 +93,7 @@ public class MenuTodayFragment extends BaseFragment implements PlateRecyclerList
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         btnReserve.setOnClickListener(this);
-        if (MikuyPreference.getStateDownloadPlatesList()) {
+        if (MikuyPreference.getStateDownloadPlatesList(context)) {
             menuTodayPresenter.startLoadingPlates();
         }
     }
@@ -201,6 +201,6 @@ public class MenuTodayFragment extends BaseFragment implements PlateRecyclerList
     }
 
     private void showSnackbar(String message) {
-        Operations.getSnackBar(rlMenuToday, message, Snackbar.LENGTH_SHORT).show();
+        Operations.getSnackBar(context, rlMenuToday, message, Snackbar.LENGTH_SHORT).show();
     }
 }

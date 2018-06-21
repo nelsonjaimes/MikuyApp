@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.reservation;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.restaurant.project.mikuyapp.domain.api.ApiMikuyInterface;
@@ -14,11 +15,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyReservationInteractorImp implements MyReservationInteractor {
+    private final Context context;
+
+    MyReservationInteractorImp(Context context) {
+        this.context = context;
+    }
+
     @Override
     public void requestMyReservationList(final MyReservationPresenter.Callback callback) {
-        String email = MikuyPreference.getUserSession().getEmail();
+        String email = MikuyPreference.getUserSession(context).getEmail();
         MyReservationRequestEntity myReservationRequestEntity = new MyReservationRequestEntity(email);
-        ApiMikuyInterface mikuyInterface = ApiMikuyManager.getInstance();
+        ApiMikuyInterface mikuyInterface = ApiMikuyManager.getInstance(context);
         Call<MyReservationResponseEntity> call = mikuyInterface.reqeustReservationList(myReservationRequestEntity);
         call.enqueue(new Callback<MyReservationResponseEntity>() {
             @Override
@@ -30,15 +37,19 @@ public class MyReservationInteractorImp implements MyReservationInteractor {
                         callback.onSuccessMyReservationList(entity.getReservationList());
                     }
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response);
-                    if (callback != null) callback.onError(mikuyException.getMessage());
+                    MikuyException mikuyException = MikuyException.parseError(response, context);
+                    if (callback != null) {
+                        callback.onError(mikuyException.getMessage());
+                    }
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<MyReservationResponseEntity> call,
                                   @NonNull Throwable t) {
-                if (callback != null) callback.onFailure();
+                if (callback != null) {
+                    callback.onFailure();
+                }
             }
         });
     }

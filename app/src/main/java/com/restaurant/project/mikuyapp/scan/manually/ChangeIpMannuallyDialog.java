@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.restaurant.project.mikuyapp.MikuyApplication;
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 
@@ -30,6 +29,7 @@ public class ChangeIpMannuallyDialog extends DialogFragment {
     private Button btnSave;
     private ImageView ivExit;
     private Callback callback;
+    private Context context;
 
     public static ChangeIpMannuallyDialog getInstance() {
         return new ChangeIpMannuallyDialog();
@@ -38,6 +38,7 @@ public class ChangeIpMannuallyDialog extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.context = context;
         if (context instanceof Callback) {
             callback = (Callback) context;
         }
@@ -63,15 +64,15 @@ public class ChangeIpMannuallyDialog extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        edtIp.setText(MikuyPreference.getIpAddressServer());
+        edtIp.setText(MikuyPreference.getIpAddressServer(context));
         edtIp.requestFocus();
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String newIp = edtIp.getText().toString();
                 if (newIp.length() > 6) {
-                    MikuyPreference.saveIpAddressServer(newIp);
-                    Toast.makeText(MikuyApplication.contextApp,
+                    MikuyPreference.saveIpAddressServer(context, newIp);
+                    Toast.makeText(getContext(),
                             getString(R.string.saveSuccessIpAddress, newIp),
                             Toast.LENGTH_LONG).show();
                     if (callback != null) callback.updateIpAddress();

@@ -10,8 +10,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
-import com.restaurant.project.mikuyapp.MikuyApplication;
-
 final public class Operations {
     @SuppressWarnings("deprecation")
     public static CharSequence getHtml(String source) {
@@ -31,15 +29,17 @@ final public class Operations {
         return false;
     }
 
-    public static Snackbar getSnackBar(View view, String message, int duration) {
-        Typeface fontRegular = Typeface.createFromAsset(MikuyApplication.contextApp.getAssets(),
+    public static Snackbar getSnackBar(Context context, View view, String message, int duration) {
+        Typeface fontRegular = Typeface.createFromAsset(context.getAssets(),
                 "fonts/ralewayregular.ttf");
-        Typeface fontBold = Typeface.createFromAsset(MikuyApplication.contextApp.getAssets(),
+        Typeface fontBold = Typeface.createFromAsset(context.getAssets(),
                 "fonts/ralewaybold.ttf");
         Snackbar snackbar = Snackbar.make(view, message, duration);
-        TextView tvAction = snackbar.getView().findViewById(android.support.design.R.id.snackbar_action);
+        TextView tvAction = snackbar.getView().
+                findViewById(android.support.design.R.id.snackbar_action);
         tvAction.setTypeface(fontBold);
-        TextView tvMessage = snackbar.getView().findViewById(android.support.design.R.id.snackbar_text);
+        TextView tvMessage = snackbar.getView().
+                findViewById(android.support.design.R.id.snackbar_text);
         tvMessage.setTypeface(fontRegular);
         return snackbar;
     }

@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.menutoday.model;
 
+@SuppressWarnings("all")
 public class Plate {
     private final String code;
     private final String name;
@@ -11,7 +12,7 @@ public class Plate {
     private boolean isFirstAggregate;
 
     //*Este es....
-    public Plate(String code,String name, float price, String category) {
+    public Plate(String code, String name, float price, String category) {
         this.name = name;
         this.code = code;
         this.price = price;
@@ -20,6 +21,7 @@ public class Plate {
         this.isFirstAggregate=false;
         this.acount = 1;
     }
+
     public float getAmount() {
         return price * acount;
     }

@@ -13,13 +13,13 @@ import com.restaurant.project.mikuyapp.utils.Operations;
 
 public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Callback {
 
-    private final SignInInteractor signInInteractor;
     private final Context context;
     private SignInView signInView;
+    private final SignInInteractor signInInteractor;
 
     public SignInPresenterImp(Context context) {
         this.context = context;
-        this.signInInteractor = new SignInInteractorImp();
+        this.signInInteractor = new SignInInteractorImp(context);
     }
 
     @Override
@@ -33,6 +33,10 @@ public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Call
         String message = get(R.string.emptyEmail);
         if (!email.isEmpty()) {
             if (!password.isEmpty()) {
+                if (password.length() < 6) {
+                    signInView.showSnackBar(get(R.string.shortPassword));
+                    return;
+                }
                 if (!Operations.isNetworkAvailable(context)) {
                     signInView.showSnackBar(get(R.string.errorNetwoork));
                     return;
@@ -69,14 +73,15 @@ public class SignInPresenterImp implements SignInPresenter, SignInPresenter.Call
         if (signInView != null) {
             signInView.hideProgress();
             signInView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+                    getString(R.string.errorConnectionServer,
+                            MikuyPreference.getUrlBaseServer(context)));
         }
     }
 
     @Override
     public void Success(@NonNull SignInResponseEntity signInResponseEntity) {
         if (signInView != null) {
-            MikuyPreference.saveUserSession(signInResponseEntity);
+            MikuyPreference.saveUserSession(context, signInResponseEntity);
             signInView.hideProgress();
             signInView.onSucessSignIn();
         }

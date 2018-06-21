@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void navigation() {
-        if (MikuyPreference.getUserSession() != null) {
+        if (MikuyPreference.getUserSession(this) != null) {
             startActivity(new Intent(SplashActivity.this, HomeActivity.class));
         } else {
             startActivity(new Intent(SplashActivity.this, EntryMenuActivity.class));

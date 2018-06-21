@@ -17,7 +17,7 @@ public class MyReservationPresenterImp implements MyReservationPresenter, MyRese
 
     MyReservationPresenterImp(Context context) {
         this.context = context;
-        myReservationInteractor = new MyReservationInteractorImp();
+        myReservationInteractor = new MyReservationInteractorImp(context);
     }
 
     @Override
@@ -63,7 +63,8 @@ public class MyReservationPresenterImp implements MyReservationPresenter, MyRese
         if (myReservationView != null) {
             myReservationView.hideProgress();
             myReservationView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+                    getString(R.string.errorConnectionServer,
+                            MikuyPreference.getUrlBaseServer(context)));
         }
     }
 }

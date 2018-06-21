@@ -2,6 +2,7 @@ package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
 import com.google.gson.annotations.SerializedName;
 
+@SuppressWarnings("ALL")
 class DetailReservationResponseEntity {
 
     @SerializedName("code_reserve")

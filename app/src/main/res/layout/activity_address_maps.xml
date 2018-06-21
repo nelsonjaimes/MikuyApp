@@ -159,7 +159,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="mins"
+                android:text="@string/minutes"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 

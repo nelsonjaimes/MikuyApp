@@ -26,9 +26,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "KEY_API_DIRECTION", "\"${keyApiDirection}\"")
+            buildConfigField("String", "SERVER_DOMAIN", "\"${serverDomain}\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "KEY_API_DIRECTION", "\"${keyApiDirection}\"")
+            buildConfigField("String", "SERVER_DOMAIN", "\"${serverDomain}\"")
         }
     }
 }
@@ -55,6 +62,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
-        transitive = true;
+        transitive = true
     }
 }

@@ -9,12 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MikuyApplication"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -31,9 +29,11 @@
         <activity
             android:name=".signup.ui.SignUpActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".home.ui.HomeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".splash.SplashActivity"
             android:screenOrientation="portrait"
@@ -43,6 +43,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="mikuyapp.com"
+                    android:scheme="https" />
+            </intent-filter>
         </activity>
 
         <activity

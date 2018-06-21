@@ -45,7 +45,7 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
             amount += plate.getPrice();
         }
         LogUtil.d("amountReserve:" + amount);
-        SignInResponseEntity session = MikuyPreference.getUserSession();
+        SignInResponseEntity session = MikuyPreference.getUserSession(context);
         String emailUser = session.getEmail();
         if (!Operations.isNetworkAvailable(context)) {
             if (menuTodayView != null) {
@@ -112,7 +112,8 @@ public class MenuTodayPresenterImp implements MenuTodayPresenter, MenuTodayPrese
         if (menuTodayView != null) {
             menuTodayView.hideProgress();
             menuTodayView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+                    getString(R.string.errorConnectionServer,
+                            MikuyPreference.getUrlBaseServer(context)));
         }
     }
 }

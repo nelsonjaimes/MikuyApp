@@ -45,7 +45,7 @@ public class ProfileUserFragment extends BaseFragment {
     }
 
     private void init() {
-        SignInResponseEntity signInResponseEntity = MikuyPreference.getUserSession();
+        SignInResponseEntity signInResponseEntity = MikuyPreference.getUserSession(getContext());
         tvProfileEmail.setText(signInResponseEntity.getEmail());
         tvProfileName.setText(signInResponseEntity.getName().concat(" ").
                 concat(signInResponseEntity.getLastname()));

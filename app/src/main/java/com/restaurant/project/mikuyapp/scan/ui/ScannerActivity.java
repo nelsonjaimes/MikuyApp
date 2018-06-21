@@ -75,13 +75,13 @@ public class ScannerActivity extends AppCompatActivity implements ScannerAdapter
         tvInformation = findViewById(R.id.tvInformation);
         pbProgress = findViewById(R.id.pbProgress);
         tvServerAddress = findViewById(R.id.tvServerAddress);
-        netInfo = new NetInfo();
+        netInfo = new NetInfo(this);
         myBroadcast = new MyBroadcast();
         initToolbar();
         initRecyclerView();
         connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        MikuyPreference.saveInterfaceName(NetInfo.DEFAULT_INTERFACE);
-        setInformationAppBar(MikuyPreference.getIpAddressServer(), true);
+        MikuyPreference.saveInterfaceName(this, NetInfo.DEFAULT_INTERFACE);
+        setInformationAppBar(MikuyPreference.getIpAddressServer(this), true);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +115,7 @@ public class ScannerActivity extends AppCompatActivity implements ScannerAdapter
 
     @Override
     public void updateIpAddress() {
-        setInformationAppBar(MikuyPreference.getIpAddressServer(), true);
+        setInformationAppBar(MikuyPreference.getIpAddressServer(this), true);
     }
 
     @Override
@@ -153,11 +153,11 @@ public class ScannerActivity extends AppCompatActivity implements ScannerAdapter
         AnimationUtil.slideRightAnimationView(llInformation, this);
         if (state) {
             tvInformation.setText(R.string.scanTitleScan);
-            tvServerAddress.setText(MikuyPreference.getIpAddressServer());
+            tvServerAddress.setText(MikuyPreference.getIpAddressServer(this));
         } else {
             tvInformation.setText(R.string.newScanTitleScan);
             tvServerAddress.setText(ip);
-            MikuyPreference.saveIpAddressServer(ip);
+            MikuyPreference.saveIpAddressServer(this, ip);
         }
     }
 

@@ -4,20 +4,17 @@ import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class ReservationRequestEntity {
 
-    private String emailuser;
-    private float amount;
-    private List<Plate> platesList;
+    private final String emailuser;
+    private final float amount;
+    private final List<Plate> platesList;
 
     public ReservationRequestEntity(String emailuser, float amount, List<Plate> platesList) {
         this.emailuser = emailuser;
         this.amount = amount;
         this.platesList = platesList;
-    }
-
-    public float getAmount() {
-        return amount;
     }
     /*
     * "emailuser":"nelsonjaimesgonzales@gmail.com",

@@ -16,15 +16,16 @@ import java.util.List;
 
 public class PlatesRepositoryImp implements PlatesRepository {
 
-    private final SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase sqLiteDatabase;
+    private SqlLiteHelper sqlLiteHelper;
     public PlatesRepositoryImp(Context context) {
-        SqlLiteHelper sqlLiteHelper = new SqlLiteHelper(context);
-        sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
+        sqlLiteHelper = new SqlLiteHelper(context);
     }
 
     @Override
     public void savePlatesListSqlLite(@NonNull List<ListPlateResponseEntity.
             PlateResponseEntity> platesList) {
+        sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
         sqLiteDatabase.execSQL(SqlGlobal.DELETE_TABLE_PLATES);
         for (ListPlateResponseEntity.PlateResponseEntity plate : platesList) {
             ContentValues contentValues = new ContentValues();
@@ -39,6 +40,7 @@ public class PlatesRepositoryImp implements PlatesRepository {
     @Override
     public List<Plate> getListPlates() {
         List<Plate> plateList = new ArrayList<>();
+        sqLiteDatabase = sqlLiteHelper.getWritableDatabase();
         Cursor c = sqLiteDatabase.rawQuery(SqlGlobal.PLATES_LIST_SENTENCE, null);
         if (c.moveToFirst()) {
             do {
@@ -55,6 +57,8 @@ public class PlatesRepositoryImp implements PlatesRepository {
 
     @Override
     public void closeConnection() {
-        sqLiteDatabase.close();
+        if (sqLiteDatabase != null && sqLiteDatabase.isOpen()) {
+            sqLiteDatabase.close();
+        }
     }
 }

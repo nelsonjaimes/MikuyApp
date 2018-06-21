@@ -11,7 +11,6 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 
-import com.restaurant.project.mikuyapp.MikuyApplication;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
 import com.restaurant.project.mikuyapp.utils.LogUtil;
 
@@ -41,19 +40,21 @@ public class NetInfo {
     private String intf;
     private WifiInfo info;
     private int cidr = 24;
+    private final Context context;
     private String ip = NOIP;
     private String ssid = null;
     private String gatewayIp = NOIP;
     private String macAddress = NOMAC;
     private String netmaskIp = NOMASK;
 
-    public NetInfo() {
+    public NetInfo(Context context) {
+        this.context = context;
         initIp();
         getWifiInfo();
     }
 
     public void initIp() {
-        intf = MikuyPreference.getNameInterface();
+        intf = MikuyPreference.getNameInterface(context);
         try {
             if (intf == null) {
                 for (Enumeration<NetworkInterface> en =
@@ -65,7 +66,7 @@ public class NetInfo {
                         ip = getInterfaceFirstIp(ni);
                         if (!ip.equals(NOIP)) {
                             LogUtil.d("Name:" + ni.getDisplayName());
-                            MikuyPreference.saveInterfaceName(intf);
+                            MikuyPreference.saveInterfaceName(context, intf);
                             macAddress = HardwareAddress.bytesToHex(ni.getHardwareAddress());
                             LogUtil.d("Mac:" + macAddress);
                             break;
@@ -77,7 +78,7 @@ public class NetInfo {
             }
         } catch (SocketException e) {
             LogUtil.d(e.getMessage());
-            MikuyPreference.saveInterfaceName(DEFAULT_INTERFACE);
+            MikuyPreference.saveInterfaceName(context, DEFAULT_INTERFACE);
         }
         initCidr();
     }
@@ -152,7 +153,7 @@ public class NetInfo {
     }
 
     public boolean getWifiInfo() {
-        WifiManager wifi = (WifiManager) MikuyApplication.contextApp.
+        WifiManager wifi = (WifiManager) context.getApplicationContext().
                 getSystemService(Context.WIFI_SERVICE);
         if (wifi != null) {
             info = wifi.getConnectionInfo();

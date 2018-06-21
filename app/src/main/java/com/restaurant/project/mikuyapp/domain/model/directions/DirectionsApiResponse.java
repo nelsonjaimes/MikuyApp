@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class DirectionsApiResponse {
     @SerializedName("routes")
     private final List<RouteEntity> routeEntityList;
@@ -34,16 +35,19 @@ public class DirectionsApiResponse {
         return status;
     }
 
+     @SuppressWarnings("unused")
      class RouteEntity {
         @SerializedName("legs")
         List<LegsEntity> legsEntityList;
         @SerializedName("overview_polyline")
         OverriewPolyEntity overriewPolyEntity;
 
+        @SuppressWarnings("unused")
         class OverriewPolyEntity {
             String points;
         }
 
+        @SuppressWarnings("unused")
         class LegsEntity {
             Duration duration;
             @SerializedName("end_address")
@@ -51,6 +55,7 @@ public class DirectionsApiResponse {
             @SerializedName("start_address")
             String startAddress;
 
+            @SuppressWarnings("unused")
             class Duration {
                 String text;
             }

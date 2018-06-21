@@ -1,6 +1,7 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
-import com.restaurant.project.mikuyapp.MikuyApplication;
+import android.content.Context;
+
 import com.restaurant.project.mikuyapp.R;
 import com.restaurant.project.mikuyapp.domain.api.ApiMikuyManager;
 import com.restaurant.project.mikuyapp.storage.MikuyPreference;
@@ -12,12 +13,13 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
 public class MikuyException {
-    private String message;
-    private String developerMessage;
+    private final String message;
+    private final String developerMessage;
 
-    private MikuyException() {
-        message = MikuyApplication.contextApp.getString(R.string.errorConnectionServer,
-                MikuyPreference.getUrlBaseServer());
+    private MikuyException(Context context, String developerMessage) {
+        message = context.getString(R.string.errorConnectionServer,
+                MikuyPreference.getUrlBaseServer(context));
+        this.developerMessage = developerMessage;
     }
 
     private String getDeveloperMessage() {
@@ -28,11 +30,7 @@ public class MikuyException {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public static MikuyException parseError(retrofit2.Response response) {
+    public static MikuyException parseError(retrofit2.Response response, Context context) {
         MikuyException mikuyException;
         try {
             Converter<ResponseBody, MikuyException> errorConverter = ApiMikuyManager.getRetrofit().
@@ -40,7 +38,7 @@ public class MikuyException {
             mikuyException = errorConverter.convert(response.errorBody());
             LogUtil.d(mikuyException.getDeveloperMessage());
         } catch (Exception e) {
-            mikuyException = new MikuyException();
+            mikuyException = new MikuyException(context, e.getMessage());
         }
         return mikuyException;
     }

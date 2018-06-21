@@ -51,7 +51,7 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
         }
 
         LogUtil.d("amountReserve:" + amount);
-        SignInResponseEntity session = MikuyPreference.getUserSession();
+        SignInResponseEntity session = MikuyPreference.getUserSession(context);
         String emailUser = session.getEmail();
         if (!Operations.isNetworkAvailable(context)) {
             if (letterView != null) {
@@ -101,7 +101,8 @@ public class LetterPresenterImp implements LetterPresenter, LetterPresenter.Call
         if (letterView != null) {
             letterView.hideProgress();
             letterView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+                    getString(R.string.errorConnectionServer,
+                            MikuyPreference.getUrlBaseServer(context)));
         }
     }
 }

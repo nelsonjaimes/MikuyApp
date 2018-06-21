@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/itemSettings"
+        android:title="@string/scan_wifi_title"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/itemSyncup"
+        android:icon="@drawable/sync"
+        android:title="@string/syncup"
+        app:showAsAction="ifRoom" />
+</menu>

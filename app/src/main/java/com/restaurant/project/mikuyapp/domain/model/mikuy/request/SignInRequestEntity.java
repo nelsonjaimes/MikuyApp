@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.request;
 
+@SuppressWarnings("all")
 public class SignInRequestEntity {
     private String email;
     private String password;

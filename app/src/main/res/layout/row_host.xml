@@ -5,7 +5,8 @@
     android:layout_height="50dp"
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical"
-    android:padding="4dp">
+    android:padding="4dp"
+    tools:ignore="Overdraw">
 
     <LinearLayout
         android:id="@+id/llCheck"
@@ -24,7 +25,7 @@
             android:background="@drawable/shape_circle_enable"
             android:contentDescription="@null"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_done"
+            android:src="@drawable/check_24"
             android:visibility="invisible" />
     </LinearLayout>
 

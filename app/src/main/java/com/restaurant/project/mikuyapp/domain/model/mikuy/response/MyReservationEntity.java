@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 public class MyReservationEntity {
 
     @SerializedName("codereserve")

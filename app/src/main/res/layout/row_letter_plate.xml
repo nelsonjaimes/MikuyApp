@@ -3,8 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:background="?attr/selectableItemBackground">
+    android:layout_height="75dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,8 +35,8 @@
                 android:background="@drawable/shape_circle_enable"
                 android:contentDescription="@null"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_done"
-                android:visibility="invisible" />
+                android:src="@drawable/check_24"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView
@@ -51,7 +50,7 @@
             android:layout_toLeftOf="@+id/llCheck"
             android:layout_toRightOf="@+id/llAccountant"
             android:layout_toStartOf="@id/llAccountant"
-            android:text="Lomo Saltado con pescado cdddjdjdjd ii oelsos odrjon ldldldldldd"
+            tools:text="Lomo Saltado con pescado cdddjdjdjd ii oelsos odrjon ldldldldldd"
             android:textColor="@color/colorDark" />
 
         <TextView
@@ -74,6 +73,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             android:gravity="center">
 
             <ImageButton
@@ -109,7 +109,6 @@
                 android:padding="10dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/add"
-                android:text="+"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

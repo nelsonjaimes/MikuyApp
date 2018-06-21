@@ -18,14 +18,16 @@ import retrofit2.Response;
 public class HomeInteractorImp implements HomeInteractor {
     private final PlatesRepository platesRepository;
     private Call<ListPlateResponseEntity> callbackRetrofit;
+    private final Context context;
 
     HomeInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);
+        this.context = context;
     }
 
     @Override
     public void requestDownLoadPlatesList(final HomePresenter.Callback callback) {
-        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
+        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance(context);
         callbackRetrofit = apiMikuyInterface.requestPlatesList();
         callbackRetrofit.enqueue(new Callback<ListPlateResponseEntity>() {
             @Override
@@ -40,8 +42,10 @@ public class HomeInteractorImp implements HomeInteractor {
                 } else {
                     ResponseBody responseBody = response.errorBody();
                     if (responseBody != null) {
-                        MikuyException mikuyException = MikuyException.parseError(response);
-                        if (callback != null) callback.onErrorService(mikuyException.getMessage());
+                        MikuyException mikuyException = MikuyException.parseError(response, context);
+                        if (callback != null) {
+                            callback.onErrorService(mikuyException.getMessage());
+                        }
                     }
                 }
             }
@@ -49,14 +53,18 @@ public class HomeInteractorImp implements HomeInteractor {
             @Override
             public void onFailure(@NonNull Call<ListPlateResponseEntity> call,
                                   @NonNull Throwable t) {
-                if (callback != null) callback.onFailure();
+                if (callback != null) {
+                    callback.onFailure();
+                }
             }
         });
     }
 
     @Override
     public void onDetach() {
-        if (callbackRetrofit != null) callbackRetrofit.cancel();
+        if (callbackRetrofit != null) {
+            callbackRetrofit.cancel();
+        }
         platesRepository.closeConnection();
     }
 }

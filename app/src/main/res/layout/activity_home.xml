@@ -8,7 +8,6 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
-        android:id="@+id/rlLeft"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:background="@android:color/white">

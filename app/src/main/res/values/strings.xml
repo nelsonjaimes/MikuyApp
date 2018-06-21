@@ -77,7 +77,9 @@
     <string name="wifi_completed">Obteniendo IP de %1$s</string>
     <string name="wifi_net_ip">Conectado a %1$s \nIP: %2$s \nRED: %3$s /%4$d</string>
     <string name="wifi_detect_internet">Conectividad de internet detectata!</string>
-    <string name="scan_wifi_title">Cambio de dirección IP</string>
+    <string name="scan_wifi_title">Dirección IP del servidor</string>
+    <string name="syncup">Sincronizar</string>
+    <string name="syncupMessage">Syncronizando platillos</string>
     <string name="scan_hold">Cambiar IP manualmente</string>
     <string name="emptyDispositive">No se encontró ningún dispositivo en red</string>
     <string name="save">guardar</string>
@@ -88,4 +90,7 @@
     <string name="yes">si</string>
     <string name="not">no</string>
     <string name="DateHour">Fecha y Hora :</string>
+    <!--Address Activity -->
+    <string name="minutes">mins</string>
+    <string name="defaultIp">000.000.000.000</string>
 </resources>

@@ -14,6 +14,7 @@ import com.restaurant.project.mikuyapp.menutoday.model.Category;
 import com.restaurant.project.mikuyapp.menutoday.model.Plate;
 import com.restaurant.project.mikuyapp.menutoday.ui.PlateRecyclerListener;
 import com.restaurant.project.mikuyapp.utils.AnimationUtil;
+import com.restaurant.project.mikuyapp.utils.LogUtil;
 
 import java.util.List;
 
@@ -111,8 +112,8 @@ public class MenuTodayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void setTodayPlate(Plate plate) {
             tvName.setText(plate.getName());
             tvPrice.setText(context.getString(R.string.formatPrice, plate.getPrice()));
-            if (plate.getCategory().equals(TYPE_MENU_ENTRY) ||
-                    plate.getCategory().equals(TYPE_MENU_DESSERT)) {
+            if (plate.getCategory().equalsIgnoreCase(TYPE_MENU_ENTRY) ||
+                    plate.getCategory().equalsIgnoreCase(TYPE_MENU_DESSERT)) {
                 tvPrice.setVisibility(View.INVISIBLE);
             } else {
                 tvPrice.setVisibility(View.VISIBLE);

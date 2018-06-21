@@ -53,7 +53,7 @@ public class LetterOfThePlatesFragment extends BaseFragment implements
 
     @Override
     public void update() {
-        if (MikuyPreference.getStateDownloadPlatesList()) {
+        if (MikuyPreference.getStateDownloadPlatesList(context)) {
             letterPresenter.startLoadingPlates();
         }
     }
@@ -105,7 +105,7 @@ public class LetterOfThePlatesFragment extends BaseFragment implements
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         btnReserve.setOnClickListener(this);
-        if (MikuyPreference.getStateDownloadPlatesList()) {
+        if (MikuyPreference.getStateDownloadPlatesList(context)) {
             letterPresenter.startLoadingPlates();
         }
     }
@@ -151,7 +151,7 @@ public class LetterOfThePlatesFragment extends BaseFragment implements
 
     @Override
     public void showSnackBar(String message) {
-        Operations.getSnackBar(rlLetter, message, Snackbar.LENGTH_SHORT).show();
+        Operations.getSnackBar(context, rlLetter, message, Snackbar.LENGTH_SHORT).show();
     }
 
 

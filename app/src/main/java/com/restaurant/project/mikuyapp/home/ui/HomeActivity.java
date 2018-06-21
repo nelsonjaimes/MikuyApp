@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.restaurant.project.mikuyapp.EntryMenuActivity;
@@ -47,7 +47,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     private HomePresenter homePresenter;
     private SideBarAdapter sideBarAdapter;
     private DialogProgress dialogProgress;
-    private FragmentManager mFragmentManager;
     private static final String TAG_DIALOG = "dialogOff";
     private static final String TAG_ITEM = "itemTag";
     private HandlerSlidingPanel handlerSlidingPanel;
@@ -63,7 +62,6 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         LinearLayout llSignOff = findViewById(R.id.llSignOff);
         LinearLayout llAddressLocation = findViewById(R.id.llAddressLocation);
         homePresenter = new HomePresenterImp(this);
-        mFragmentManager = getSupportFragmentManager();
         handlerSlidingPanel = new HandlerSlidingPanel(splHome);
         initSlidingPanel();
         initSideBar();
@@ -92,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     public void signOff() {
-        MikuyPreference.deleteAll();
+        MikuyPreference.deleteAll(this);
         startActivity(new Intent(HomeActivity.this,
                 EntryMenuActivity.class));
         finish();
@@ -103,7 +101,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
         super.onResume();
         sideBarAdapter.setSideBarListener(this);
         homePresenter.onAttach(this);
-        if (!MikuyPreference.getStateDownloadPlatesList()) {
+        if (!MikuyPreference.getStateDownloadPlatesList(this)) {
             homePresenter.downloadPlatesList();
         }
     }
@@ -111,7 +109,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
     @Override
     protected void onStop() {
         sideBarAdapter.setSideBarListener(null);
-        homePresenter.onDettach();
+        if (homePresenter != null) homePresenter.onDettach();
         super.onStop();
     }
 
@@ -141,7 +139,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     public void onSuccessDownloadPlatesList() {
-        MikuyPreference.saveStateDownloadPlatesList(true);
+        MikuyPreference.saveStateDownloadPlatesList(this, true);
         itemFragment = (BaseFragment) getSupportFragmentManager().findFragmentByTag(TAG_ITEM);
         if (itemFragment != null) {
             itemFragment.update();
@@ -150,7 +148,8 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     public void showSnackBar(@NonNull String message) {
-        Operations.getSnackBar(findViewById(R.id.llHome), message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(this, findViewById(R.id.llHome),
+                message, Snackbar.LENGTH_LONG).show();
     }
 
     private void initToolbar() {
@@ -208,8 +207,8 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
                 title = getString(R.string.userProfile);
                 break;
         }
-        if (itemFragment != null && mFragmentManager != null) {
-            mFragmentManager.beginTransaction().replace(R.id.flContent,
+        if (itemFragment != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flContent,
                     itemFragment, TAG_ITEM).commit();
             sideBarAdapter.selectItem(position);
             setTitle(title);
@@ -218,7 +217,7 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        getMenuInflater().inflate(R.menu.menu_settingshome, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -228,6 +227,12 @@ public class HomeActivity extends AppCompatActivity implements SideBarListener,
             toggleDrawerLayout();
         } else if (item.getItemId() == R.id.itemSettings) {
             startActivity(new Intent(HomeActivity.this, ScannerActivity.class));
+        } else if (item.getItemId() == R.id.itemSyncup) {
+            if (homePresenter == null) {
+                homePresenter = new HomePresenterImp(this);
+            }
+            homePresenter.downloadPlatesList();
+            Toast.makeText(this, R.string.syncupMessage, Toast.LENGTH_SHORT).show();
         }
         return true;
     }

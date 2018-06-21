@@ -58,7 +58,8 @@ public class HomePresenterImp implements HomePresenter, HomePresenter.Callback {
         if (homeView != null) {
             homeView.hideProgress();
             homeView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+                    getString(R.string.errorConnectionServer,
+                            MikuyPreference.getUrlBaseServer(context)));
         }
     }
 }

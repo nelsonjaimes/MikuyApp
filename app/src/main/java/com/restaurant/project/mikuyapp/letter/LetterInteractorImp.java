@@ -16,10 +16,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LetterInteractorImp implements LetterInteractor {
+
+    private final Context context;
     private final PlatesRepository platesRepository;
 
     LetterInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);
+        this.context = context;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class LetterInteractorImp implements LetterInteractor {
     @Override
     public void requestMakeReservation(ReservationRequestEntity entity,
                                        final LetterPresenter.Callback callback) {
-        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
+        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance(context);
         Call<ReservationResponseEntity> call = apiMikuyInterface.makeReserve(entity);
         call.enqueue(new Callback<ReservationResponseEntity>() {
             @Override
@@ -43,17 +46,18 @@ public class LetterInteractorImp implements LetterInteractor {
                     if (callback != null)
                         callback.onSuccessMakeReservation(reservationResponseEntity);
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response);
+                    MikuyException mikuyException = MikuyException.parseError(response, context);
                     if (callback != null){
                         callback.onError(mikuyException.getMessage());
                     }
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<ReservationResponseEntity> call,
                                   @NonNull Throwable t) {
-                callback.onFailure();
+                if (callback != null) {
+                    callback.onFailure();
+                }
             }
         });
 

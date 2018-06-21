@@ -18,9 +18,11 @@ import retrofit2.Response;
 public class MenuTodayInteractorImp implements MenuTodayInteractor {
 
     private final PlatesRepository platesRepository;
+    private final Context context;
 
     MenuTodayInteractorImp(Context context) {
         platesRepository = new PlatesRepositoryImp(context);
+        this.context = context;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class MenuTodayInteractorImp implements MenuTodayInteractor {
     @Override
     public void requestMakeReservation(ReservationRequestEntity entity,
                                        final MenuTodayPresenter.Callback callback) {
-        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
+        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance(context);
         Call<ReservationResponseEntity> call = apiMikuyInterface.makeReserve(entity);
         call.enqueue(new Callback<ReservationResponseEntity>() {
             @Override
@@ -44,7 +46,7 @@ public class MenuTodayInteractorImp implements MenuTodayInteractor {
                     if (callback != null)
                         callback.onSuccessMakeReservation(reservationResponseEntity);
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response);
+                    MikuyException mikuyException = MikuyException.parseError(response, context);
                     if (callback != null) callback.onError(mikuyException.getMessage());
                 }
             }

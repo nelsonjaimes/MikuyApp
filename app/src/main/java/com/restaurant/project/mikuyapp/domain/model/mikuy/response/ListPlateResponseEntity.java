@@ -3,7 +3,7 @@ package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@SuppressWarnings("ALL")
 public class ListPlateResponseEntity {
 
     @SerializedName("platelist")

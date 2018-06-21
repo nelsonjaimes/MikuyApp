@@ -17,7 +17,7 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
     private final Context context;
 
     public SignUpPresenterImp(Context context) {
-        signUpInteractor = new SignUpInteractorImp();
+        signUpInteractor = new SignUpInteractorImp(context);
         this.context = context;
     }
 
@@ -85,7 +85,7 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
     @Override
     public void onSuccess(SignInResponseEntity signInResponseEntity) {
         if (signUpView != null) {
-            MikuyPreference.saveUserSession(signInResponseEntity);
+            MikuyPreference.saveUserSession(context, signInResponseEntity);
             signUpView.hideProgress();
             signUpView.onSucessSignUp();
         }
@@ -95,8 +95,8 @@ public class SignUpPresenterImp implements SignUpPresenter, SignUpPresenter.Call
     public void onFailure() {
         if (signUpView != null) {
             signUpView.hideProgress();
-            signUpView.showSnackBar(context.getResources().
-                    getString(R.string.errorConnectionServer, MikuyPreference.getUrlBaseServer()));
+            signUpView.showSnackBar(context.getResources().getString(R.string.errorConnectionServer,
+                    MikuyPreference.getUrlBaseServer(context)));
         }
     }
 

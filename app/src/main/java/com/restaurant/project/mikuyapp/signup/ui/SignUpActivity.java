@@ -71,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
         super.onStop();
     }
 
+    @SuppressWarnings("unused")
     public void onClickRadio(View view) {
         int id = rgGender.getCheckedRadioButtonId();
         RadioButton rbMale = rgGender.findViewById(R.id.rbMale);
@@ -147,7 +148,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpView, Vie
 
     @Override
     public void showSnackBar(String message) {
-        Operations.getSnackBar(findViewById(R.id.rlSignUp), message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(this, findViewById(R.id.rlSignUp),
+                message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

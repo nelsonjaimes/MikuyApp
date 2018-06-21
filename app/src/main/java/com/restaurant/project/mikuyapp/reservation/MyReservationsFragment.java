@@ -99,7 +99,7 @@ public class MyReservationsFragment extends BaseFragment implements MyReservatio
 
     @Override
     public void showSnackBar(String message) {
-        Operations.getSnackBar(llMyReservation, message, Snackbar.LENGTH_LONG).show();
+        Operations.getSnackBar(context, llMyReservation, message, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.signin;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.restaurant.project.mikuyapp.domain.api.ApiMikuyInterface;
@@ -13,12 +14,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignInInteractorImp implements SignInInteractor {
+    private final Context context;
     private static Call<SignInResponseEntity> requestSignIn;
+
+    SignInInteractorImp(Context context) {
+        this.context = context;
+    }
+
     @Override
     public void requestSignInService(@NonNull SignInRequestEntity signInRequestEntity,
                                      final SignInPresenter.Callback callback) {
 
-        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance();
+        ApiMikuyInterface apiMikuyInterface = ApiMikuyManager.getInstance(context);
         requestSignIn = apiMikuyInterface.requestSignIn(signInRequestEntity);
         requestSignIn.enqueue(new Callback<SignInResponseEntity>() {
             @Override
@@ -30,7 +37,7 @@ public class SignInInteractorImp implements SignInInteractor {
                         if (callback != null) callback.Success(signInResponseEntity);
                     }
                 } else {
-                    MikuyException mikuyException = MikuyException.parseError(response);
+                    MikuyException mikuyException = MikuyException.parseError(response, context);
                         if (callback != null) {
                             callback.onErrorService(mikuyException.getMessage());
                         }

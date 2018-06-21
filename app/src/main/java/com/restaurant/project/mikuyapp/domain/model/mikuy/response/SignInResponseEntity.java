@@ -1,5 +1,6 @@
 package com.restaurant.project.mikuyapp.domain.model.mikuy.response;
 
+@SuppressWarnings("ALL")
 public class SignInResponseEntity {
     private String name;
     private String lastname;
